@@ -1,5 +1,5 @@
 extends EnemyBase
-class_name ChaseEnemy
+class_name RatEnemy
 
 func _ready() -> void:
 	speed = 80.0

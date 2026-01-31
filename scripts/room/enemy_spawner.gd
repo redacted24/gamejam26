@@ -2,7 +2,7 @@ extends RefCounted
 class_name EnemySpawner
 
 const ENEMY_TYPES: Array = [
-	preload("res://scenes/enemies/chase_enemy.tscn"),
+	preload("res://scenes/enemies/rat_enemy.tscn"),
 ]
 
 static func spawn_enemies(room: Room, parent: Node) -> int:
