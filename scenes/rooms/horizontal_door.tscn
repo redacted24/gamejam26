@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://baaun8u3q5t8j"]
 
-[ext_resource type="Script" uid="uid://drcnbi04lpw7t" path="res://scripts/room/door.gd" id="1_sxth3"]
+[ext_resource type="Script" uid="uid://drcnbi04lpw7t" path="res://scripts/room/door.gd" id="1_kqciq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mwdy5"]
 size = Vector2(64, 20)
 
-[node name="Door" type="Area2D" unique_id=589182169]
+[node name="HorizontalDoor" type="Area2D" unique_id=589182169]
 collision_layer = 64
 collision_mask = 2
-script = ExtResource("1_sxth3")
+script = ExtResource("1_kqciq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=927594113]
 position = Vector2(1, 0)
@@ -20,5 +20,6 @@ offset_top = -10.0
 offset_right = 33.0
 offset_bottom = 10.0
 color = Color(0.87360615, 0.00031246484, 0.8028527, 1)
+metadata/_edit_use_anchors_ = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
