@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://52ud4lv0c1gm"]
-
-[sub_resource type="TileSet" id="TileSet_kw2uf"]
-tile_size = Vector2i(64, 64)
-
-[node name="plains_1_1" type="Node2D" unique_id=1486852148]
-
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=999308467]
-tile_set = SubResource("TileSet_kw2uf")
