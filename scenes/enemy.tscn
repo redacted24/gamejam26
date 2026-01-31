@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d30q18qg72ds6"]
 
 [ext_resource type="Texture2D" uid="uid://dgia8ok2aquay" path="res://assets/character/walkdown1.png" id="1_g0wcc"]
+[ext_resource type="Script" uid="uid://brieghhvrducl" path="res://scripts/enemy/enemy.gd" id="1_shcg2"]
 [ext_resource type="Texture2D" uid="uid://c6d1vwslrrdf" path="res://assets/character/walkdown2.png" id="2_s1ycm"]
 [ext_resource type="Texture2D" uid="uid://fdu3qgc82wkj" path="res://assets/character/walkdown3.png" id="3_shcg2"]
 [ext_resource type="Texture2D" uid="uid://c5swukpbj84e" path="res://assets/character/walkright1.png" id="4_ile5s"]
@@ -15,6 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://b6xqi18hpwtxk" path="res://assets/character/walkupright1.png" id="13_t3vcr"]
 [ext_resource type="Texture2D" uid="uid://dv8254a5l5gwu" path="res://assets/character/walkupright2.png" id="14_qaulx"]
 [ext_resource type="Texture2D" uid="uid://co0iymu5gfxbn" path="res://assets/character/walkupright3.png" id="15_1f82d"]
+[ext_resource type="Script" uid="uid://cg5qffp8akvjq" path="res://scripts/state_machine.gd" id="16_s1ycm"]
+[ext_resource type="Script" uid="uid://dxh4tm3yrxaxx" path="res://scripts/enemy/states/enemy_idle_state.gd" id="18_ile5s"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lioqc"]
 animations = [{
@@ -92,6 +95,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_0lg75"]
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1814257504]
+script = ExtResource("1_shcg2")
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=461835623]
 z_index = 10
@@ -109,8 +113,11 @@ offset_bottom = 30.0
 color = Color(0.99257606, 0.08052162, 0.5568904, 1)
 
 [node name="StateMachine" type="Node" parent="." unique_id=1016421695]
+script = ExtResource("16_s1ycm")
 
-[node name="Normal" type="Node" parent="StateMachine" unique_id=904105396]
+[node name="Normal" type="Node" parent="StateMachine" unique_id=904105396 node_paths=PackedStringArray("enemy")]
+script = ExtResource("18_ile5s")
+enemy = NodePath("../..")
 
 [node name="Hurt" type="Node" parent="StateMachine" unique_id=608500507]
 
