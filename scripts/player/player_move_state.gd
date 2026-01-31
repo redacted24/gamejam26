@@ -65,4 +65,4 @@ func physics_process(_delta: float) -> void:
 	player.move_and_slide()
 	# Animation handling end
 	
-	player.try_shoot()
+	player.try_attack()

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bc617hvj6834e"]
+
+[ext_resource type="Script" uid="uid://bfvitkm3ceom0" path="res://scripts/weapons/bow_weapon.gd" id="1_bow"]
+
+[node name="BowWeapon" type="Node2D" unique_id=804441376]
+script = ExtResource("1_bow")
+attack_rate = 0.2
+
+[node name="Sprite" type="ColorRect" parent="." unique_id=969366061]
+offset_left = -8.0
+offset_top = -16.0
+offset_right = 8.0
+offset_bottom = 16.0
+color = Color(0.6, 0.4, 0.2, 1)
