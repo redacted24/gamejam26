@@ -23,6 +23,7 @@ DialogueManager="*uid://c3rodes2l3gxb"
 NavManager="*res://global/nav_manager.gd"
 MapGeneration="*uid://cmnuyts41bolj"
 PlayerData="*uid://cnp7kfw22j2vr"
+UserInterface="*uid://drs1kl8225u00"
 
 [dialogue_manager]
 
