@@ -16,7 +16,8 @@ var invincible: bool = false
 
 func _ready() -> void:
 	add_to_group("player")
-	NavManager.player_spawn.connect(_on_spawn)
+	if NavManager:
+		NavManager.player_spawn.connect(_on_spawn)
 	_create_health()
 	_create_shoot_timer()
 

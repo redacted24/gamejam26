@@ -3,7 +3,7 @@ class_name Room
 
 func _ready() -> void:
 	print("Loading a room")
-	if NavManager.spawn_location != null:
+	if NavManager and NavManager.spawn_location != null:
 		_on_level_spawn(NavManager.spawn_location)
 		
 func _on_level_spawn(spawn_location : String) -> void:

@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://d137sgviyscfm" path="res://scenes/player.tscn" id="2_player"]
 [ext_resource type="Texture2D" uid="uid://bc0fwu1dslx26" path="res://assets/environment/room/main1.png" id="3_tiles"]
 [ext_resource type="PackedScene" uid="uid://ldrshfh8jvr1" path="res://scenes/enemies/chase_enemy.tscn" id="4_rat"]
+[ext_resource type="PackedScene" uid="uid://wmffeydq5x56" path="res://scenes/spawn_point.tscn" id="5_spawn"]
+[ext_resource type="PackedScene" uid="uid://baaun8u3q5t8j" path="res://scenes/rooms/door.tscn" id="6_door"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tiles"]
 texture = ExtResource("3_tiles")
@@ -48,4 +50,14 @@ position = Vector2(750, 450)
 [node name="Rat4" parent="." instance=ExtResource("4_rat")]
 position = Vector2(300, 480)
 
-[node name="SpawnPoints" type="Node" parent="."]
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="West" parent="SpawnPoints" instance=ExtResource("5_spawn")]
+position = Vector2(80, 326)
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="DoorToCrossroads" parent="Doors" instance=ExtResource("6_door")]
+position = Vector2(20, 326)
+next_level_path = "res://scenes/rooms/room_crossroads.tscn"
+next_level_spawnpoint = "East"

@@ -62,9 +62,17 @@ texture = ExtResource("5_gw2uy")
 [node name="South" parent="SpawnPoints" unique_id=825871877 instance=ExtResource("6_umhp8")]
 position = Vector2(609, 617)
 
+[node name="East" parent="SpawnPoints" instance=ExtResource("6_umhp8")]
+position = Vector2(1050, 326)
+
 [node name="Doors" type="Node2D" parent="." unique_id=487674928]
 
 [node name="Door" parent="Doors" unique_id=589182169 instance=ExtResource("7_v24os")]
 position = Vector2(608, 11)
 next_level_path = "res://scenes/rooms/room_crossroads.tscn"
 next_level_spawnpoint = "South"
+
+[node name="DoorToRats" parent="Doors" instance=ExtResource("7_v24os")]
+position = Vector2(1130, 326)
+next_level_path = "res://scenes/rooms/room_rats.tscn"
+next_level_spawnpoint = "West"
