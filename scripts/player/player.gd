@@ -24,6 +24,8 @@ var weapon_type: WeaponType = WeaponType.BOW
 var invincible: bool = false
 
 func _ready() -> void:
+	# Get player data from autoload
+	stats.hunger = PlayerData.hunger
 	# Signal that manages player spawn
 	if NavManager:
 		NavManager.player_spawn.connect(_on_spawn)
@@ -31,10 +33,15 @@ func _ready() -> void:
 	EventBus.player_hunger_reduced.connect(_hunger_reduce)
 	_equip_weapon(weapon_type)
 	
+# What happens when player exits tree
+func _exit_tree() -> void:
+	PlayerData.hunger = stats.hunger
+	pass
+	
 # Function that reduces the amount of hunger from player
 func _hunger_reduce(amount : int) -> void:
 	stats.hunger -= amount
-	print("new hunger: %d" % stats.hunger)
+	print("hunger reduced by %d to : %d" % [amount, stats.hunger])
 	if stats.hunger <= 0:
 		print("player died of hunger")
 		EventBus.player_died.emit()

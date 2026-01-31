@@ -22,6 +22,7 @@ GameData="*res://global/game_data.gd"
 DialogueManager="*uid://c3rodes2l3gxb"
 NavManager="*res://global/nav_manager.gd"
 MapGeneration="*uid://cmnuyts41bolj"
+PlayerData="*uid://cnp7kfw22j2vr"
 
 [dialogue_manager]
 

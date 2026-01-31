@@ -42,7 +42,7 @@ func generate_next_rooms() -> Dictionary:
 		"type": MapGeneration.room_types
 	}
 	
-	var next_room_type = get_next_room_type()
+	var next_room_type = get_next_room_type() # randomly generate next room type
 	
 	if next_room_type == MapGeneration.room_types.PEACEFUL_ROOM:
 		out.path = "res://scenes/rooms/types/peaceful_room.tscn"

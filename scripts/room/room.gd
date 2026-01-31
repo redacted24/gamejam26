@@ -10,6 +10,8 @@ var is_cleared : bool
 var all_doors : Array # array holds all doors (exits)
 
 func _ready() -> void:
+	# Reduce player hunger by the amount specified
+	EventBus.player_hunger_reduced.emit(hunger_cost)
 	is_cleared = false
 	# Connect spawn location signal
 	if NavManager and NavManager.spawn_location != null:
@@ -25,11 +27,10 @@ func assign_doors() -> void:
 	# iterate through doors and assign their teleport
 	for door : Door in all_doors:
 		var next_room = MapGeneration.generate_next_rooms()
-		# [0] is path, [1] is room type
-		door.next_level_path = next_room.path
-		door.next_level_type = next_room.type
+		door.next_level.path = next_room.path
+		door.next_level.type = next_room.type
 		# all rooms should only have one spawnpoint for now
-		door.next_level_spawnpoint = "Main"
+		door.next_level.spawnpoint = "Main"
 		#print("a door connects to %s" % next_room[0])
 		
 func spawn_enemies() -> void:
