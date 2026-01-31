@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://b5klb7bxgkqvf"]
 
+[ext_resource type="PackedScene" uid="uid://wmffeydq5x56" path="res://scenes/spawn_point.tscn" id="1_kh5k5"]
+[ext_resource type="PackedScene" uid="uid://baaun8u3q5t8j" path="res://scenes/rooms/horizontal_door.tscn" id="2_rahk1"]
+
 [sub_resource type="TileSet" id="TileSet_6uj3d"]
 tile_size = Vector2i(64, 64)
 
@@ -28,3 +31,13 @@ offset_right = 675.0
 offset_bottom = 340.0
 text = "Homebase Village
 "
+
+[node name="SpawnPoints" type="Node2D" parent="." unique_id=659187687]
+
+[node name="South" parent="SpawnPoints" unique_id=825871877 instance=ExtResource("1_kh5k5")]
+position = Vector2(621, 615)
+
+[node name="Doors" type="Node2D" parent="." unique_id=200363498]
+
+[node name="HorizontalDoor" parent="Doors" unique_id=589182169 instance=ExtResource("2_rahk1")]
+position = Vector2(621, 18)

@@ -124,3 +124,5 @@ animation = NodePath("../../AnimatedSprite2D")
 [node name="Hurt" type="Node" parent="StateMachine" unique_id=1767258198]
 
 [node name="Idle" type="Node" parent="StateMachine" unique_id=1860971028]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=768018205]
