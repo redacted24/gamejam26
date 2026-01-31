@@ -4,11 +4,12 @@ class_name Player
 @export var health_component: HealthComponent
 @export var player: CharacterBody2D
 
-enum WeaponType { BOW, SPEAR }
+enum WeaponType { BOW, SPEAR, SWORD }
 
 const WEAPON_SCENES := {
 	WeaponType.BOW: preload("res://scenes/weapons/bow_weapon.tscn"),
 	WeaponType.SPEAR: preload("res://scenes/weapons/spear_weapon.tscn"),
+	WeaponType.SWORD: preload("res://scenes/weapons/sword_weapon.tscn"),
 }
 
 const HUNGER_MAX := 200
@@ -20,7 +21,7 @@ var stats := {
 }
 
 var current_weapon: WeaponBase
-var weapon_type: WeaponType = WeaponType.SPEAR
+var weapon_type: WeaponType = WeaponType.SWORD
 var invincible: bool = false
 
 func _ready() -> void:

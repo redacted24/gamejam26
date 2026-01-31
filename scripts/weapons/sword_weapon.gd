@@ -1,36 +1,48 @@
 extends WeaponBase
-class_name SpearWeapon
+class_name SwordWeapon
 
-@export var attack_duration: float = 0.15
-@export var thrust_distance: float = 50.0
+@export var attack_duration: float = 0.3
 
+@onready var idle_sprite: Sprite2D = $IdleSprite
+@onready var swing_sprite: AnimatedSprite2D = $SwingSprite
 @onready var hitbox: Area2D = $Hitbox
 
 var _hit_targets: Array[Node2D] = []
-var _thrust_tween: Tween
+var _is_attacking: bool = false
 
 func _ready() -> void:
 	super._ready()
+	sprite = idle_sprite
 	hitbox.body_entered.connect(_on_hitbox_body_entered)
+	swing_sprite.animation_finished.connect(_on_swing_finished)
 	_set_hitbox_enabled(false)
+	_show_idle()
 
 func _process(_delta: float) -> void:
 	_update_aim()
 
 func _perform_attack(_dir: Vector2) -> void:
+	if _is_attacking:
+		return
 	super._perform_attack(_dir)
 	_hit_targets.clear()
+	_is_attacking = true
 	_set_hitbox_enabled(true)
+	_show_swing()
 
-	# Kill any existing thrust tween
-	if _thrust_tween and _thrust_tween.is_valid():
-		_thrust_tween.kill()
+func _show_idle() -> void:
+	idle_sprite.visible = true
+	swing_sprite.visible = false
 
-	# Thrust forward and back
-	_thrust_tween = create_tween()
-	_thrust_tween.tween_property(sprite, "position:x", thrust_distance, attack_duration * 0.4).set_ease(Tween.EASE_OUT)
-	_thrust_tween.tween_property(sprite, "position:x", 0.0, attack_duration * 0.6).set_ease(Tween.EASE_IN)
-	_thrust_tween.tween_callback(_set_hitbox_enabled.bind(false))
+func _show_swing() -> void:
+	idle_sprite.visible = false
+	swing_sprite.visible = true
+	swing_sprite.play("swing")
+
+func _on_swing_finished() -> void:
+	_is_attacking = false
+	_set_hitbox_enabled(false)
+	_show_idle()
 
 func _set_hitbox_enabled(enabled: bool) -> void:
 	hitbox.monitoring = enabled

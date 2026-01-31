@@ -11,7 +11,6 @@ enum ChargeState { IDLE, CHARGE_1, CHARGE_2, BOW_DRAWN }
 @export var max_damage_multiplier: float = 5.0
 @export var min_speed_multiplier: float = 1.0
 @export var max_speed_multiplier: float = 3.0
-@export var horizontal_offset: float = 15.0
 
 @export_group("Bow Sprites")
 @export var sprite_idle: Texture2D
@@ -23,13 +22,12 @@ var is_charging: bool = false
 var charge_time: float = 0.0
 var charge_state: ChargeState = ChargeState.IDLE
 
-@onready var sprite: Sprite2D = $Sprite
-
 func _ready() -> void:
+	super._ready()
 	_update_sprite()
 
 func _process(delta: float) -> void:
-	_update_flip()
+	_update_aim()
 
 	if Input.is_action_pressed("shoot"):
 		if not is_charging:
@@ -44,22 +42,6 @@ func _process(delta: float) -> void:
 		charge_time = 0.0
 		charge_state = ChargeState.IDLE
 		_update_sprite()
-
-func _update_flip() -> void:
-	if not sprite or not player:
-		return
-	var mouse_pos := player.get_global_mouse_position()
-	var direction := (mouse_pos - player.global_position).normalized()
-
-	# Rotate bow to point at cursor
-	rotation = direction.angle()
-
-	# Flip sprite vertically when aiming left to prevent upside-down appearance
-	var is_left := mouse_pos.x < player.global_position.x
-	sprite.flip_v = is_left
-
-	# Offset bow position based on aim direction
-	position.x = -horizontal_offset if is_left else horizontal_offset
 
 func _update_charge_state() -> void:
 	var new_state: ChargeState
