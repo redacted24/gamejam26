@@ -1,15 +1,15 @@
 extends CharacterBody2D
 class_name Player
 
+@export var health_component: HealthComponent
+@export var player: CharacterBody2D
+
 enum WeaponType { BOW, SPEAR }
 
 const WEAPON_SCENES := {
 	WeaponType.BOW: preload("res://scenes/weapons/bow_weapon.tscn"),
 	WeaponType.SPEAR: preload("res://scenes/weapons/spear_weapon.tscn"),
 }
-
-@export var health_component: HealthComponent
-@export var player: CharacterBody2D
 
 const HUNGER_MAX := 200
 
@@ -24,12 +24,24 @@ var weapon_type: WeaponType = WeaponType.BOW
 var invincible: bool = false
 
 func _ready() -> void:
+	# Signal that manages player spawn
 	if NavManager:
 		NavManager.player_spawn.connect(_on_spawn)
+	# Signal that manages player hunger reducing
+	EventBus.player_hunger_reduced.connect(_hunger_reduce)
 	_equip_weapon(weapon_type)
+	
+# Function that reduces the amount of hunger from player
+func _hunger_reduce(amount : int) -> void:
+	stats.hunger -= amount
+	print("new hunger: %d" % stats.hunger)
+	if stats.hunger <= 0:
+		print("player died of hunger")
+		EventBus.player_died.emit()
+	pass
 
 func _on_spawn(spawn_location: Vector2) -> void:
-	print("spawning player at %f and %f" % [spawn_location.x, spawn_location.y])
+	#print("spawning player at %f and %f" % [spawn_location.x, spawn_location.y])
 	player.position = spawn_location
 
 func _equip_weapon(type: WeaponType) -> void:
