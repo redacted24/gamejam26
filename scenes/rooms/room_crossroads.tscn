@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bc0fwu1dslx26" path="res://assets/environment/room/main1.png" id="2_xwcdw"]
 [ext_resource type="PackedScene" uid="uid://d30q18qg72ds6" path="res://scenes/enemy.tscn" id="3_jtho3"]
 [ext_resource type="Texture2D" uid="uid://4avppwab8phv" path="res://assets/environment/room/crossroad_sign.png" id="5_gw2uy"]
+[ext_resource type="PackedScene" uid="uid://ldrshfh8jvr1" path="res://scenes/enemies/chase_enemy.tscn" id="6_rat"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xwcdw"]
 texture = ExtResource("2_xwcdw")
@@ -54,5 +55,14 @@ position = Vector2(321, 445)
 [node name="CrossroadSign" type="Sprite2D" parent="." unique_id=267308220]
 position = Vector2(643, 281)
 texture = ExtResource("5_gw2uy")
+
+[node name="Rat1" parent="." instance=ExtResource("6_rat")]
+position = Vector2(200, 200)
+
+[node name="Rat2" parent="." instance=ExtResource("6_rat")]
+position = Vector2(800, 400)
+
+[node name="Rat3" parent="." instance=ExtResource("6_rat")]
+position = Vector2(400, 500)
 
 [node name="SpawnPoints" type="Node" parent="." unique_id=227297660]
