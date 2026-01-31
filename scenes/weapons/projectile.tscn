@@ -1,21 +1,20 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene format=3 uid="uid://cjjyltbcau0nx"]
 
-[ext_resource type="Script" path="res://scripts/projectile/projectile.gd" id="1_proj"]
+[ext_resource type="Script" uid="uid://b4w1khvta6nko" path="res://scripts/projectile/projectile.gd" id="1_proj"]
+[ext_resource type="Texture2D" uid="uid://d1mj8sf1yyw0g" path="res://assets/weapons/arrow.png" id="2_qp4n5"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1"]
-radius = 5.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qp4n5"]
+size = Vector2(71, 32)
 
-[node name="Projectile" type="Area2D"]
+[node name="Projectile" type="Area2D" unique_id=496921448]
 collision_layer = 8
 collision_mask = 5
 script = ExtResource("1_proj")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_1")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1816143404]
+position = Vector2(0.5, -2)
+shape = SubResource("RectangleShape2D_qp4n5")
 
-[node name="Sprite" type="ColorRect" parent="."]
-offset_left = -4.0
-offset_top = -4.0
-offset_right = 4.0
-offset_bottom = 4.0
-color = Color(0.392157, 0.584314, 0.929412, 1)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1019857476]
+scale = Vector2(4.46, 4.46)
+texture = ExtResource("2_qp4n5")

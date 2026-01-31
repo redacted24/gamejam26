@@ -15,6 +15,7 @@ func setup(dir: Vector2, dmg: int, spd: float = 300.0, player_proj: bool = true)
 	damage = dmg
 	speed = spd
 	is_player_projectile = player_proj
+	rotation = direction.angle()
 
 func _ready() -> void:
 	monitoring = true
@@ -26,24 +27,6 @@ func _ready() -> void:
 	else:
 		collision_layer = 16
 		collision_mask = 1 | 2  # walls + player
-
-	# Get or create collision shape
-	var col := get_node_or_null("CollisionShape2D")
-	if not col:
-		col = CollisionShape2D.new()
-		var circle := CircleShape2D.new()
-		circle.radius = 5.0
-		col.shape = circle
-		add_child(col)
-
-	# Get or create visual
-	var visual := get_node_or_null("Sprite")
-	if not visual:
-		visual = ColorRect.new()
-		visual.size = Vector2(8, 8)
-		visual.position = Vector2(-4, -4)
-		visual.color = Color.CORNFLOWER_BLUE if is_player_projectile else Color.INDIAN_RED
-		add_child(visual)
 
 	body_entered.connect(_on_body_entered)
 

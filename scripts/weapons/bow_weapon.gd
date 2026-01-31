@@ -1,39 +1,95 @@
 extends WeaponBase
 class_name BowWeapon
 
+enum ChargeState { IDLE, CHARGE_1, CHARGE_2, BOW_DRAWN }
+
 @export var projectile_scene: PackedScene
 @export var projectile_speed: float = 300.0
+@export var min_charge_time: float = 0.5
 @export var max_charge_time: float = 2.0
-@export var min_damage_multiplier: float = 0.5
-@export var max_damage_multiplier: float = 2.0
-@export var min_speed_multiplier: float = 0.5
-@export var max_speed_multiplier: float = 1.5
+@export var min_damage_multiplier: float = 1.0
+@export var max_damage_multiplier: float = 5.0
+@export var min_speed_multiplier: float = 1.0
+@export var max_speed_multiplier: float = 3.0
+
+@export_group("Bow Sprites")
+@export var sprite_idle: Texture2D
+@export var sprite_charge_1: Texture2D
+@export var sprite_charge_2: Texture2D
+@export var sprite_bow_drawn: Texture2D
 
 var is_charging: bool = false
 var charge_time: float = 0.0
+var charge_state: ChargeState = ChargeState.IDLE
+
+@onready var sprite: Sprite2D = $Sprite
+
+func _ready() -> void:
+	_update_sprite()
 
 func _process(delta: float) -> void:
+	_update_flip()
+
 	if Input.is_action_pressed("shoot"):
 		if not is_charging:
 			is_charging = true
 			charge_time = 0.0
 		else:
 			charge_time = minf(charge_time + delta, max_charge_time)
+		_update_charge_state()
 	elif is_charging:
-		# Released - fire the arrow
 		_fire_charged_arrow()
 		is_charging = false
 		charge_time = 0.0
+		charge_state = ChargeState.IDLE
+		_update_sprite()
+
+func _update_flip() -> void:
+	if not sprite or not player:
+		return
+	var mouse_pos := player.get_global_mouse_position()
+	var is_left := mouse_pos.x < player.global_position.x
+	sprite.flip_h = is_left
+
+func _update_charge_state() -> void:
+	var new_state: ChargeState
+
+	if charge_time < min_charge_time:
+		new_state = ChargeState.IDLE
+	elif charge_time < 1.0:
+		new_state = ChargeState.CHARGE_1
+	elif charge_time < max_charge_time:
+		new_state = ChargeState.CHARGE_2
+	else:
+		new_state = ChargeState.BOW_DRAWN
+
+	if new_state != charge_state:
+		charge_state = new_state
+		_update_sprite()
+
+func _update_sprite() -> void:
+	if not sprite:
+		return
+
+	match charge_state:
+		ChargeState.IDLE:
+			sprite.texture = sprite_idle
+		ChargeState.CHARGE_1:
+			sprite.texture = sprite_charge_1
+		ChargeState.CHARGE_2:
+			sprite.texture = sprite_charge_2
+		ChargeState.BOW_DRAWN:
+			sprite.texture = sprite_bow_drawn
 
 func _fire_charged_arrow() -> void:
-	var charge_ratio := charge_time / max_charge_time
+	if charge_time < min_charge_time:
+		return
+
+	var charge_ratio := (charge_time - min_charge_time) / (max_charge_time - min_charge_time)
+	charge_ratio = clampf(charge_ratio, 0.0, 1.0)
 	var dir := _get_attack_direction()
 
-	var proj: Projectile
-	if projectile_scene:
-		proj = projectile_scene.instantiate()
-	else:
-		proj = Projectile.new()
+	var proj: Projectile = projectile_scene.instantiate()
 
 	var final_damage := int(damage * lerpf(min_damage_multiplier, max_damage_multiplier, charge_ratio))
 	var final_speed := projectile_speed * lerpf(min_speed_multiplier, max_speed_multiplier, charge_ratio)
@@ -42,6 +98,5 @@ func _fire_charged_arrow() -> void:
 	proj.global_position = player.global_position + dir * 20.0
 	player.get_tree().current_scene.add_child(proj)
 
-# Override to disable the base attack system
 func try_attack() -> void:
 	pass
