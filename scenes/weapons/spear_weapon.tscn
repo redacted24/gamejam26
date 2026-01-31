@@ -9,7 +9,6 @@ size = Vector2(80, 20)
 [node name="SpearWeapon" type="Node2D" unique_id=1707992964]
 position = Vector2(-2, 1)
 script = ExtResource("1_spear")
-thrust_distance = 50.0
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1975133965]
 scale = Vector2(4.675, 4.675)
