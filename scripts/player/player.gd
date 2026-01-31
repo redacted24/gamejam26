@@ -13,24 +13,29 @@ var can_shoot: bool = true
 var invincible: bool = false
 
 func _ready() -> void:
+	add_to_group("player")
 	_create_health()
 	_create_shoot_timer()
 
 func _create_health() -> void:
-	health_component = HealthComponent.new()
+	health_component = get_node_or_null("HealthComponent")
+	if not health_component:
+		health_component = HealthComponent.new()
+		health_component.name = "HealthComponent"
+		add_child(health_component)
 	health_component.max_hp = 6
-	health_component.name = "HealthComponent"
 	health_component.died.connect(_on_died)
 	health_component.health_changed.connect(_on_health_changed)
-	add_child(health_component)
 
 func _create_shoot_timer() -> void:
-	shoot_timer = Timer.new()
-	shoot_timer.wait_time = stats.fire_rate
-	shoot_timer.one_shot = true
-	shoot_timer.name = "ShootTimer"
+	shoot_timer = get_node_or_null("ShootTimer")
+	if not shoot_timer:
+		shoot_timer = Timer.new()
+		shoot_timer.wait_time = stats.fire_rate
+		shoot_timer.one_shot = true
+		shoot_timer.name = "ShootTimer"
+		add_child(shoot_timer)
 	shoot_timer.timeout.connect(func(): can_shoot = true)
-	add_child(shoot_timer)
 
 func try_shoot() -> void:
 	if not can_shoot:
