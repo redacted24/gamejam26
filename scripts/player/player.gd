@@ -1,20 +1,27 @@
 extends CharacterBody2D
 class_name Player
 
+enum WeaponType { BOW, SPEAR }
+
+const WEAPON_SCENES := {
+	WeaponType.BOW: preload("res://scenes/weapons/bow_weapon.tscn"),
+	WeaponType.SPEAR: preload("res://scenes/weapons/spear_weapon.tscn"),
+}
+
 var stats := {
 	speed = 200.0,
 	damage = 1,
-	fire_rate = 0.4,
+	attack_rate = 0.6,
 }
 
 var health_component: HealthComponent
-var shoot_timer: Timer
-var can_shoot: bool = true
+var current_weapon: WeaponBase
+var weapon_type: WeaponType = WeaponType.BOW
 var invincible: bool = false
 
 func _ready() -> void:
 	_create_health()
-	_create_shoot_timer()
+	_equip_weapon(weapon_type)
 
 func _create_health() -> void:
 	health_component = HealthComponent.new()
@@ -24,34 +31,23 @@ func _create_health() -> void:
 	health_component.health_changed.connect(_on_health_changed)
 	add_child(health_component)
 
-func _create_shoot_timer() -> void:
-	shoot_timer = Timer.new()
-	shoot_timer.wait_time = stats.fire_rate
-	shoot_timer.one_shot = true
-	shoot_timer.name = "ShootTimer"
-	shoot_timer.timeout.connect(func(): can_shoot = true)
-	add_child(shoot_timer)
+func _equip_weapon(type: WeaponType) -> void:
+	if current_weapon:
+		current_weapon.queue_free()
 
-func try_shoot() -> void:
-	if not can_shoot:
-		return
-	if not Input.is_action_pressed("shoot"):
-		return
-	var shoot_dir := _get_shoot_direction()
-	_fire_projectile(shoot_dir)
+	var weapon_scene: PackedScene = WEAPON_SCENES[type]
+	current_weapon = weapon_scene.instantiate()
+	current_weapon.damage = stats.damage
+	current_weapon.setup(self)
+	add_child(current_weapon)
+	weapon_type = type
 
-func _get_shoot_direction() -> Vector2:
-	var mouse_pos := get_global_mouse_position()
-	return (mouse_pos - global_position).normalized()
+func switch_weapon(type: WeaponType) -> void:
+	_equip_weapon(type)
 
-func _fire_projectile(dir: Vector2) -> void:
-	can_shoot = false
-	shoot_timer.start()
-
-	var proj := Projectile.new()
-	proj.setup(dir, stats.damage, 300.0, true)
-	proj.global_position = global_position + dir * 20.0
-	get_tree().current_scene.add_child(proj)
+func try_attack() -> void:
+	if current_weapon:
+		current_weapon.try_attack()
 
 func take_damage(amount: int) -> void:
 	if invincible:

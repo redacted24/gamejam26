@@ -1,13 +1,20 @@
 extends Area2D
 class_name Projectile
 
-var speed: float = 300.0
+@export var speed: float = 300.0
+@export var lifetime: float = 2.0
+@export var is_player_projectile: bool = true
+
 var direction: Vector2 = Vector2.ZERO
 var damage: int = 1
-var lifetime: float = 2.0
-var is_player_projectile: bool = true
 
 var _timer: float = 0.0
+
+func setup(dir: Vector2, dmg: int, spd: float = 300.0, player_proj: bool = true) -> void:
+	direction = dir.normalized()
+	damage = dmg
+	speed = spd
+	is_player_projectile = player_proj
 
 func _ready() -> void:
 	monitoring = true
@@ -20,25 +27,25 @@ func _ready() -> void:
 		collision_layer = 16
 		collision_mask = 1 | 2  # walls + player
 
-	var col := CollisionShape2D.new()
-	var circle := CircleShape2D.new()
-	circle.radius = 5.0
-	col.shape = circle
-	add_child(col)
+	# Get or create collision shape
+	var col := get_node_or_null("CollisionShape2D")
+	if not col:
+		col = CollisionShape2D.new()
+		var circle := CircleShape2D.new()
+		circle.radius = 5.0
+		col.shape = circle
+		add_child(col)
 
-	var visual := ColorRect.new()
-	visual.size = Vector2(8, 8)
-	visual.position = Vector2(-4, -4)
-	visual.color = Color.CORNFLOWER_BLUE if is_player_projectile else Color.INDIAN_RED
-	add_child(visual)
+	# Get or create visual
+	var visual := get_node_or_null("Sprite")
+	if not visual:
+		visual = ColorRect.new()
+		visual.size = Vector2(8, 8)
+		visual.position = Vector2(-4, -4)
+		visual.color = Color.CORNFLOWER_BLUE if is_player_projectile else Color.INDIAN_RED
+		add_child(visual)
 
 	body_entered.connect(_on_body_entered)
-
-func setup(dir: Vector2, dmg: int, spd: float = 300.0, player_proj: bool = true) -> void:
-	direction = dir.normalized()
-	damage = dmg
-	speed = spd
-	is_player_projectile = player_proj
 
 func _physics_process(delta: float) -> void:
 	position += direction * speed * delta
