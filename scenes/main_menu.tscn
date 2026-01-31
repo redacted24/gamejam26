@@ -13,35 +13,35 @@ script = ExtResource("1_menu")
 
 [node name="Title" type="Label" parent="." unique_id=1659578358]
 layout_mode = 0
-offset_left = 191.0
-offset_top = 103.0
-offset_right = 405.0
-offset_bottom = 170.0
+offset_left = 111.0
+offset_top = 59.0
+offset_right = 325.0
+offset_bottom = 126.0
 theme_override_font_sizes/font_size = 48
 text = "The Hunt"
 
 [node name="PlayButton" type="Button" parent="." unique_id=973954142]
 layout_mode = 0
-offset_left = 210.0
-offset_top = 200.0
-offset_right = 410.0
-offset_bottom = 250.0
+offset_left = 127.0
+offset_top = 159.0
+offset_right = 327.0
+offset_bottom = 209.0
 text = "Let the Hunt begin."
 
 [node name="QuitButton" type="Button" parent="." unique_id=1197833082]
 layout_mode = 0
-offset_left = 215.0
-offset_top = 277.0
-offset_right = 415.0
-offset_bottom = 327.0
+offset_left = 135.0
+offset_top = 230.0
+offset_right = 335.0
+offset_bottom = 280.0
 text = "Quit"
 
 [node name="SettingsButton" type="Button" parent="." unique_id=281753642]
 layout_mode = 0
-offset_left = 208.0
-offset_top = 358.0
-offset_right = 408.0
-offset_bottom = 408.0
+offset_left = 136.0
+offset_top = 307.0
+offset_right = 336.0
+offset_bottom = 357.0
 text = "Settings"
 
 [node name="SettingsPanel" type="Panel" parent="." unique_id=1424232343]
