@@ -21,6 +21,7 @@ EventBus="*res://global/event_bus.gd"
 GameData="*res://global/game_data.gd"
 DialogueManager="*uid://c3rodes2l3gxb"
 NavManager="*res://global/nav_manager.gd"
+MapGeneration="*uid://cmnuyts41bolj"
 
 [display]
 

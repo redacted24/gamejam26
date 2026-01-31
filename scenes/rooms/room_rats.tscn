@@ -1,9 +1,9 @@
-[gd_scene format=4 uid="uid://dx6kxwajfagk6"]
+[gd_scene format=4 uid="uid://v0f3l1r5pkv5"]
 
 [ext_resource type="Script" uid="uid://brtkbla55kkox" path="res://scripts/room/room.gd" id="1_room"]
 [ext_resource type="PackedScene" uid="uid://d137sgviyscfm" path="res://scenes/player.tscn" id="2_player"]
 [ext_resource type="Texture2D" uid="uid://bc0fwu1dslx26" path="res://assets/environment/room/main1.png" id="3_tiles"]
-[ext_resource type="PackedScene" uid="uid://ldrshfh8jvr1" path="res://scenes/enemies/rat_enemy.tscn" id="4_rat"]
+[ext_resource type="PackedScene" uid="uid://c6c8580ln08ic" path="res://scenes/enemies/chase_enemy.tscn" id="4_rat"]
 [ext_resource type="PackedScene" uid="uid://cyjgqooggrnws" path="res://scenes/enemies/bat_enemy.tscn" id="5_bat"]
 [ext_resource type="PackedScene" uid="uid://wmffeydq5x56" path="res://scenes/spawn_point.tscn" id="6_spawn"]
 [ext_resource type="PackedScene" uid="uid://baaun8u3q5t8j" path="res://scenes/rooms/horizontal_door.tscn" id="7_door"]
@@ -38,8 +38,6 @@ physics_quadrant_size = 64
 
 [node name="Player" parent="." unique_id=1553086247 instance=ExtResource("2_player")]
 position = Vector2(576, 326)
-
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=2066436135]
 
 [node name="Rat1" parent="." unique_id=1582327540 instance=ExtResource("4_rat")]
 position = Vector2(200, 180)
@@ -76,7 +74,7 @@ position = Vector2(350, 150)
 
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=334963522]
 
-[node name="West" parent="SpawnPoints" unique_id=1924406474 instance=ExtResource("6_spawn")]
+[node name="East" parent="SpawnPoints" unique_id=1924406474 instance=ExtResource("6_spawn")]
 position = Vector2(80, 326)
 
 [node name="Doors" type="Node2D" parent="." unique_id=2016347049]
