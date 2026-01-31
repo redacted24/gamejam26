@@ -23,6 +23,10 @@ DialogueManager="*uid://c3rodes2l3gxb"
 NavManager="*res://global/nav_manager.gd"
 MapGeneration="*uid://cmnuyts41bolj"
 
+[dialogue_manager]
+
+runtime/balloon_path="res://scenes/dialogue/balloon.tscn"
+
 [display]
 
 window/stretch/mode="canvas_items"

@@ -10,6 +10,7 @@ tile_size = Vector2i(64, 64)
 
 [node name="EndRoom" type="Node2D" unique_id=778351197]
 script = ExtResource("1_4nfav")
+room_type = 3
 
 [node name="Player" parent="." unique_id=800656356 instance=ExtResource("2_h8jj6")]
 position = Vector2(621, 615)
