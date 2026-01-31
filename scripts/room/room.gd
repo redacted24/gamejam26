@@ -8,7 +8,6 @@ var all_doors : Array # array holds all doors (exits)
 
 func _ready() -> void:
 	is_cleared = false
-	print("Loading new room")
 	# Connect spawn location signal
 	if NavManager and NavManager.spawn_location != null:
 		_on_level_spawn(NavManager.spawn_location)
@@ -39,11 +38,10 @@ func generate_next_rooms() -> String:
 		next_room_path = "res://scenes/rooms/types/combat_room.tscn"
 	elif next_room_type == MapGeneration.room_types.CROSSROADS_ROOM:
 		next_room_path = "res://scenes/rooms/types/room_crossroads.tscn"
-	elif next_room_type == MapGeneration.room_types.RATS_ROOM:
-		next_room_path = "res://scenes/rooms/room_rats.tscn"
+	elif next_room_type == MapGeneration.room_types.END_ROOM:
+		next_room_path = "res://scenes/rooms/types/end_room.tscn"
 	else:
 		next_room_path = ""
-	print("next_room path is:")
 	return next_room_path
 	
 # Function that determines where the player should spawn

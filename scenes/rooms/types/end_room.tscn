@@ -34,6 +34,7 @@ metadata/_edit_use_anchors_ = true
 [node name="EndRoom" type="Label" parent="Control" unique_id=1796792444]
 layout_mode = 1
 anchors_preset = -1
+anchor_left = -0.65
 anchor_right = -0.65
 offset_left = 559.0
 offset_top = 317.0
