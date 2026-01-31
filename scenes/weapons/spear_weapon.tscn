@@ -1,13 +1,23 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://bxum6lhxe3nam"]
 
-[ext_resource type="Script" path="res://scripts/weapons/spear_weapon.gd" id="1_spear"]
+[ext_resource type="Script" uid="uid://ct2lm8ehu1lvx" path="res://scripts/weapons/spear_weapon.gd" id="1_spear"]
+[ext_resource type="Texture2D" uid="uid://dv4nl6rgcsod5" path="res://assets/weapons/spear.png" id="2_sprite"]
 
-[node name="SpearWeapon" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hitbox"]
+size = Vector2(80, 20)
+
+[node name="SpearWeapon" type="Node2D" unique_id=1707992964]
+position = Vector2(-2, 1)
 script = ExtResource("1_spear")
 
-[node name="Sprite" type="ColorRect" parent="."]
-offset_left = -4.0
-offset_top = -24.0
-offset_right = 4.0
-offset_bottom = 24.0
-color = Color(0.5, 0.5, 0.5, 1)
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1975133965]
+scale = Vector2(4.675, 4.675)
+texture = ExtResource("2_sprite")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=412837301]
+collision_layer = 8
+collision_mask = 260
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1774911085]
+position = Vector2(40, 0)
+shape = SubResource("RectangleShape2D_hitbox")

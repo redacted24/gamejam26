@@ -33,6 +33,8 @@ sources/5 = SubResource("TileSetAtlasSource_gw2uy")
 [node name="RoomCrossroads" type="Node2D" unique_id=2005612021]
 z_index = -3
 script = ExtResource("1_x201p")
+room_type = 2
+hunger_cost = 40
 
 [node name="Player" parent="." unique_id=800656356 instance=ExtResource("3_i65nf")]
 position = Vector2(576, 326)

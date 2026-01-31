@@ -23,6 +23,12 @@ DialogueManager="*uid://c3rodes2l3gxb"
 NavManager="*res://global/nav_manager.gd"
 MapGeneration="*uid://cmnuyts41bolj"
 NetworkManager="*res://global/network_manager.gd"
+PlayerData="*uid://cnp7kfw22j2vr"
+UserInterface="*uid://drs1kl8225u00"
+
+[dialogue_manager]
+
+runtime/balloon_path="res://scenes/dialogue/balloon.tscn"
 
 [display]
 

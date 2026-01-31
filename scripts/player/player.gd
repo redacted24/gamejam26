@@ -9,7 +9,6 @@ const WEAPON_SCENES := {
 }
 
 @export var health_component: HealthComponent
-@export var player: CharacterBody2D
 
 const HUNGER_MAX := 200
 
@@ -27,12 +26,29 @@ var weapon_type: WeaponType = WeaponType.BOW
 var invincible: bool = false
 
 func _ready() -> void:
+	if PlayerData:
+		stats.hunger = PlayerData.hunger
+	if NavManager:
+		NavManager.player_spawn.connect(_on_spawn)
+	EventBus.player_hunger_reduced.connect(_hunger_reduce)
+	health_component.died.connect(_on_died)
 	_equip_weapon(weapon_type)
+
+func _exit_tree() -> void:
+	if PlayerData:
+		PlayerData.hunger = stats.hunger
+
+func _hunger_reduce(amount: int) -> void:
+	stats.hunger -= amount
+	if stats.hunger <= 0:
+		_on_died()
+
+func _on_spawn(spawn_location: Vector2) -> void:
+	position = spawn_location
 
 func _equip_weapon(type: WeaponType) -> void:
 	if current_weapon:
 		current_weapon.queue_free()
-
 	var weapon_scene: PackedScene = WEAPON_SCENES[type]
 	current_weapon = weapon_scene.instantiate()
 	current_weapon.damage = stats.damage

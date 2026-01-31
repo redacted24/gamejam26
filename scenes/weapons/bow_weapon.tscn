@@ -17,4 +17,4 @@ sprite_charge_2 = ExtResource("4_a5qfp")
 sprite_bow_drawn = ExtResource("5_dddqp")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1559690004]
-scale = Vector2(4.98, 4.98)
+scale = Vector2(3.72, 3.72)

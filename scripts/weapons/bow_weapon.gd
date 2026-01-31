@@ -5,12 +5,13 @@ enum ChargeState { IDLE, CHARGE_1, CHARGE_2, BOW_DRAWN }
 
 @export var projectile_scene: PackedScene
 @export var projectile_speed: float = 300.0
-@export var min_charge_time: float = 0.5
-@export var max_charge_time: float = 2.0
+@export var min_charge_time: float = 0.33
+@export var max_charge_time: float = 1.0
 @export var min_damage_multiplier: float = 1.0
 @export var max_damage_multiplier: float = 5.0
 @export var min_speed_multiplier: float = 1.0
 @export var max_speed_multiplier: float = 3.0
+@export var horizontal_offset: float = 15.0
 
 @export_group("Bow Sprites")
 @export var sprite_idle: Texture2D
@@ -51,20 +52,26 @@ func _process(delta: float) -> void:
 func _update_flip() -> void:
 	if not sprite or not player:
 		return
+	var direction: Vector2
 	var is_left: bool
 	if player.is_multiplayer_authority():
 		var mouse_pos := player.get_global_mouse_position()
+		direction = (mouse_pos - player.global_position).normalized()
 		is_left = mouse_pos.x < player.global_position.x
 	else:
+		direction = player.aim_direction
 		is_left = player.aim_direction.x < 0
-	sprite.flip_h = is_left
+
+	rotation = direction.angle()
+	sprite.flip_v = is_left
+	position.x = -horizontal_offset if is_left else horizontal_offset
 
 func _update_charge_state() -> void:
 	var new_state: ChargeState
 
 	if charge_time < min_charge_time:
 		new_state = ChargeState.IDLE
-	elif charge_time < 1.0:
+	elif charge_time < 0.66:
 		new_state = ChargeState.CHARGE_1
 	elif charge_time < max_charge_time:
 		new_state = ChargeState.CHARGE_2

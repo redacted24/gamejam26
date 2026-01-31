@@ -101,7 +101,7 @@ func _spawn_slow_zone(pos: Vector2, spider: SpiderEnemy) -> void:
 	# Slow player while inside
 	var slowed_players: Array = []
 	zone.body_entered.connect(func(body: Node2D):
-		if body.is_in_group("player") and body is Player:
+		if body.is_in_group("player") and body is CharacterBody2D:
 			slowed_players.append(body)
 			body.stats.speed *= 0.4
 	)
