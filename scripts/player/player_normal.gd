@@ -6,6 +6,10 @@ class_name PlayerNormal
 @export var speed : int
 @export var animation : AnimatedSprite2D
 
+# Weapons
+@export var bow : WeaponBase
+@export var spear : WeaponBase
+
 var hunger := 0
 
 enum WeaponType { BOW, SPEAR }
@@ -26,6 +30,9 @@ var weapon_type: WeaponType = WeaponType.BOW
 var invincible: bool = false
 
 func _ready() -> void:
+	# Hide all weapons for now
+	bow.hide()
+	spear.hide()
 	# Get player data from autoload
 	stats.hunger = PlayerData.hunger
 	DialogueManager.dialogue_started.connect(_on_dialogue_start)
@@ -36,11 +43,6 @@ func _ready() -> void:
 	EventBus.player_hunger_reduced.connect(_hunger_reduce)
 	_equip_weapon(weapon_type)
 	
-# What happens when player exits tree
-func _exit_tree() -> void:
-	PlayerData.hunger = stats.hunger
-	pass
-	
 # Function that reduces the amount of hunger from player
 func _hunger_reduce(amount : int) -> void:
 	stats.hunger -= amount
@@ -49,19 +51,19 @@ func _hunger_reduce(amount : int) -> void:
 		print("player died of hunger")
 		EventBus.player_died.emit()
 	pass
-	
-# Function that handles what happens when dialogue starts
-func _on_dialogue_start() -> void:
-	pass
+
+func heal(amount: int) -> void:
+	health_component.heal(amount)
+	EventBus.player_healed.emit(health_component.current_hp, health_component.max_hp)
 	
 func get_input() -> void:
 	var input_direction : Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	player.velocity = input_direction * speed
 	
 func _on_spawn(spawn_location: Vector2) -> void:
-	#print("spawning player at %f and %f" % [spawn_location.x, spawn_location.y])
 	player.position = spawn_location
 
+# Everything related to weapons
 func _equip_weapon(type: WeaponType) -> void:
 	if current_weapon:
 		current_weapon.queue_free()
@@ -89,9 +91,6 @@ func take_damage(amount: int, _hit_position: Vector2 = Vector2.ZERO) -> void:
 		var sm := get_node("StateMachine")
 		sm.on_state_transition(sm.current_state, "hurt")
 
-func heal(amount: int) -> void:
-	health_component.heal(amount)
-	EventBus.player_healed.emit(health_component.current_hp, health_component.max_hp)
 
 func apply_pickup(pickup_type: String, value: float) -> void:
 	match pickup_type:
@@ -154,3 +153,12 @@ func physics_process(_delta: float) -> void:
 	# Animation handling end
 	
 	try_attack()
+
+# Function that handles what happens when dialogue starts
+func _on_dialogue_start() -> void:
+	pass
+
+# What happens when player exits tree
+func _exit_tree() -> void:
+	PlayerData.hunger = stats.hunger
+	pass
