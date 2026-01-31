@@ -39,7 +39,7 @@ text = "Combat Room"
 
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=1878610551]
 
-[node name="main" parent="SpawnPoints" unique_id=825871877 instance=ExtResource("1_q43i2")]
+[node name="Main" parent="SpawnPoints" unique_id=825871877 instance=ExtResource("1_q43i2")]
 position = Vector2(621, 615)
 
 [node name="Doors" type="Node2D" parent="." unique_id=772646206]
