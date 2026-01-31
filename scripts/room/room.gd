@@ -22,8 +22,9 @@ func _ready() -> void:
 		var next_room_path = generate_next_rooms()
 		door.next_level_path = next_room_path
 		# all rooms should only have one spawnpoint for now
-		door.next_level_spawnpoint = "main"
-
+		door.next_level_spawnpoint = "Main"
+		print("a door connects to %s" % next_room_path)
+		
 func spawn_enemies() -> void:
 	pass
 	
@@ -32,11 +33,11 @@ func spawn_enemies() -> void:
 func generate_next_rooms() -> String:
 	var next_room_path : String
 	var next_room_type = MapGeneration.next_room_type()
-	if next_room_type is PeacefulRoom:
+	if next_room_type == MapGeneration.room_types.PEACEFUL_ROOM:
 		next_room_path = "res://scenes/rooms/types/peaceful_room.tscn"
-	elif next_room_type is CombatRoom:
+	elif next_room_type == MapGeneration.room_types.COMBAT_ROOM:
 		next_room_path = "res://scenes/rooms/types/combat_room.tscn"
-	elif next_room_type is CrossroadsRoom:
+	elif next_room_type == MapGeneration.room_types.CROSSROADS_ROOM:
 		next_room_path = "res://scenes/rooms/types/room_crossroads.tscn"
 	else:
 		next_room_path = ""

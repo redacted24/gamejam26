@@ -1,6 +1,6 @@
 extends Node
 
-var types = [PeacefulRoom, CombatRoom, HomeRoom, CrossroadsRoom]
+enum room_types {COMBAT_ROOM, PEACEFUL_ROOM, CROSSROADS_ROOM}
 
 var room_spawn_limit = {
 	peaceful_room = 1,
@@ -16,11 +16,11 @@ func next_room_type():
 	var rand = randf()
 	# Land on peaceful room
 	if rand <= 0.333 and room_spawn_limit.peaceful_room > 0:
-		return PeacefulRoom
+		return room_types.PEACEFUL_ROOM
 	elif rand <= 0.66 and room_spawn_limit.combat_room > 0:
-		return CombatRoom
+		return room_types.COMBAT_ROOM
 	elif rand < 1 and room_spawn_limit.crossroads_room > 0:
-		return CrossroadsRoom
+		return room_types.CROSSROADS_ROOM
 	pass
 
 # Update the room count based on what room was taken

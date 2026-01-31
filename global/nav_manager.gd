@@ -14,4 +14,5 @@ func go_to_level(level_path : String, spawn_point : String):
 		print("changed scene to %s" % scene_to_load.to_string())
 
 func trigger_player_spawn(spawn_position) -> void:
+	print("emitting player spawn signal")
 	player_spawn.emit(spawn_position)
