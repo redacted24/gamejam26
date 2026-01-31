@@ -20,7 +20,7 @@ var stats := {
 }
 
 var current_weapon: WeaponBase
-var weapon_type: WeaponType = WeaponType.BOW
+var weapon_type: WeaponType = WeaponType.SPEAR
 var invincible: bool = false
 
 func _ready() -> void:
