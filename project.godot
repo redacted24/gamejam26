@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Roguelike MVP"
+config/name="Gamejam26"
 run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
@@ -19,12 +19,17 @@ config/icon="res://icon.svg"
 
 EventBus="*res://global/event_bus.gd"
 GameData="*res://global/game_data.gd"
+DialogueManager="*uid://c3rodes2l3gxb"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 
 [input]
 
