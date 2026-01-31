@@ -73,7 +73,6 @@ position = Vector2(47, 346)
 position = Vector2(611, 45)
 
 [node name="Doors" type="Node2D" parent="." unique_id=487674928]
-metadata/_edit_lock_ = true
 
 [node name="NorthDoor" parent="Doors" unique_id=589182169 instance=ExtResource("7_v24os")]
 position = Vector2(608, 11)
