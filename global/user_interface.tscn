@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://drs1kl8225u00"]
+
+[ext_resource type="Script" uid="uid://b45nadgppgcqm" path="res://scripts/ui/main_user_interface.gd" id="1_fl0ln"]
+
+[node name="UserInterface" type="CanvasLayer" unique_id=71292675]
+script = ExtResource("1_fl0ln")
+
+[node name="Control" type="Control" parent="." unique_id=1265062161]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control" unique_id=1750282769]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 69.0
+offset_right = 313.0
+offset_bottom = 162.0
+text = "Hunger: "
