@@ -41,10 +41,8 @@ func _on_body_entered(body: Node2D) -> void:
 		queue_free()
 		return
 	if body.has_method("take_damage"):
-		# For enemy damage: only apply on host to avoid double damage
-		# For player damage: apply on authority of that player
 		if is_player_projectile:
-			# Hitting an enemy - only host processes damage
+			# Only host processes damage to enemies
 			if multiplayer.is_server() or not NetworkManager.is_online():
 				body.take_damage(damage, global_position)
 		else:

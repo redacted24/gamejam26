@@ -23,9 +23,9 @@ func _ready() -> void:
 
 	# Pass floor data to minimap and trigger initial room display
 	var minimap := hud.get_node_or_null("Minimap")
-	if minimap:
+	if minimap and room_manager.floor_data.has("rooms"):
 		minimap.set_floor_data(room_manager.floor_data)
-		minimap.update_room(room_manager.floor_data.rooms[0])
+		minimap.update_room(room_manager.floor_data["rooms"][0])
 
 func _create_players() -> void:
 	var player_scene := preload("res://scenes/player.tscn")

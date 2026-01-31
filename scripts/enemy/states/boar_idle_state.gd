@@ -10,7 +10,7 @@ func enter() -> void:
 	knockback_velocity = Vector2.ZERO
 
 func physics_process(delta: float) -> void:
-	var player := enemy.get_player()
+	var player: Node2D = enemy.get_player()
 	if not player:
 		enemy.velocity = Vector2.ZERO
 		enemy.move_and_slide()

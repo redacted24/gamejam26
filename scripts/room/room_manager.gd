@@ -66,14 +66,13 @@ func _load_room(room_id: int, entry_direction: Vector2i) -> void:
 		p.position = pos
 		offset += 1
 
-	# Spawn enemies if room not cleared and not start room (host only)
+	# Spawn enemies if room not cleared and not start room
 	if not already_cleared and room_data.type != "start":
-		if multiplayer.is_server() or not NetworkManager.is_online():
-			var count := EnemySpawner.spawn_enemies(room, room_container)
-			if count == 0:
-				room.is_cleared = true
-				room.unlock_doors()
-				GameData.mark_room_cleared(room_id)
+		var count := EnemySpawner.spawn_enemies(room, room_container)
+		if count == 0:
+			room.is_cleared = true
+			room.unlock_doors()
+			GameData.mark_room_cleared(room_id)
 	else:
 		room.is_cleared = true
 		room.unlock_doors()

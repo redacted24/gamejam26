@@ -23,7 +23,7 @@ func enter() -> void:
 	is_retreating = false
 
 func physics_process(delta: float) -> void:
-	var player := enemy.get_player()
+	var player: Node2D = enemy.get_player()
 	if not player:
 		return
 	

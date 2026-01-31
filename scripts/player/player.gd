@@ -27,13 +27,7 @@ var weapon_type: WeaponType = WeaponType.BOW
 var invincible: bool = false
 
 func _ready() -> void:
-	if NavManager:
-		NavManager.player_spawn.connect(_on_spawn)
 	_equip_weapon(weapon_type)
-
-func _on_spawn(spawn_location: Vector2) -> void:
-	print("spawning player at %f and %f" % [spawn_location.x, spawn_location.y])
-	player.position = spawn_location
 
 func _equip_weapon(type: WeaponType) -> void:
 	if current_weapon:
