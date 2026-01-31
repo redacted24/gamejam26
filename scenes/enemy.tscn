@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d30q18qg72ds6"]
 
+[ext_resource type="Script" uid="uid://8scg4bn2p3ea" path="res://scripts/enemy/enemy_base.gd" id="1_1x4g4"]
 [ext_resource type="Texture2D" uid="uid://dgia8ok2aquay" path="res://assets/character/walkdown1.png" id="1_g0wcc"]
-[ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_shcg2"]
 [ext_resource type="Texture2D" uid="uid://c6d1vwslrrdf" path="res://assets/character/walkdown2.png" id="2_s1ycm"]
 [ext_resource type="Texture2D" uid="uid://fdu3qgc82wkj" path="res://assets/character/walkdown3.png" id="3_shcg2"]
 [ext_resource type="Texture2D" uid="uid://c5swukpbj84e" path="res://assets/character/walkright1.png" id="4_ile5s"]
@@ -95,11 +95,10 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1x4g4"]
 
-[node name="Enemy" type="CharacterBody2D" unique_id=1860361879 node_paths=PackedStringArray("health_component") groups=["enemies"]]
+[node name="Enemy" type="CharacterBody2D" unique_id=1860361879 groups=["enemies"]]
 collision_layer = 4
 collision_mask = 8
-script = ExtResource("1_shcg2")
-health_component = NodePath("HealthComponent")
+script = ExtResource("1_1x4g4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=461835623]
 z_index = 10

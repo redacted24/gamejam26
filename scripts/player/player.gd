@@ -8,28 +8,29 @@ const WEAPON_SCENES := {
 	WeaponType.SPEAR: preload("res://scenes/weapons/spear_weapon.tscn"),
 }
 
+@export var health_component: HealthComponent
+@export var player: CharacterBody2D
+
+const HUNGER_MAX := 200
+
 var stats := {
 	speed = 200.0,
 	damage = 1,
-	attack_rate = 0.6,
+	hunger = HUNGER_MAX / 2,
 }
 
-var health_component: HealthComponent
 var current_weapon: WeaponBase
 var weapon_type: WeaponType = WeaponType.BOW
 var invincible: bool = false
 
 func _ready() -> void:
-	_create_health()
+	if NavManager:
+		NavManager.player_spawn.connect(_on_spawn)
 	_equip_weapon(weapon_type)
 
-func _create_health() -> void:
-	health_component = HealthComponent.new()
-	health_component.max_hp = 6
-	health_component.name = "HealthComponent"
-	health_component.died.connect(_on_died)
-	health_component.health_changed.connect(_on_health_changed)
-	add_child(health_component)
+func _on_spawn(spawn_location: Vector2) -> void:
+	print("spawning player at %f and %f" % [spawn_location.x, spawn_location.y])
+	player.position = spawn_location
 
 func _equip_weapon(type: WeaponType) -> void:
 	if current_weapon:
@@ -49,7 +50,7 @@ func try_attack() -> void:
 	if current_weapon:
 		current_weapon.try_attack()
 
-func take_damage(amount: int) -> void:
+func take_damage(amount: int, _hit_position: Vector2 = Vector2.ZERO) -> void:
 	if invincible:
 		return
 	health_component.take_damage(amount)

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://78cv40xchjsy"]
+
+[ext_resource type="Script" uid="uid://drcnbi04lpw7t" path="res://scripts/room/door.gd" id="1_p5qoh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mwdy5"]
+size = Vector2(20, 64)
+
+[node name="VerticalDoor" type="Area2D" unique_id=589182169]
+collision_layer = 64
+collision_mask = 2
+script = ExtResource("1_p5qoh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=927594113]
+shape = SubResource("RectangleShape2D_mwdy5")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=566079471]
+offset_left = -10.0
+offset_top = -32.0
+offset_right = 10.0
+offset_bottom = 32.0
+color = Color(0.99999994, 0.00086000026, 0.8219488, 1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

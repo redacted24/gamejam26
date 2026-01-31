@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://c6c8580ln08ic"]
+
+[ext_resource type="Script" uid="uid://brv5puc2b1td3" path="res://scripts/enemy/bat_enemy.gd" id="1_teh6i"]
+[ext_resource type="Script" uid="uid://cg5qffp8akvjq" path="res://scripts/state_machine.gd" id="2_m7f63"]
+[ext_resource type="PackedScene" uid="uid://irjpkdyd2l5o" path="res://scenes/health_component.tscn" id="2_os0ep"]
+[ext_resource type="Texture2D" uid="uid://d24rd7lniiq7a" path="res://assets/enemy/rat/brown_rat.png" id="3_yfv5o"]
+[ext_resource type="Script" uid="uid://djyw8ol867kwv" path="res://scripts/enemy/states/bat_fly_state.gd" id="5_yfv5o"]
+[ext_resource type="Script" uid="uid://bk4neubpa0t1v" path="res://scripts/enemy/states/enemy_dead_state.gd" id="6_teh6i"]
+[ext_resource type="Script" uid="uid://dxh4tm3yrxaxx" path="res://scripts/enemy/states/enemy_idle_state.gd" id="7_yfv5o"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yfv5o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_yfv5o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_teh6i"]
+
+[node name="Bat" type="CharacterBody2D" unique_id=1175572835]
+script = ExtResource("1_teh6i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1606955101]
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_yfv5o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2058187689]
+shape = SubResource("RectangleShape2D_teh6i")
+
+[node name="HealthComponent" parent="." unique_id=863237339 instance=ExtResource("2_os0ep")]
+
+[node name="StateMachine" type="Node" parent="." unique_id=57823443 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_m7f63")
+initial_state = NodePath("Fly")
+
+[node name="Fly" type="Node" parent="StateMachine" unique_id=844555683 node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_yfv5o")
+enemy = NodePath("../..")
+
+[node name="Dead" type="Node" parent="StateMachine" unique_id=871552550]
+script = ExtResource("6_teh6i")
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=269361344]
+script = ExtResource("7_yfv5o")

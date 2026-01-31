@@ -28,7 +28,8 @@ func _ready() -> void:
 		minimap.update_room(room_manager.floor_data.rooms[0])
 
 func _create_player() -> void:
-	player = Player.new()
+	var player_scene := preload("res://scenes/player.tscn")
+	player = player_scene.instantiate()
 	room_container.add_child(player)
 
 func _create_room_manager() -> void:

@@ -1,8 +1,8 @@
 extends EnemyBase
-class_name WandererEnemy
+class_name RatEnemy
 
 func _ready() -> void:
-	speed = 60.0
+	speed = 80.0
 	contact_damage = 1
-	_max_hp = 2
+	max_hp = 3
 	super._ready()
