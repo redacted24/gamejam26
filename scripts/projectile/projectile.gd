@@ -51,5 +51,5 @@ func _on_body_entered(body: Node2D) -> void:
 		queue_free()
 		return
 	if body.has_method("take_damage"):
-		body.take_damage(damage, global_position)
+		body.take_damage(damage)
 	queue_free()
