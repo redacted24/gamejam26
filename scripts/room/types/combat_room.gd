@@ -1,4 +1,4 @@
-extends Node
+extends Room
 class_name CombatRoom
 
 

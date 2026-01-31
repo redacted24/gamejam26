@@ -1,4 +1,4 @@
-extends Node
+extends Room
 class_name HomeRoom
 
 # Called when the node enters the scene tree for the first time.
