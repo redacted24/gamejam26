@@ -34,7 +34,7 @@ text = "Homebase Village
 
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=659187687]
 
-[node name="South" parent="SpawnPoints" unique_id=825871877 instance=ExtResource("1_kh5k5")]
+[node name="Main" parent="SpawnPoints" unique_id=825871877 instance=ExtResource("1_kh5k5")]
 position = Vector2(621, 615)
 
 [node name="Doors" type="Node2D" parent="." unique_id=200363498]
