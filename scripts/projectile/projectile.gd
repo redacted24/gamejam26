@@ -23,7 +23,7 @@ func _ready() -> void:
 
 	if is_player_projectile:
 		collision_layer = 8
-		collision_mask = 1 | 4  # walls + enemies
+		collision_mask = 1 | 4 | 256  # walls + enemies + flying enemies
 	else:
 		collision_layer = 16
 		collision_mask = 1 | 2  # walls + player

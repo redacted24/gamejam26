@@ -20,7 +20,7 @@ func _ready() -> void:
 	monitoring = true
 	monitorable = false
 	collision_layer = 8  # player_projectiles layer
-	collision_mask = 4   # enemies layer
+	collision_mask = 4 | 256  # enemies + flying enemies
 
 	# Get or create collision shape
 	var col := get_node_or_null("CollisionShape2D")
@@ -59,4 +59,4 @@ func _on_body_entered(body: Node2D) -> void:
 	_hit_targets.append(body)
 
 	if body.has_method("take_damage"):
-		body.take_damage(damage)
+		body.take_damage(damage, global_position)

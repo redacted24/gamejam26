@@ -19,12 +19,12 @@ func _on_died() -> void:
 func take_damage(amount: int, from_position: Vector2 = Vector2.ZERO) -> void:
 	health_component.take_damage(amount)
 	
-	# Apply knockback
+	# Apply knockback to current active state
 	if from_position != Vector2.ZERO:
 		var knockback_dir := (global_position - from_position).normalized()
-		var chase_state := $StateMachine/Chase
-		if chase_state and chase_state.has_method("apply_knockback"):
-			chase_state.apply_knockback(knockback_dir, 300.0)
+		var sm := get_node_or_null("StateMachine")
+		if sm and sm.current_state and sm.current_state.has_method("apply_knockback"):
+			sm.current_state.apply_knockback(knockback_dir, 300.0)
 	
 	var visual := get_node_or_null("AnimatedSprite2D")
 	if visual and health_component.current_hp > 0:

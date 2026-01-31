@@ -6,15 +6,15 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qp4n5"]
 size = Vector2(71, 32)
 
-[node name="Projectile" type="Area2D" unique_id=496921448]
+[node name="Projectile" type="Area2D"]
 collision_layer = 8
-collision_mask = 5
+collision_mask = 261
 script = ExtResource("1_proj")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1816143404]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -2)
 shape = SubResource("RectangleShape2D_qp4n5")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1019857476]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(4.46, 4.46)
 texture = ExtResource("2_qp4n5")
