@@ -32,7 +32,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	_update_flip()
 
-	if not player or not player.is_multiplayer_authority():
+	if not player or (NetworkManager.is_online() and not player.is_multiplayer_authority()):
 		return
 
 	if Input.is_action_pressed("shoot"):
@@ -54,7 +54,7 @@ func _update_flip() -> void:
 		return
 	var direction: Vector2
 	var is_left: bool
-	if player.is_multiplayer_authority():
+	if not NetworkManager.is_online() or player.is_multiplayer_authority():
 		var mouse_pos := player.get_global_mouse_position()
 		direction = (mouse_pos - player.global_position).normalized()
 		is_left = mouse_pos.x < player.global_position.x
@@ -109,7 +109,8 @@ func _fire_charged_arrow() -> void:
 
 	# Spawn locally and on all peers
 	_spawn_arrow(dir, final_damage, final_speed, spawn_pos)
-	_spawn_arrow_remote.rpc(dir, final_damage, final_speed, spawn_pos)
+	if NetworkManager.is_online():
+		_spawn_arrow_remote.rpc(dir, final_damage, final_speed, spawn_pos)
 
 func _spawn_arrow(dir: Vector2, dmg: int, spd: float, pos: Vector2) -> void:
 	var proj: Projectile = projectile_scene.instantiate()

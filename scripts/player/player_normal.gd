@@ -9,7 +9,7 @@ func _ready() -> void:
 	DialogueManager.dialogue_started.connect(_on_dialogue_start)
 
 func get_input() -> void:
-	if not player.is_multiplayer_authority():
+	if NetworkManager.is_online() and not player.is_multiplayer_authority():
 		return
 	var input_direction: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	player.velocity = input_direction * speed
@@ -55,6 +55,6 @@ func physics_process(_delta: float) -> void:
 		animation.stop()
 	player.move_and_slide()
 
-	if player.is_multiplayer_authority():
+	if not NetworkManager.is_online() or player.is_multiplayer_authority():
 		player.try_attack()
 		player.aim_direction = (player.get_global_mouse_position() - player.global_position).normalized()

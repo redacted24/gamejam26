@@ -7,7 +7,7 @@ func enter() -> void:
 func physics_process(_delta: float) -> void:
 	var player: Player = get_parent().get_parent()
 
-	if not player.is_multiplayer_authority():
+	if NetworkManager.is_online() and not player.is_multiplayer_authority():
 		return
 
 	player.try_attack()

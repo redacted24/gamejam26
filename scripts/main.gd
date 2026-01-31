@@ -41,7 +41,8 @@ func _create_players() -> void:
 		var p: Player = player_scene.instantiate()
 		p.name = "Player_%d" % pid
 		p.peer_id = pid
-		p.set_multiplayer_authority(pid)
+		if NetworkManager.is_online():
+			p.set_multiplayer_authority(pid)
 		room_container.add_child(p)
 		players[pid] = p
 

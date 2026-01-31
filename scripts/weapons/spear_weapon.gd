@@ -24,7 +24,7 @@ func _update_aim() -> void:
 		return
 	var direction: Vector2
 	var is_left: bool
-	if player.is_multiplayer_authority():
+	if not NetworkManager.is_online() or player.is_multiplayer_authority():
 		var mouse_pos := player.get_global_mouse_position()
 		direction = (mouse_pos - player.global_position).normalized()
 		is_left = mouse_pos.x < player.global_position.x
@@ -70,6 +70,6 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.has_method("take_damage"):
 		# Only host processes damage to enemies
 		if body.is_in_group("enemies"):
-			if not multiplayer.is_server() and NetworkManager.is_online():
+			if NetworkManager.is_online() and not multiplayer.is_server():
 				return
 		body.take_damage(damage, global_position)

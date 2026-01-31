@@ -43,12 +43,12 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.has_method("take_damage"):
 		if is_player_projectile:
 			# Only host processes damage to enemies
-			if multiplayer.is_server() or not NetworkManager.is_online():
+			if not NetworkManager.is_online() or multiplayer.is_server():
 				body.take_damage(damage, global_position)
 		else:
 			# Hitting a player - each player handles their own damage
 			if body is Player:
-				if body.is_multiplayer_authority() or not NetworkManager.is_online():
+				if not NetworkManager.is_online() or body.is_multiplayer_authority():
 					body.take_damage(damage, global_position)
 			else:
 				body.take_damage(damage, global_position)

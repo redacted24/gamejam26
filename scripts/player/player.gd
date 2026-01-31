@@ -8,7 +8,7 @@ const WEAPON_SCENES := {
 	WeaponType.SPEAR: preload("res://scenes/weapons/spear_weapon.tscn"),
 }
 
-@export var health_component: HealthComponent
+@onready var health_component: HealthComponent = $HealthComponent
 
 const HUNGER_MAX := 200
 
@@ -31,7 +31,8 @@ func _ready() -> void:
 	if NavManager:
 		NavManager.player_spawn.connect(_on_spawn)
 	EventBus.player_hunger_reduced.connect(_hunger_reduce)
-	health_component.died.connect(_on_died)
+	if health_component:
+		health_component.died.connect(_on_died)
 	_equip_weapon(weapon_type)
 
 func _exit_tree() -> void:

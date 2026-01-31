@@ -21,7 +21,7 @@ func setup(p: CharacterBody2D) -> void:
 func try_attack() -> void:
 	if not can_attack:
 		return
-	if not player.is_multiplayer_authority():
+	if NetworkManager.is_online() and not player.is_multiplayer_authority():
 		return
 	if not Input.is_action_pressed("shoot"):
 		return
@@ -29,7 +29,7 @@ func try_attack() -> void:
 	_perform_attack(attack_dir)
 
 func _get_attack_direction() -> Vector2:
-	if player.is_multiplayer_authority():
+	if not NetworkManager.is_online() or player.is_multiplayer_authority():
 		return (player.get_global_mouse_position() - player.global_position).normalized()
 	else:
 		return player.aim_direction

@@ -12,6 +12,7 @@ signal player_entered_door(direction: Vector2i)
 signal enemy_died(pos: Vector2)
 
 # Room signals
+signal room_entered(room_data: Dictionary)
 signal room_cleared(next_level_type: MapGeneration.room_types)
 
 # Pickup signals

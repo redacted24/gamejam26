@@ -19,7 +19,7 @@ func setup(container: Node2D, p: Player, overlay: ColorRect) -> void:
 	transition_overlay = overlay
 
 func start_floor() -> void:
-	if multiplayer.is_server() or not NetworkManager.is_online():
+	if not NetworkManager.is_online() or multiplayer.is_server():
 		# Host generates the floor
 		floor_data = FloorGenerator.generate_floor(7)
 		GameData.reset_run()

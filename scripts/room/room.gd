@@ -57,7 +57,7 @@ func _on_enemy_died(_pos: Vector2) -> void:
 		is_cleared = true
 		unlock_doors()
 		GameData.mark_room_cleared(room_id)
-		EventBus.room_cleared.emit()
+		EventBus.room_cleared.emit(MapGeneration.room_types.COMBAT_ROOM)
 
 # -- Room construction -------------------------------------------------------
 

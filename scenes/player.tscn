@@ -113,7 +113,6 @@ properties/2/replication_mode = 1
 script = ExtResource("19_plr")
 z_index = 10
 collision_layer = 2
-health_component = NodePath("HealthComponent")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1310342505]
 sprite_frames = SubResource("SpriteFrames_3v2ag")
