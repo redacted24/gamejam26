@@ -95,9 +95,11 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oprun"]
 
-[node name="Player" type="CharacterBody2D" unique_id=800656356 groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=800656356 node_paths=PackedStringArray("health_component", "player") groups=["player"]]
 collision_layer = 2
 script = ExtResource("1_a8ls1")
+health_component = NodePath("HealthComponent")
+player = NodePath(".")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1310342505]
 sprite_frames = SubResource("SpriteFrames_3v2ag")

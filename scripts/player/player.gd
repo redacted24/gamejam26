@@ -1,29 +1,27 @@
 extends CharacterBody2D
 class_name Player
 
+@export var health_component : HealthComponent
+@export var player : CharacterBody2D
+
 var stats := {
 	speed = 200.0,
 	damage = 1,
 	fire_rate = 0.4,
 }
 
-var health_component: HealthComponent
 var shoot_timer: Timer
 var can_shoot: bool = true
 var invincible: bool = false
 
 func _ready() -> void:
-	_create_health()
+	NavManager.player_spawn.connect(_on_spawn)
 	_create_shoot_timer()
-
-func _create_health() -> void:
-	health_component = HealthComponent.new()
-	health_component.max_hp = 6
-	health_component.name = "HealthComponent"
-	health_component.died.connect(_on_died)
-	health_component.health_changed.connect(_on_health_changed)
-	add_child(health_component)
-
+	
+func _on_spawn(spawn_location : Vector2) -> void:
+	print("spawning player at %f and %f" % [spawn_location.x, spawn_location.y])
+	player.position = spawn_location
+	
 func _create_shoot_timer() -> void:
 	shoot_timer = Timer.new()
 	shoot_timer.wait_time = stats.fire_rate

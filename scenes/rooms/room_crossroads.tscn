@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://bc0fwu1dslx26" path="res://assets/environment/room/main1.png" id="2_xwcdw"]
 [ext_resource type="PackedScene" uid="uid://d30q18qg72ds6" path="res://scenes/enemy.tscn" id="3_jtho3"]
 [ext_resource type="Texture2D" uid="uid://4avppwab8phv" path="res://assets/environment/room/crossroad_sign.png" id="5_gw2uy"]
+[ext_resource type="PackedScene" uid="uid://wmffeydq5x56" path="res://scenes/spawn_point.tscn" id="6_umhp8"]
+[ext_resource type="PackedScene" uid="uid://baaun8u3q5t8j" path="res://scenes/rooms/door.tscn" id="7_v24os"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xwcdw"]
 texture = ExtResource("2_xwcdw")
@@ -55,4 +57,14 @@ position = Vector2(321, 445)
 position = Vector2(643, 281)
 texture = ExtResource("5_gw2uy")
 
-[node name="SpawnPoints" type="Node" parent="." unique_id=227297660]
+[node name="SpawnPoints" type="Node2D" parent="." unique_id=1469006746]
+
+[node name="South" parent="SpawnPoints" unique_id=825871877 instance=ExtResource("6_umhp8")]
+position = Vector2(609, 617)
+
+[node name="Doors" type="Node2D" parent="." unique_id=487674928]
+
+[node name="Door" parent="Doors" unique_id=589182169 instance=ExtResource("7_v24os")]
+position = Vector2(608, 11)
+next_level_path = "res://scenes/rooms/room_crossroads.tscn"
+next_level_spawnpoint = "South"
