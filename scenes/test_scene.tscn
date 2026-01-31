@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://btjofwbs0v6tw"]
 
-[ext_resource type="PackedScene" uid="uid://dx6iowegvo1sg" path="res://scenes/rooms/room_crossroads.tscn" id="3_nd71p"]
+[ext_resource type="PackedScene" uid="uid://dx6iowegvo1sg" path="res://scenes/rooms/types/room_crossroads.tscn" id="3_nd71p"]
 
 [node name="TestScene" type="Node2D" unique_id=1375650400]
 

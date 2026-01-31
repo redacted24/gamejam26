@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://b5klb7bxgkqvf"]
+
+[sub_resource type="TileSet" id="TileSet_6uj3d"]
+tile_size = Vector2i(64, 64)
+
+[node name="HomebaseVillage" type="Node2D" unique_id=277977760]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1922151853]
+tile_set = SubResource("TileSet_6uj3d")
+
+[node name="Control" type="Control" parent="." unique_id=1313044439]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=1360271150]
+layout_mode = 0
+offset_right = 1173.0
+offset_bottom = 670.0
+color = Color(0.3911897, 0.52641046, 0.83843714, 1)
+
+[node name="Label" type="Label" parent="Control" unique_id=1353783019]
+layout_mode = 0
+offset_left = 559.0
+offset_top = 317.0
+offset_right = 675.0
+offset_bottom = 340.0
+text = "Homebase Village
+"

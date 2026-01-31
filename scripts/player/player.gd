@@ -4,10 +4,13 @@ class_name Player
 @export var health_component : HealthComponent
 @export var player : CharacterBody2D
 
+const HUNGER_MAX := 200
+
 var stats := {
 	speed = 200.0,
 	damage = 1,
 	fire_rate = 0.4,
+	hunger = HUNGER_MAX/2,
 }
 
 var shoot_timer: Timer
@@ -15,26 +18,13 @@ var can_shoot: bool = true
 var invincible: bool = false
 
 func _ready() -> void:
-	add_to_group("player")
 	if NavManager:
 		NavManager.player_spawn.connect(_on_spawn)
-	_create_health()
 	_create_shoot_timer()
 
 func _on_spawn(spawn_location: Vector2) -> void:
 	print("spawning player at %f and %f" % [spawn_location.x, spawn_location.y])
 	player.position = spawn_location
-
-func _create_health() -> void:
-	health_component = get_node_or_null("HealthComponent")
-	if not health_component:
-		health_component = HealthComponent.new()
-		health_component.name = "HealthComponent"
-		add_child(health_component)
-	health_component.max_hp = 6
-	health_component.died.connect(_on_died)
-	health_component.health_changed.connect(_on_health_changed)
-
 
 func _create_shoot_timer() -> void:
 	shoot_timer = get_node_or_null("ShootTimer")
