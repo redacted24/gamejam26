@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Gamejam26"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="uid://btjofwbs0v6tw"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -30,6 +30,10 @@ window/stretch/mode="canvas_items"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
+
+[global_group]
+
+player="Group for all entities that are playable"
 
 [input]
 

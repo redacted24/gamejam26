@@ -13,33 +13,8 @@ var can_shoot: bool = true
 var invincible: bool = false
 
 func _ready() -> void:
-	add_to_group("player")
-	collision_layer = 2
-	collision_mask = 1
-
-	_create_collision()
-	_create_visual()
 	_create_health()
 	_create_shoot_timer()
-	_create_state_machine()
-
-func _create_collision() -> void:
-	var col := CollisionShape2D.new()
-	var circle := CircleShape2D.new()
-	circle.radius = 12.0
-	col.shape = circle
-	add_child(col)
-
-func _create_visual() -> void:
-	var visual := Polygon2D.new()
-	visual.polygon = PackedVector2Array([
-		Vector2(0, -16),
-		Vector2(-12, 12),
-		Vector2(12, 12),
-	])
-	visual.color = Color.WHITE
-	visual.name = "Visual"
-	add_child(visual)
 
 func _create_health() -> void:
 	health_component = HealthComponent.new()
@@ -56,35 +31,6 @@ func _create_shoot_timer() -> void:
 	shoot_timer.name = "ShootTimer"
 	shoot_timer.timeout.connect(func(): can_shoot = true)
 	add_child(shoot_timer)
-
-func _create_state_machine() -> void:
-	var sm_script := preload("res://scripts/state_machine.gd")
-	var sm := Node.new()
-	sm.set_script(sm_script)
-	sm.name = "StateMachine"
-
-	var idle := Node.new()
-	idle.set_script(preload("res://scripts/player/player_idle_state.gd"))
-	idle.name = "Idle"
-	sm.add_child(idle)
-
-	var move := Node.new()
-	move.set_script(preload("res://scripts/player/player_move_state.gd"))
-	move.name = "Move"
-	sm.add_child(move)
-
-	var hurt := Node.new()
-	hurt.set_script(preload("res://scripts/player/player_hurt_state.gd"))
-	hurt.name = "Hurt"
-	sm.add_child(hurt)
-
-	var dead := Node.new()
-	dead.set_script(preload("res://scripts/player/player_dead_state.gd"))
-	dead.name = "Dead"
-	sm.add_child(dead)
-
-	sm.initial_state = idle
-	add_child(sm)
 
 func try_shoot() -> void:
 	if not can_shoot:

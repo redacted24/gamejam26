@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://d30q18qg72ds6"]
+
+[ext_resource type="Texture2D" uid="uid://dgia8ok2aquay" path="res://assets/character/walkdown1.png" id="1_g0wcc"]
+[ext_resource type="Texture2D" uid="uid://c6d1vwslrrdf" path="res://assets/character/walkdown2.png" id="2_s1ycm"]
+[ext_resource type="Texture2D" uid="uid://fdu3qgc82wkj" path="res://assets/character/walkdown3.png" id="3_shcg2"]
+[ext_resource type="Texture2D" uid="uid://c5swukpbj84e" path="res://assets/character/walkright1.png" id="4_ile5s"]
+[ext_resource type="Texture2D" uid="uid://bovcekofqwjsi" path="res://assets/character/walkright2.png" id="5_1x4g4"]
+[ext_resource type="Texture2D" uid="uid://beib8lunka8eb" path="res://assets/character/walkright3.png" id="6_2pwtc"]
+[ext_resource type="Texture2D" uid="uid://hxur82c7sbko" path="res://assets/character/walkrightdown1.png" id="7_rogs8"]
+[ext_resource type="Texture2D" uid="uid://choxiclinw3m8" path="res://assets/character/walkrightdown2.png" id="8_wrm80"]
+[ext_resource type="Texture2D" uid="uid://dn2jm7cvp0bry" path="res://assets/character/walkrightdown3.png" id="9_6awcb"]
+[ext_resource type="Texture2D" uid="uid://cyu02cikyf7lv" path="res://assets/character/walkup1.png" id="10_wjec0"]
+[ext_resource type="Texture2D" uid="uid://7owhfvfjcdb7" path="res://assets/character/walkup2.png" id="11_i4rgx"]
+[ext_resource type="Texture2D" uid="uid://1n5mb1bnhdtk" path="res://assets/character/walkup3.png" id="12_2mchx"]
+[ext_resource type="Texture2D" uid="uid://b6xqi18hpwtxk" path="res://assets/character/walkupright1.png" id="13_t3vcr"]
+[ext_resource type="Texture2D" uid="uid://dv8254a5l5gwu" path="res://assets/character/walkupright2.png" id="14_qaulx"]
+[ext_resource type="Texture2D" uid="uid://co0iymu5gfxbn" path="res://assets/character/walkupright3.png" id="15_1f82d"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lioqc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_g0wcc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_s1ycm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_shcg2")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ile5s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1x4g4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2pwtc")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_rogs8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_wrm80")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_6awcb")
+}],
+"loop": true,
+"name": &"walk_right_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_wjec0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_i4rgx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_2mchx")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_t3vcr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_qaulx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_1f82d")
+}],
+"loop": true,
+"name": &"walk_up_right",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0lg75"]
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1814257504]
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=461835623]
+z_index = 10
+sprite_frames = SubResource("SpriteFrames_lioqc")
+animation = &"walk_up_right"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1111372045]
+shape = SubResource("CircleShape2D_0lg75")
+
+[node name="toindicateenemy" type="ColorRect" parent="." unique_id=1566976688]
+offset_left = -30.0
+offset_top = -30.0
+offset_right = 25.0
+offset_bottom = 30.0
+color = Color(0.99257606, 0.08052162, 0.5568904, 1)
+
+[node name="StateMachine" type="Node" parent="." unique_id=1016421695]
+
+[node name="Normal" type="Node" parent="StateMachine" unique_id=904105396]
+
+[node name="Hurt" type="Node" parent="StateMachine" unique_id=608500507]
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1469648834]
