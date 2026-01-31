@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://c1bip3hps8kg4"]
+
+[ext_resource type="Script" uid="uid://dlt7snjj5h672" path="res://scripts/enemy/toad_enemy.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://cg5qffp8akvjq" path="res://scripts/state_machine.gd" id="2_sm"]
+[ext_resource type="PackedScene" uid="uid://irjpkdyd2l5o" path="res://scenes/health_component.tscn" id="3_health"]
+[ext_resource type="Texture2D" uid="uid://dasrsvmypl46i" path="res://assets/enemy/rat/frog.png" id="4_sprite"]
+[ext_resource type="Script" uid="uid://b14675p5rdk4w" path="res://scripts/enemy/states/toad_shoot_state.gd" id="5_shoot"]
+[ext_resource type="Script" uid="uid://bk4neubpa0t1v" path="res://scripts/enemy/states/enemy_dead_state.gd" id="6_dead"]
+[ext_resource type="Script" uid="uid://dxh4tm3yrxaxx" path="res://scripts/enemy/states/enemy_idle_state.gd" id="7_idle"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_toad"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_sprite")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4170e"]
+radius = 24.020824
+
+[node name="Toad" type="CharacterBody2D" unique_id=669849840]
+collision_layer = 4
+collision_mask = 6
+script = ExtResource("1_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2069448468]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_toad")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=661979435]
+shape = SubResource("CircleShape2D_4170e")
+
+[node name="HealthComponent" parent="." unique_id=1775825263 instance=ExtResource("3_health")]
+
+[node name="StateMachine" type="Node" parent="." unique_id=531521278 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_sm")
+initial_state = NodePath("Shoot")
+
+[node name="Shoot" type="Node" parent="StateMachine" unique_id=1716902296 node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_shoot")
+enemy = NodePath("../..")
+
+[node name="Dead" type="Node" parent="StateMachine" unique_id=1398544708]
+script = ExtResource("6_dead")
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1035957676]
+script = ExtResource("7_idle")

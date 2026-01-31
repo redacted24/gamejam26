@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://dyl5ssf2ktm44"]
+
+[ext_resource type="Script" uid="uid://e0fjtt0cj12h" path="res://scripts/enemy/exploding_rat_enemy.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bonr8jbfjda5u" path="res://assets/enemy/rat/black_rat.png" id="2_alscu"]
+[ext_resource type="Script" uid="uid://cg5qffp8akvjq" path="res://scripts/state_machine.gd" id="2_sm"]
+[ext_resource type="PackedScene" uid="uid://irjpkdyd2l5o" path="res://scenes/health_component.tscn" id="3_health"]
+[ext_resource type="Script" uid="uid://cccbb18cxts0r" path="res://scripts/enemy/states/exploding_rat_chase_state.gd" id="5_chase"]
+[ext_resource type="Script" uid="uid://c7m81n2amx836" path="res://scripts/enemy/states/exploding_rat_explode_state.gd" id="6_explode"]
+[ext_resource type="Script" uid="uid://bk4neubpa0t1v" path="res://scripts/enemy/states/enemy_dead_state.gd" id="7_dead"]
+[ext_resource type="Script" uid="uid://dxh4tm3yrxaxx" path="res://scripts/enemy/states/enemy_idle_state.gd" id="8_idle"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_explrat"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_alscu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_explrat"]
+radius = 16.0
+
+[node name="ExplodingRat" type="CharacterBody2D" unique_id=1755082363]
+collision_layer = 4
+collision_mask = 6
+script = ExtResource("1_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=884247209]
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_explrat")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=869091017]
+shape = SubResource("CircleShape2D_explrat")
+
+[node name="HealthComponent" parent="." unique_id=1544051040 instance=ExtResource("3_health")]
+
+[node name="StateMachine" type="Node" parent="." unique_id=1553234231 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_sm")
+initial_state = NodePath("Chase")
+
+[node name="Chase" type="Node" parent="StateMachine" unique_id=446250525 node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_chase")
+enemy = NodePath("../..")
+
+[node name="Explode" type="Node" parent="StateMachine" unique_id=1618487792 node_paths=PackedStringArray("enemy")]
+script = ExtResource("6_explode")
+enemy = NodePath("../..")
+
+[node name="Dead" type="Node" parent="StateMachine" unique_id=1564957044]
+script = ExtResource("7_dead")
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=682293855]
+script = ExtResource("8_idle")

@@ -10,6 +10,13 @@
 [ext_resource type="PackedScene" path="res://scenes/enemies/toad_enemy.tscn" id="8_toad"]
 [ext_resource type="PackedScene" path="res://scenes/enemies/exploding_rat_enemy.tscn" id="9_explrat"]
 [ext_resource type="PackedScene" path="res://scenes/enemies/boar_enemy.tscn" id="10_boar"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/scorpion_enemy.tscn" id="11_scorpion"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/wolf_enemy.tscn" id="12_wolf"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/beetle_enemy.tscn" id="13_beetle"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/snake_enemy.tscn" id="14_snake"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/owl_enemy.tscn" id="15_owl"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/spider_enemy.tscn" id="16_spider"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/firefly_enemy.tscn" id="17_firefly"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tiles"]
 texture = ExtResource("3_tiles")
@@ -75,6 +82,33 @@ position = Vector2(350, 150)
 
 [node name="Boar1" parent="." instance=ExtResource("10_boar")]
 position = Vector2(800, 350)
+
+[node name="Scorpion1" parent="." instance=ExtResource("11_scorpion")]
+position = Vector2(150, 400)
+
+[node name="Wolf1" parent="." instance=ExtResource("12_wolf")]
+position = Vector2(700, 150)
+
+[node name="Beetle1" parent="." instance=ExtResource("13_beetle")]
+position = Vector2(450, 200)
+
+[node name="Beetle2" parent="." instance=ExtResource("13_beetle")]
+position = Vector2(480, 220)
+
+[node name="Beetle3" parent="." instance=ExtResource("13_beetle")]
+position = Vector2(460, 240)
+
+[node name="Snake1" parent="." instance=ExtResource("14_snake")]
+position = Vector2(850, 450)
+
+[node name="Owl1" parent="." instance=ExtResource("15_owl")]
+position = Vector2(550, 100)
+
+[node name="Spider1" parent="." instance=ExtResource("16_spider")]
+position = Vector2(250, 300)
+
+[node name="Firefly1" parent="." instance=ExtResource("17_firefly")]
+position = Vector2(700, 300)
 
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=334963522]
 
