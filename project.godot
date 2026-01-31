@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Gamejam26"
-run/main_scene="uid://v0f3l1r5pkv5"
+run/main_scene="uid://dx6iowegvo1sg"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -23,6 +23,7 @@ DialogueManager="*uid://c3rodes2l3gxb"
 NavManager="*res://global/nav_manager.gd"
 MapGeneration="*uid://cmnuyts41bolj"
 PlayerData="*uid://cnp7kfw22j2vr"
+UserInterface="*uid://drs1kl8225u00"
 
 [dialogue_manager]
 

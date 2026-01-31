@@ -1,10 +1,10 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://scripts/enemy/firefly_enemy.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://rc7wxeevmoqv" path="res://scripts/enemy/firefly_enemy.gd" id="1_script"]
 [ext_resource type="Script" uid="uid://cg5qffp8akvjq" path="res://scripts/state_machine.gd" id="2_sm"]
 [ext_resource type="PackedScene" uid="uid://irjpkdyd2l5o" path="res://scenes/health_component.tscn" id="3_health"]
-[ext_resource type="Texture2D" uid="uid://3iu02ej2oxhd" path="res://assets/enemy/rat/bat.png" id="4_sprite"]
-[ext_resource type="Script" path="res://scripts/enemy/states/firefly_orbit_state.gd" id="5_state"]
+[ext_resource type="Texture2D" uid="uid://3iu02ej2oxhd" path="res://assets/enemy/other/bat.png" id="4_sprite"]
+[ext_resource type="Script" uid="uid://1pv1bvol5u3m" path="res://scripts/enemy/states/firefly_orbit_state.gd" id="5_state"]
 [ext_resource type="Script" uid="uid://bk4neubpa0t1v" path="res://scripts/enemy/states/enemy_dead_state.gd" id="6_dead"]
 [ext_resource type="Script" uid="uid://dxh4tm3yrxaxx" path="res://scripts/enemy/states/enemy_idle_state.gd" id="7_idle"]
 

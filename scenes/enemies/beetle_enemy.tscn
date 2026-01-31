@@ -1,10 +1,10 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://scripts/enemy/beetle_enemy.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://do3j7avydv0vn" path="res://scripts/enemy/beetle_enemy.gd" id="1_script"]
 [ext_resource type="Script" uid="uid://cg5qffp8akvjq" path="res://scripts/state_machine.gd" id="2_sm"]
 [ext_resource type="PackedScene" uid="uid://irjpkdyd2l5o" path="res://scenes/health_component.tscn" id="3_health"]
-[ext_resource type="Texture2D" uid="uid://dd8aikc5rc3te" path="res://assets/enemy/rat/black_rat.jpg" id="4_sprite"]
-[ext_resource type="Script" path="res://scripts/enemy/states/beetle_swarm_state.gd" id="5_state"]
+[ext_resource type="Texture2D" uid="uid://dd8aikc5rc3te" path="res://assets/enemy/other/black_rat.jpg" id="4_sprite"]
+[ext_resource type="Script" uid="uid://up3s8dnvmumv" path="res://scripts/enemy/states/beetle_swarm_state.gd" id="5_state"]
 [ext_resource type="Script" uid="uid://bk4neubpa0t1v" path="res://scripts/enemy/states/enemy_dead_state.gd" id="6_dead"]
 [ext_resource type="Script" uid="uid://dxh4tm3yrxaxx" path="res://scripts/enemy/states/enemy_idle_state.gd" id="7_idle"]
 

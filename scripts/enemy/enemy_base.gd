@@ -13,7 +13,7 @@ func _ready() -> void:
 	health_component.died.connect(_on_died)
 
 func _on_died() -> void:
-	EventBus.enemy_died.emit(global_position)
+	#EventBus.enemy_died.emit(global_position)
 	queue_free()
 
 func take_damage(amount: int, from_position: Vector2 = Vector2.ZERO) -> void:

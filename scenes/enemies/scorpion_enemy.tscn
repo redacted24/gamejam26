@@ -1,10 +1,10 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://scripts/enemy/scorpion_enemy.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://cmypl30japnqw" path="res://scripts/enemy/scorpion_enemy.gd" id="1_script"]
 [ext_resource type="Script" uid="uid://cg5qffp8akvjq" path="res://scripts/state_machine.gd" id="2_sm"]
 [ext_resource type="PackedScene" uid="uid://irjpkdyd2l5o" path="res://scenes/health_component.tscn" id="3_health"]
-[ext_resource type="Texture2D" uid="uid://d24rd7lniiq7a" path="res://assets/enemy/rat/brown_rat.png" id="4_sprite"]
-[ext_resource type="Script" path="res://scripts/enemy/states/scorpion_burrow_state.gd" id="5_state"]
+[ext_resource type="Texture2D" uid="uid://d24rd7lniiq7a" path="res://assets/enemy/other/brown_rat.png" id="4_sprite"]
+[ext_resource type="Script" uid="uid://bd471bs0n60qu" path="res://scripts/enemy/states/scorpion_burrow_state.gd" id="5_state"]
 [ext_resource type="Script" uid="uid://bk4neubpa0t1v" path="res://scripts/enemy/states/enemy_dead_state.gd" id="6_dead"]
 [ext_resource type="Script" uid="uid://dxh4tm3yrxaxx" path="res://scripts/enemy/states/enemy_idle_state.gd" id="7_idle"]
 

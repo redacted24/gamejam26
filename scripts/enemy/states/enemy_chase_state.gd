@@ -121,7 +121,8 @@ func _start_retreat(to_player: Vector2) -> void:
 func _update_visual(delta: float) -> void:
 	if current_dir.length() > 0.1:
 		var visual := enemy.get_node("AnimatedSprite2D")
-		visual.rotation = lerp_angle(visual.rotation, current_dir.angle(), turn_speed * delta)
+		var offset: float = enemy.get("sprite_angle_offset") if enemy.get("sprite_angle_offset") != null else 0.0
+		visual.rotation = lerp_angle(visual.rotation, current_dir.angle() + offset, turn_speed * delta)
 
 func _new_scurry_cycle(player: Node2D) -> void:
 	var to_player: Vector2 = (player.global_position - enemy.global_position).normalized()
@@ -135,7 +136,7 @@ func _new_scurry_cycle(player: Node2D) -> void:
 	elif roll < 0.5:
 		# DART - fast micro burst
 		is_moving = true
-		var random_angle := randf_range(-PI/4, PI/4)
+		var random_angle := randf_range(-PI/8, PI/8)
 		current_dir = to_player.rotated(random_angle)
 		current_speed = enemy.speed * randf_range(1.8, 3.0)
 		scurry_timer = randf_range(0.02, 0.06)
@@ -144,7 +145,7 @@ func _new_scurry_cycle(player: Node2D) -> void:
 		is_moving = true
 		zigzag_side *= -1.0
 		var perpendicular := Vector2(-to_player.y, to_player.x) * zigzag_side
-		current_dir = (to_player + perpendicular * 0.8).normalized()
+		current_dir = (to_player + perpendicular * 0.4).normalized()
 		current_speed = enemy.speed * randf_range(1.5, 2.5)
 		scurry_timer = randf_range(0.03, 0.07)
 	elif roll < 0.85:
@@ -156,7 +157,7 @@ func _new_scurry_cycle(player: Node2D) -> void:
 	else:
 		# TWITCH - tiny random movement
 		is_moving = true
-		var random_angle := randf_range(-PI/5, PI/5)
+		var random_angle := randf_range(-PI/10, PI/10)
 		current_dir = to_player.rotated(random_angle)
 		current_speed = enemy.speed * randf_range(1.2, 2.0)
 		scurry_timer = randf_range(0.01, 0.04)

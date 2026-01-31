@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bdhhbro1o5gc2"]
+
+[ext_resource type="Texture2D" uid="uid://d1mj8sf1yyw0g" path="res://assets/weapons/arrow.png" id="1_om7dp"]
+[ext_resource type="Script" uid="uid://88a2qi43gqhe" path="res://scripts/weapons/bow_normal_arrow.gd" id="1_yjigm"]
+
+[node name="BowNormalArrow" type="Node2D" unique_id=400284568]
+script = ExtResource("1_yjigm")
+
+[node name="Arrow" type="Sprite2D" parent="." unique_id=1366508806]
+position = Vector2(-1, 0)
+texture = ExtResource("1_om7dp")

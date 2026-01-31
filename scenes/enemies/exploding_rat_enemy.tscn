@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dyl5ssf2ktm44"]
 
 [ext_resource type="Script" uid="uid://e0fjtt0cj12h" path="res://scripts/enemy/exploding_rat_enemy.gd" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://bonr8jbfjda5u" path="res://assets/enemy/rat/black_rat.png" id="2_alscu"]
+[ext_resource type="Texture2D" uid="uid://bonr8jbfjda5u" path="res://assets/enemy/other/black_rat.png" id="2_alscu"]
 [ext_resource type="Script" uid="uid://cg5qffp8akvjq" path="res://scripts/state_machine.gd" id="2_sm"]
 [ext_resource type="PackedScene" uid="uid://irjpkdyd2l5o" path="res://scenes/health_component.tscn" id="3_health"]
 [ext_resource type="Script" uid="uid://cccbb18cxts0r" path="res://scripts/enemy/states/exploding_rat_chase_state.gd" id="5_chase"]
