@@ -12,7 +12,7 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		print("Door entered: switching rooms to %s" % next_level_path)
-		EventBus.room_cleared.emit()
+		EventBus.room_cleared.emit(next_level_type)
 		if NavManager:
 			NavManager.go_to_level(next_level_path, next_level_spawnpoint)
 	pass # Replace with function body.

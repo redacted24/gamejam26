@@ -9,11 +9,11 @@ var room_spawn_limit = {
 }
 
 func _ready() -> void:
+	EventBus.connect("room_cleared", update_room_count)
 	seed(12345)
 
 # Finds what the next room type is and link it to a "door" in a level
 func next_room_type():
-	print(room_spawn_limit)
 	var rand = randf()
 	if rand <= 0.333 and room_spawn_limit.peaceful_room > 0:
 		return room_types.PEACEFUL_ROOM
@@ -25,7 +25,7 @@ func next_room_type():
 	return room_types.END_ROOM
 
 # Update the room count based on what room was taken
-func update_room_count(room) -> void:
+func update_room_count(room : MapGeneration.room_types) -> void:
 	if room == room_types.PEACEFUL_ROOM:
 		room_spawn_limit.peaceful_room -= 1
 	elif room == room_types.COMBAT_ROOM:

@@ -46,7 +46,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=1878610551]
 
-[node name="main" parent="SpawnPoints" unique_id=825871877 instance=ExtResource("3_mjbqe")]
+[node name="Main" parent="SpawnPoints" unique_id=825871877 instance=ExtResource("3_mjbqe")]
 position = Vector2(621, 615)
 
 [node name="Doors" type="Node2D" parent="." unique_id=772646206]
