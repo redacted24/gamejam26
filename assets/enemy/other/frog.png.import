@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3iu02ej2oxhd"
-path="res://.godot/imported/bat.png-e8e28a23793254a3709a413adf39d9b2.ctex"
+uid="uid://dasrsvmypl46i"
+path="res://.godot/imported/frog.png-ffe96ccf160f5ec6e103249b87546e58.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemy/rat/bat.png"
-dest_files=["res://.godot/imported/bat.png-e8e28a23793254a3709a413adf39d9b2.ctex"]
+source_file="res://assets/enemy/other/frog.png"
+dest_files=["res://.godot/imported/frog.png-ffe96ccf160f5ec6e103249b87546e58.ctex"]
 
 [params]
 

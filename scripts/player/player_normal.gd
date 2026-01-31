@@ -86,7 +86,7 @@ func take_damage(amount: int, _hit_position: Vector2 = Vector2.ZERO) -> void:
 	if invincible:
 		return
 	health_component.take_damage(amount)
-	EventBus.player_damaged.emit(health_component.current_hp, health_component.max_hp)
+	#EventBus.player_damaged.emit(health_component.current_hp, health_component.max_hp)
 	if health_component.current_hp > 0:
 		var sm := get_node("StateMachine")
 		sm.on_state_transition(sm.current_state, "hurt")

@@ -3,20 +3,9 @@
 [ext_resource type="Script" uid="uid://brtkbla55kkox" path="res://scripts/room/room.gd" id="1_room"]
 [ext_resource type="PackedScene" uid="uid://d137sgviyscfm" path="res://scenes/player.tscn" id="2_player"]
 [ext_resource type="Texture2D" uid="uid://bc0fwu1dslx26" path="res://assets/environment/room/main1.png" id="3_tiles"]
-[ext_resource type="PackedScene" uid="uid://c6c8580ln08ic" path="res://scenes/enemies/chase_enemy.tscn" id="4_rat"]
-[ext_resource type="PackedScene" uid="uid://cyjgqooggrnws" path="res://scenes/enemies/bat_enemy.tscn" id="5_bat"]
+[ext_resource type="PackedScene" uid="uid://bb2x3hluhmwpv" path="res://scenes/enemies/rat_enemy.tscn" id="4_rat"]
 [ext_resource type="PackedScene" uid="uid://wmffeydq5x56" path="res://scenes/spawn_point.tscn" id="6_spawn"]
 [ext_resource type="PackedScene" uid="uid://baaun8u3q5t8j" path="res://scenes/rooms/horizontal_door.tscn" id="7_door"]
-[ext_resource type="PackedScene" path="res://scenes/enemies/toad_enemy.tscn" id="8_toad"]
-[ext_resource type="PackedScene" path="res://scenes/enemies/exploding_rat_enemy.tscn" id="9_explrat"]
-[ext_resource type="PackedScene" path="res://scenes/enemies/boar_enemy.tscn" id="10_boar"]
-[ext_resource type="PackedScene" path="res://scenes/enemies/scorpion_enemy.tscn" id="11_scorpion"]
-[ext_resource type="PackedScene" path="res://scenes/enemies/wolf_enemy.tscn" id="12_wolf"]
-[ext_resource type="PackedScene" path="res://scenes/enemies/beetle_enemy.tscn" id="13_beetle"]
-[ext_resource type="PackedScene" path="res://scenes/enemies/snake_enemy.tscn" id="14_snake"]
-[ext_resource type="PackedScene" path="res://scenes/enemies/owl_enemy.tscn" id="15_owl"]
-[ext_resource type="PackedScene" path="res://scenes/enemies/spider_enemy.tscn" id="16_spider"]
-[ext_resource type="PackedScene" path="res://scenes/enemies/firefly_enemy.tscn" id="17_firefly"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tiles"]
 texture = ExtResource("3_tiles")
@@ -47,68 +36,11 @@ physics_quadrant_size = 64
 [node name="Player" parent="." unique_id=1553086247 instance=ExtResource("2_player")]
 position = Vector2(576, 326)
 
-[node name="Rat1" parent="." unique_id=1582327540 instance=ExtResource("4_rat")]
+[node name="Rat1" parent="." unique_id=191935050 instance=ExtResource("4_rat")]
 position = Vector2(200, 180)
 
-[node name="Rat2" parent="." unique_id=2008264337 instance=ExtResource("4_rat")]
-position = Vector2(820, 200)
-
-[node name="Rat3" parent="." unique_id=1114120103 instance=ExtResource("4_rat")]
-position = Vector2(750, 450)
-
-[node name="Rat4" parent="." unique_id=693872062 instance=ExtResource("4_rat")]
-position = Vector2(300, 480)
-
-[node name="Bat1" parent="." unique_id=326909881 instance=ExtResource("5_bat")]
-position = Vector2(500, 150)
-
-[node name="Bat2" parent="." unique_id=1204258593 instance=ExtResource("5_bat")]
-position = Vector2(650, 400)
-
-[node name="Bat3" parent="." unique_id=14887312 instance=ExtResource("5_bat")]
-position = Vector2(900, 280)
-
-[node name="Toad1" parent="." instance=ExtResource("8_toad")]
-position = Vector2(950, 150)
-
-[node name="Toad2" parent="." instance=ExtResource("8_toad")]
-position = Vector2(400, 350)
-
-[node name="ExplodingRat1" parent="." instance=ExtResource("9_explrat")]
-position = Vector2(600, 250)
-
-[node name="ExplodingRat2" parent="." instance=ExtResource("9_explrat")]
-position = Vector2(350, 150)
-
-[node name="Boar1" parent="." instance=ExtResource("10_boar")]
-position = Vector2(800, 350)
-
-[node name="Scorpion1" parent="." instance=ExtResource("11_scorpion")]
-position = Vector2(150, 400)
-
-[node name="Wolf1" parent="." instance=ExtResource("12_wolf")]
-position = Vector2(700, 150)
-
-[node name="Beetle1" parent="." instance=ExtResource("13_beetle")]
-position = Vector2(450, 200)
-
-[node name="Beetle2" parent="." instance=ExtResource("13_beetle")]
-position = Vector2(480, 220)
-
-[node name="Beetle3" parent="." instance=ExtResource("13_beetle")]
-position = Vector2(460, 240)
-
-[node name="Snake1" parent="." instance=ExtResource("14_snake")]
-position = Vector2(850, 450)
-
-[node name="Owl1" parent="." instance=ExtResource("15_owl")]
-position = Vector2(550, 100)
-
-[node name="Spider1" parent="." instance=ExtResource("16_spider")]
-position = Vector2(250, 300)
-
-[node name="Firefly1" parent="." instance=ExtResource("17_firefly")]
-position = Vector2(700, 300)
+[node name="Rat2" parent="." unique_id=1175572835 instance=ExtResource("4_rat")]
+position = Vector2(400, 360)
 
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=334963522]
 
@@ -119,5 +51,3 @@ position = Vector2(80, 326)
 
 [node name="DoorToCrossroads" parent="Doors" unique_id=381175989 instance=ExtResource("7_door")]
 position = Vector2(20, 326)
-next_level_path = "res://scenes/rooms/room_crossroads.tscn"
-next_level_spawnpoint = "East"

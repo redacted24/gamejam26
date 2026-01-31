@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cldop8q05esnm"]
 
 [ext_resource type="Script" uid="uid://brv50tcjohvd0" path="res://scripts/enemy/boar_enemy.gd" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://d2d174f4m6pqu" path="res://assets/enemy/rat/boar.png" id="2_or8aq"]
+[ext_resource type="Texture2D" uid="uid://d2d174f4m6pqu" path="res://assets/enemy/other/boar.png" id="2_or8aq"]
 [ext_resource type="Script" uid="uid://cg5qffp8akvjq" path="res://scripts/state_machine.gd" id="2_sm"]
 [ext_resource type="PackedScene" uid="uid://irjpkdyd2l5o" path="res://scenes/health_component.tscn" id="3_health"]
 [ext_resource type="Script" uid="uid://bsvpjebj5et7d" path="res://scripts/enemy/states/boar_idle_state.gd" id="5_walk"]
