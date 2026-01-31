@@ -31,8 +31,7 @@ var weapon_type: WeaponType = WeaponType.SWORD
 var invincible: bool = false
 
 func _ready() -> void:
-	# Hide all weapons for now
-	bow.hide()
+	# Hide all weapons for now, start with bow
 	spear.hide()
 	# Get player data from autoload
 	stats.hunger = PlayerData.hunger

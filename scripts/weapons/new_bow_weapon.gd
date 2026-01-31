@@ -1,0 +1,112 @@
+extends Node2D
+
+enum ChargeState { IDLE, CHARGE_1, CHARGE_2, BOW_DRAWN }
+
+@export var player : CharacterBody2D
+@export var horizontal_offset: float = 15.0
+@export var min_charge_time : float = 0.3
+@export var max_charge_time : float = 1.0
+
+@export_group("Bow Sprites")
+@export var sprite_idle: Texture2D
+@export var sprite_charge_1: Texture2D
+@export var sprite_charge_2: Texture2D
+@export var sprite_bow_drawn: Texture2D
+@onready var sprite = $Sprite
+
+var is_charging : bool = false
+var charge_time : float = 0.0
+var charge_state : ChargeState = ChargeState.IDLE
+
+func _ready() -> void:
+	pass
+	
+func _process(delta : float) -> void:
+	_update_aim()
+	if Input.is_action_pressed("shoot"):
+		if not is_charging:
+			is_charging = true
+			charge_time = 0.0
+		else:
+			charge_time = minf(charge_time + delta, max_charge_time)
+		_update_charge_state()
+	elif is_charging:
+		#_fire_charged_arrow()
+		is_charging = false
+		charge_time = 0.0
+		charge_state = ChargeState.IDLE
+		_update_sprite()
+	pass
+	
+# Keep weapon tracking mousew
+func _update_aim() -> void:
+	if not sprite or not player:
+		return
+	var mouse_pos := player.get_global_mouse_position()
+	var direction := (mouse_pos - player.global_position).normalized()
+
+	# Rotate weapon to point at cursor
+	sprite.rotation = direction.angle()
+	print("sprite rotation: %f" % sprite.rotation)
+
+	# Flip sprite vertically when aiming left to prevent upside-down appearance
+	var is_left := mouse_pos.x < player.global_position.x
+	sprite.flip_v = is_left
+
+	# Offset weapon position based on aim direction
+	#position.x = -horizontal_offset if is_left else horizontal_offset
+
+
+func _update_charge_state() -> void:
+	var new_state: ChargeState
+	if charge_time < min_charge_time:
+		new_state = ChargeState.IDLE
+	elif charge_time < 0.66:
+		new_state = ChargeState.CHARGE_1
+	elif charge_time < max_charge_time:
+		new_state = ChargeState.CHARGE_2
+	else:
+		new_state = ChargeState.BOW_DRAWN
+
+	if new_state != charge_state:
+		charge_state = new_state
+		_update_sprite()
+		
+func _update_sprite() -> void:
+	match charge_state:
+		ChargeState.IDLE:
+			sprite.texture = sprite_idle
+		ChargeState.CHARGE_1:
+			sprite.texture = sprite_charge_1
+		ChargeState.CHARGE_2:
+			sprite.texture = sprite_charge_2
+		ChargeState.BOW_DRAWN:
+			sprite.texture = sprite_bow_drawn
+			
+#@export var projectile_scene: PackedScene
+#@export var projectile_speed: float = 300.0
+#@export var min_damage_multiplier: float = 1.0
+#@export var max_damage_multiplier: float = 5.0
+#@export var min_speed_multiplier: float = 1.0
+#@export var max_speed_multiplier: float = 3.0
+
+#func _fire_charged_arrow() -> void:
+	#print("arrow fired")
+	#if charge_time < min_charge_time:
+		#return
+#
+	#var charge_ratio := (charge_time - min_charge_time) / (max_charge_time - min_charge_time)
+	#charge_ratio = clampf(charge_ratio, 0.0, 1.0)
+	#var dir := _get_attack_direction()
+#
+	#var proj: Projectile = projectile_scene.instantiate()
+#
+	#var final_damage := int(damage * lerpf(min_damage_multiplier, max_damage_multiplier, charge_ratio))
+	#var final_speed := projectile_speed * lerpf(min_speed_multiplier, max_speed_multiplier, charge_ratio)
+#
+	#proj.setup(dir, final_damage, final_speed, true)
+	#proj.global_position = player.global_position + dir * 20.0
+	#player.get_tree().current_scene.add_child(proj)
+#
+#func try_attack() -> void:
+	#pass

@@ -20,6 +20,10 @@
 [ext_resource type="Script" uid="uid://cg5qffp8akvjq" path="res://scripts/state_machine.gd" id="18_fulsm"]
 [ext_resource type="PackedScene" uid="uid://bc617hvj6834e" path="res://scenes/weapons/bow_weapon.tscn" id="19_4r5pv"]
 [ext_resource type="PackedScene" uid="uid://bxum6lhxe3nam" path="res://scenes/weapons/spear_weapon.tscn" id="20_60mlk"]
+[ext_resource type="Texture2D" uid="uid://dewk1cgevfeda" path="res://assets/weapons/bow000.png" id="20_l71n6"]
+[ext_resource type="Texture2D" uid="uid://qghna4cjpf6s" path="res://assets/weapons/bow002.png" id="21_ke2ow"]
+[ext_resource type="Texture2D" uid="uid://l1lav6qwsgu0" path="res://assets/weapons/bow003.png" id="22_ujl30"]
+[ext_resource type="Texture2D" uid="uid://btj44tjb07t7e" path="res://assets/weapons/bow004.png" id="23_31cv2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3v2ag"]
 animations = [{
@@ -117,9 +121,9 @@ initial_state = NodePath("Normal")
 
 [node name="Normal" type="Node" parent="StateMachine" unique_id=1951469564 node_paths=PackedStringArray("health_component", "player", "animation", "bow", "spear")]
 script = ExtResource("1_a8ls1")
+speed = 300
 health_component = NodePath("../../HealthComponent")
 player = NodePath("../..")
-speed = 300
 animation = NodePath("../../AnimatedSprite2D")
 bow = NodePath("../../Weapons/BowWeapon")
 spear = NodePath("../../Weapons/SpearWeapon")
@@ -132,13 +136,16 @@ spear = NodePath("../../Weapons/SpearWeapon")
 
 [node name="Weapons" type="Node2D" parent="." unique_id=1389796030]
 
-[node name="BowWeapon" parent="Weapons" unique_id=595246194 instance=ExtResource("19_4r5pv")]
+[node name="BowWeapon" parent="Weapons" unique_id=595246194 node_paths=PackedStringArray("player") instance=ExtResource("19_4r5pv")]
+position = Vector2(6, 2)
+scale = Vector2(0.5471473, 0.5471473)
+player = NodePath("../..")
+sprite_idle = ExtResource("20_l71n6")
+sprite_charge_1 = ExtResource("21_ke2ow")
+sprite_charge_2 = ExtResource("22_ujl30")
+sprite_bow_drawn = ExtResource("23_31cv2")
 
 [node name="SpearWeapon" parent="Weapons" unique_id=1707992964 instance=ExtResource("20_60mlk")]
-
-[node name="ColorRect" type="ColorRect" parent="Weapons" unique_id=1295113120]
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="Abilities" type="Node2D" parent="." unique_id=1447767386]
 

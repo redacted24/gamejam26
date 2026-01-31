@@ -20,7 +20,7 @@ enum ChargeState { IDLE, CHARGE_1, CHARGE_2, BOW_DRAWN }
 
 var is_charging: bool = false
 var charge_time: float = 0.0
-var charge_state: ChargeState = ChargeState.IDLE
+var charge_state: ChargeState = ChargeState.IDLE # initial charging state
 
 func _ready() -> void:
 	super._ready()
