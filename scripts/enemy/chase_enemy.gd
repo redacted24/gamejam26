@@ -16,19 +16,3 @@ func _create_visual() -> void:
 	visual.color = Color(0.9, 0.5, 0.1)
 	visual.name = "Visual"
 	add_child(visual)
-
-func _create_state_machine() -> void:
-	_build_state_machine([
-		{
-			node_name = "Idle",
-			script = preload("res://scripts/enemy/states/enemy_idle_state.gd"),
-		},
-		{
-			node_name = "Chase",
-			script = preload("res://scripts/enemy/states/enemy_chase_state.gd"),
-		},
-		{
-			node_name = "Dead",
-			script = preload("res://scripts/enemy/states/enemy_dead_state.gd"),
-		},
-	])

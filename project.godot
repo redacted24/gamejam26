@@ -34,6 +34,7 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 [global_group]
 
 player="Group for all entities that are playable"
+enemies="Any type of entity that is against the player"
 
 [input]
 
