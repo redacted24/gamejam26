@@ -32,12 +32,14 @@ func spawn_enemies() -> void:
 func generate_next_rooms() -> String:
 	var next_room_path : String
 	var next_room_type = MapGeneration.next_room_type()
-	if next_room_type is PeacefulRoom:
+	if next_room_type == PeacefulRoom:
 		next_room_path = "res://scenes/rooms/types/peaceful_room.tscn"
-	elif next_room_type is CombatRoom:
+	elif next_room_type == CombatRoom:
 		next_room_path = "res://scenes/rooms/types/combat_room.tscn"
-	elif next_room_type is CrossroadsRoom:
+	elif next_room_type == CrossroadsRoom:
 		next_room_path = "res://scenes/rooms/types/room_crossroads.tscn"
+	elif next_room_type == RatsRoom:
+		next_room_path = "res://scenes/rooms/room_rats.tscn"
 	else:
 		next_room_path = ""
 	print("next_room path is:")
