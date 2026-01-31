@@ -80,7 +80,7 @@ next_level_spawnpoint = "South"
 
 [node name="WestDoor" parent="Doors" unique_id=383071066 instance=ExtResource("8_r16nb")]
 position = Vector2(9, 349)
-next_level_path = "res://scenes/rooms/room_crossroads.tscn"
+next_level_path = "res://scenes/rooms/room_rats.tscn"
 next_level_spawnpoint = "East"
 
 [node name="EastDoor" parent="Doors" unique_id=642310207 instance=ExtResource("8_r16nb")]

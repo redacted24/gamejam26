@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://ldrshfh8jvr1"]
+[gd_scene format=3 uid="uid://bb2x3hluhmwpv"]
 
 [ext_resource type="Script" uid="uid://3lu2dt5uq6l8" path="res://scripts/enemy/rat_enemy.gd" id="1_script"]
 [ext_resource type="Script" uid="uid://cvh6cwputwml5" path="res://scripts/enemy/states/enemy_chase_state.gd" id="2_ey5y1"]
