@@ -112,8 +112,9 @@ shape = SubResource("CircleShape2D_oprun")
 script = ExtResource("18_fulsm")
 initial_state = NodePath("Normal")
 
-[node name="Normal" type="Node" parent="StateMachine" unique_id=1951469564]
+[node name="Normal" type="Node" parent="StateMachine" unique_id=1951469564 node_paths=PackedStringArray("player")]
 script = ExtResource("19_4r5pv")
+player = NodePath("../..")
 
 [node name="Dead" type="Node" parent="StateMachine" unique_id=152165329]
 
