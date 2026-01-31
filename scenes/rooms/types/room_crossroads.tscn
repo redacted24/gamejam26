@@ -39,6 +39,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAwACAAAAAAABAAAAAwACAAAAAAACAAAAAwACAAA
 tile_set = SubResource("TileSet_gw2uy")
 rendering_quadrant_size = 64
 physics_quadrant_size = 64
+metadata/_edit_lock_ = true
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=415415607]
 visible = false
@@ -67,7 +68,7 @@ position = Vector2(609, 617)
 position = Vector2(1103, 350)
 
 [node name="West" parent="SpawnPoints" unique_id=1904105760 instance=ExtResource("6_umhp8")]
-position = Vector2(47, 346)
+position = Vector2(41, 348)
 
 [node name="North" parent="SpawnPoints" unique_id=1939159234 instance=ExtResource("6_umhp8")]
 position = Vector2(611, 45)
