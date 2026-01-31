@@ -1,10 +1,10 @@
 extends Node
 
-# Player signals
-signal player_damaged(current_hp: int, max_hp: int)
-signal player_healed(current_hp: int, max_hp: int)
-signal player_died
-signal player_stats_changed(stats: Dictionary)
+# Player signals (peer_id identifies which player)
+signal player_damaged(peer_id: int, current_hp: int, max_hp: int)
+signal player_healed(peer_id: int, current_hp: int, max_hp: int)
+signal player_died(peer_id: int)
+signal player_stats_changed(peer_id: int, stats: Dictionary)
 signal player_entered_door(direction: Vector2i)
 
 # Enemy signals

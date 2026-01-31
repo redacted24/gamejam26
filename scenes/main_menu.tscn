@@ -26,22 +26,73 @@ offset_left = 127.0
 offset_top = 159.0
 offset_right = 327.0
 offset_bottom = 209.0
-text = "Let the Hunt begin."
+text = "Play Solo"
+
+[node name="HostButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 127.0
+offset_top = 220.0
+offset_right = 327.0
+offset_bottom = 270.0
+text = "Host Game"
+
+[node name="JoinButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 127.0
+offset_top = 280.0
+offset_right = 327.0
+offset_bottom = 330.0
+text = "Join Game"
+
+[node name="JoinPanel" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 340.0
+offset_top = 280.0
+offset_right = 580.0
+offset_bottom = 370.0
+
+[node name="IpInput" type="LineEdit" parent="JoinPanel"]
+layout_mode = 2
+placeholder_text = "Enter IP address"
+text = "127.0.0.1"
+
+[node name="ConnectButton" type="Button" parent="JoinPanel"]
+layout_mode = 2
+text = "Connect"
+
+[node name="StatusLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 127.0
+offset_top = 340.0
+offset_right = 580.0
+offset_bottom = 370.0
+text = ""
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+
+[node name="StartButton" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 127.0
+offset_top = 380.0
+offset_right = 327.0
+offset_bottom = 430.0
+text = "Start Game"
 
 [node name="QuitButton" type="Button" parent="." unique_id=1197833082]
 layout_mode = 0
-offset_left = 135.0
-offset_top = 230.0
-offset_right = 335.0
-offset_bottom = 280.0
+offset_left = 127.0
+offset_top = 450.0
+offset_right = 327.0
+offset_bottom = 500.0
 text = "Quit"
 
 [node name="SettingsButton" type="Button" parent="." unique_id=281753642]
 layout_mode = 0
-offset_left = 136.0
-offset_top = 307.0
-offset_right = 336.0
-offset_bottom = 357.0
+offset_left = 127.0
+offset_top = 510.0
+offset_right = 327.0
+offset_bottom = 560.0
 text = "Settings"
 
 [node name="SettingsPanel" type="Panel" parent="." unique_id=1424232343]
@@ -77,6 +128,10 @@ offset_bottom = 276.0
 text = "Close"
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="JoinPanel/ConnectButton" to="." method="_on_connect_button_pressed"]
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="value_changed" from="SettingsPanel/VolumeSlider" to="." method="_on_volume_slider_value_changed"]

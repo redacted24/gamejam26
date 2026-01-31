@@ -9,4 +9,4 @@ func enter() -> void:
 
 	var tween := player.create_tween()
 	tween.tween_property(player, "modulate:a", 0.0, 0.5)
-	tween.tween_callback(func(): EventBus.player_died.emit())
+	tween.tween_callback(func(): EventBus.player_died.emit(player.peer_id))

@@ -6,6 +6,10 @@ const ENEMY_TYPES: Array = [
 ]
 
 static func spawn_enemies(room: Room, parent: Node) -> int:
+	# Only host spawns enemies in multiplayer
+	if NetworkManager.is_online() and not parent.multiplayer.is_server():
+		return 0
+
 	var count := 0
 	for point in room.spawn_points:
 		var entry = ENEMY_TYPES.pick_random()

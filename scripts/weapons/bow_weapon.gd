@@ -25,10 +25,14 @@ var charge_state: ChargeState = ChargeState.IDLE
 @onready var sprite: Sprite2D = $Sprite
 
 func _ready() -> void:
+	super._ready()
 	_update_sprite()
 
 func _process(delta: float) -> void:
 	_update_flip()
+
+	if not player or not player.is_multiplayer_authority():
+		return
 
 	if Input.is_action_pressed("shoot"):
 		if not is_charging:
@@ -47,8 +51,12 @@ func _process(delta: float) -> void:
 func _update_flip() -> void:
 	if not sprite or not player:
 		return
-	var mouse_pos := player.get_global_mouse_position()
-	var is_left := mouse_pos.x < player.global_position.x
+	var is_left: bool
+	if player.is_multiplayer_authority():
+		var mouse_pos := player.get_global_mouse_position()
+		is_left = mouse_pos.x < player.global_position.x
+	else:
+		is_left = player.aim_direction.x < 0
 	sprite.flip_h = is_left
 
 func _update_charge_state() -> void:
@@ -88,15 +96,23 @@ func _fire_charged_arrow() -> void:
 	var charge_ratio := (charge_time - min_charge_time) / (max_charge_time - min_charge_time)
 	charge_ratio = clampf(charge_ratio, 0.0, 1.0)
 	var dir := _get_attack_direction()
-
-	var proj: Projectile = projectile_scene.instantiate()
-
 	var final_damage := int(damage * lerpf(min_damage_multiplier, max_damage_multiplier, charge_ratio))
 	var final_speed := projectile_speed * lerpf(min_speed_multiplier, max_speed_multiplier, charge_ratio)
+	var spawn_pos := player.global_position + dir * 20.0
 
-	proj.setup(dir, final_damage, final_speed, true)
-	proj.global_position = player.global_position + dir * 20.0
+	# Spawn locally and on all peers
+	_spawn_arrow(dir, final_damage, final_speed, spawn_pos)
+	_spawn_arrow_remote.rpc(dir, final_damage, final_speed, spawn_pos)
+
+func _spawn_arrow(dir: Vector2, dmg: int, spd: float, pos: Vector2) -> void:
+	var proj: Projectile = projectile_scene.instantiate()
+	proj.setup(dir, dmg, spd, true)
+	proj.global_position = pos
 	player.get_tree().current_scene.add_child(proj)
+
+@rpc("any_peer", "call_remote", "reliable")
+func _spawn_arrow_remote(dir: Vector2, dmg: int, spd: float, pos: Vector2) -> void:
+	_spawn_arrow(dir, dmg, spd, pos)
 
 func try_attack() -> void:
 	pass

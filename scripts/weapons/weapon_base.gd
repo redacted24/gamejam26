@@ -21,14 +21,18 @@ func setup(p: CharacterBody2D) -> void:
 func try_attack() -> void:
 	if not can_attack:
 		return
+	if not player.is_multiplayer_authority():
+		return
 	if not Input.is_action_pressed("shoot"):
 		return
 	var attack_dir := _get_attack_direction()
 	_perform_attack(attack_dir)
 
 func _get_attack_direction() -> Vector2:
-	var mouse_pos := player.get_global_mouse_position()
-	return (mouse_pos - player.global_position).normalized()
+	if player.is_multiplayer_authority():
+		return (player.get_global_mouse_position() - player.global_position).normalized()
+	else:
+		return player.aim_direction
 
 func _perform_attack(_dir: Vector2) -> void:
 	can_attack = false

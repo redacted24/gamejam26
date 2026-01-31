@@ -32,4 +32,17 @@ func take_damage(amount: int, from_position: Vector2 = Vector2.ZERO) -> void:
 		tween.tween_property(visual, "modulate", Color.WHITE, 0.15).from(Color.RED)
 
 func get_player() -> Node2D:
-	return get_tree().get_first_node_in_group("player")
+	# Find the nearest player (supports multiplayer with 2+ players)
+	var players := get_tree().get_nodes_in_group("player")
+	if players.is_empty():
+		return null
+	if players.size() == 1:
+		return players[0]
+	var nearest: Node2D = null
+	var nearest_dist := INF
+	for p in players:
+		var dist := global_position.distance_squared_to(p.global_position)
+		if dist < nearest_dist:
+			nearest_dist = dist
+			nearest = p
+	return nearest

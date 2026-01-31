@@ -13,6 +13,9 @@ const WEAPON_SCENES := {
 
 const HUNGER_MAX := 200
 
+var peer_id: int = 1  # Multiplayer peer id owning this player
+var aim_direction: Vector2 = Vector2.RIGHT  # Synced for remote players
+
 var stats := {
 	speed = 200.0,
 	damage = 1,
@@ -54,14 +57,14 @@ func take_damage(amount: int, _hit_position: Vector2 = Vector2.ZERO) -> void:
 	if invincible:
 		return
 	health_component.take_damage(amount)
-	EventBus.player_damaged.emit(health_component.current_hp, health_component.max_hp)
+	EventBus.player_damaged.emit(peer_id, health_component.current_hp, health_component.max_hp)
 	if health_component.current_hp > 0:
 		var sm := get_node("StateMachine")
 		sm.on_state_transition(sm.current_state, "hurt")
 
 func heal(amount: int) -> void:
 	health_component.heal(amount)
-	EventBus.player_healed.emit(health_component.current_hp, health_component.max_hp)
+	EventBus.player_healed.emit(peer_id, health_component.current_hp, health_component.max_hp)
 
 func apply_pickup(pickup_type: String, value: float) -> void:
 	match pickup_type:
@@ -71,11 +74,12 @@ func apply_pickup(pickup_type: String, value: float) -> void:
 			stats.damage += int(value)
 		"speed_up":
 			stats.speed += value
-	EventBus.player_stats_changed.emit(stats)
+	EventBus.player_stats_changed.emit(peer_id, stats)
 
 func _on_died() -> void:
 	var sm := get_node("StateMachine")
 	sm.on_state_transition(sm.current_state, "dead")
+	EventBus.player_died.emit(peer_id)
 
 func _on_health_changed(_current_hp: int, _max_hp: int) -> void:
 	pass

@@ -26,7 +26,7 @@ func enter() -> void:
 	has_hit = false
 
 func physics_process(delta: float) -> void:
-	var player := get_tree().get_first_node_in_group("player")
+	var player := enemy.get_player()
 	if not player:
 		enemy.velocity = Vector2.ZERO
 		enemy.move_and_slide()

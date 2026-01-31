@@ -47,6 +47,6 @@ func _create_visual() -> void:
 	tween.tween_property(visual, "position:y", 4.0, 0.5).set_trans(Tween.TRANS_SINE)
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		EventBus.pickup_collected.emit(pickup_type, value)
+	if body.is_in_group("player") and body is Player:
+		body.apply_pickup(pickup_type, value)
 		queue_free()
