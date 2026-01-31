@@ -7,3 +7,23 @@ tile_size = Vector2i(64, 64)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1724411306]
 tile_set = SubResource("TileSet_uh2ch")
+
+[node name="Control" type="Control" parent="." unique_id=855778839]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=1886876640]
+layout_mode = 0
+offset_right = 1173.0
+offset_bottom = 670.0
+color = Color(0.3911897, 0.52641046, 0.83843714, 1)
+
+[node name="Label" type="Label" parent="Control" unique_id=1983562489]
+layout_mode = 0
+offset_left = 559.0
+offset_top = 317.0
+offset_right = 675.0
+offset_bottom = 340.0
+text = "Peaceful Room"
