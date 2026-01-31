@@ -38,6 +38,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("7_ur7pv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_y4r1p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_d2wvv")
+}],
+"loop": true,
+"name": &"walk_down_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("4_ur7pv")
 }, {
 "duration": 1.0,
@@ -48,20 +62,6 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_right",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7_ur7pv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_y4r1p")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_d2wvv")
-}],
-"loop": true,
-"name": &"walk_right_down",
 "speed": 5.0
 }, {
 "frames": [{
@@ -101,7 +101,7 @@ script = ExtResource("1_a8ls1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1310342505]
 sprite_frames = SubResource("SpriteFrames_3v2ag")
-animation = &"walk_up_right"
+animation = &"walk_down_right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1799882187]
 shape = SubResource("CircleShape2D_oprun")
@@ -112,9 +112,10 @@ shape = SubResource("CircleShape2D_oprun")
 script = ExtResource("18_fulsm")
 initial_state = NodePath("Normal")
 
-[node name="Normal" type="Node" parent="StateMachine" unique_id=1951469564 node_paths=PackedStringArray("player")]
+[node name="Normal" type="Node" parent="StateMachine" unique_id=1951469564 node_paths=PackedStringArray("player", "animation")]
 script = ExtResource("19_4r5pv")
 player = NodePath("../..")
+animation = NodePath("../../AnimatedSprite2D")
 
 [node name="Dead" type="Node" parent="StateMachine" unique_id=152165329]
 
