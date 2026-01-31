@@ -59,17 +59,8 @@ texture = ExtResource("5_e42aq")
 
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=1469006746]
 
-[node name="South" parent="SpawnPoints" unique_id=825871877 instance=ExtResource("6_pf6f5")]
+[node name="Main" parent="SpawnPoints" unique_id=825871877 instance=ExtResource("6_pf6f5")]
 position = Vector2(609, 617)
-
-[node name="East" parent="SpawnPoints" unique_id=2074445121 instance=ExtResource("6_pf6f5")]
-position = Vector2(1103, 350)
-
-[node name="West" parent="SpawnPoints" unique_id=1904105760 instance=ExtResource("6_pf6f5")]
-position = Vector2(41, 348)
-
-[node name="North" parent="SpawnPoints" unique_id=1939159234 instance=ExtResource("6_pf6f5")]
-position = Vector2(611, 45)
 
 [node name="Doors" type="Node2D" parent="." unique_id=487674928]
 
