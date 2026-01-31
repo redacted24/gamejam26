@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://baaun8u3q5t8j"]
+
+[ext_resource type="Script" uid="uid://drcnbi04lpw7t" path="res://scripts/room/door.gd" id="1_sxth3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mwdy5"]
+
+[node name="Door" type="Area2D" unique_id=589182169]
+script = ExtResource("1_sxth3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=927594113]
+shape = SubResource("RectangleShape2D_mwdy5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
