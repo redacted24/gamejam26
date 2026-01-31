@@ -40,21 +40,14 @@ func _create_shoot_timer() -> void:
 func try_shoot() -> void:
 	if not can_shoot:
 		return
-	var shoot_dir := _get_shoot_direction()
-	if shoot_dir == Vector2.ZERO:
+	if not Input.is_action_pressed("shoot"):
 		return
+	var shoot_dir := _get_shoot_direction()
 	_fire_projectile(shoot_dir)
 
 func _get_shoot_direction() -> Vector2:
-	if Input.is_action_pressed("shoot_up"):
-		return Vector2.UP
-	if Input.is_action_pressed("shoot_down"):
-		return Vector2.DOWN
-	if Input.is_action_pressed("shoot_left"):
-		return Vector2.LEFT
-	if Input.is_action_pressed("shoot_right"):
-		return Vector2.RIGHT
-	return Vector2.ZERO
+	var mouse_pos := get_global_mouse_position()
+	return (mouse_pos - global_position).normalized()
 
 func _fire_projectile(dir: Vector2) -> void:
 	can_shoot = false
