@@ -72,6 +72,9 @@ func _on_connection_failed() -> void:
 	host_button.disabled = false
 	join_button.disabled = false
 
+func _on_cosmetics_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/cosmetics_menu.tscn")
+
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
 

@@ -25,6 +25,7 @@ MapGeneration="*uid://cmnuyts41bolj"
 NetworkManager="*res://global/network_manager.gd"
 PlayerData="*uid://cnp7kfw22j2vr"
 UserInterface="*uid://drs1kl8225u00"
+CosmeticsData="*res://global/cosmetics_data.gd"
 
 [dialogue_manager]
 

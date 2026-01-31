@@ -34,6 +34,8 @@ func _ready() -> void:
 	if health_component:
 		health_component.died.connect(_on_died)
 	_equip_weapon(weapon_type)
+	if CosmeticsData:
+		$AnimatedSprite2D.modulate = CosmeticsData.selected_color
 
 func _exit_tree() -> void:
 	if PlayerData:
