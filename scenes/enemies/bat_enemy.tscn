@@ -20,10 +20,11 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_teh6i"]
+size = Vector2(75, 28)
 
 [node name="Bat" type="CharacterBody2D" unique_id=1175572835]
-collision_layer = 260
-collision_mask = 2
+collision_layer = 256
+collision_mask = 258
 script = ExtResource("1_o8anq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1606955101]
@@ -31,6 +32,7 @@ scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_yfv5o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2058187689]
+position = Vector2(-3.5, 7)
 shape = SubResource("RectangleShape2D_teh6i")
 
 [node name="HealthComponent" parent="." unique_id=863237339 instance=ExtResource("3_m0x8h")]

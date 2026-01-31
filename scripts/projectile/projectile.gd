@@ -22,7 +22,7 @@ func _ready() -> void:
 
 	if is_player_projectile:
 		collision_layer = 8
-		collision_mask = 1 | 4  # walls + enemies
+		collision_mask = 1 | 4 | 256  # walls + enemies + flying enemies
 	else:
 		collision_layer = 16
 		collision_mask = 1 | 2  # walls + player
@@ -58,5 +58,5 @@ func _on_body_entered(body: Node2D) -> void:
 		queue_free()
 		return
 	if body.has_method("take_damage"):
-		body.take_damage(damage)
+		body.take_damage(damage, global_position)
 	queue_free()
