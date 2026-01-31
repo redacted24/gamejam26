@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dv8254a5l5gwu" path="res://assets/character/walkupright2.png" id="14_qaulx"]
 [ext_resource type="Texture2D" uid="uid://co0iymu5gfxbn" path="res://assets/character/walkupright3.png" id="15_1f82d"]
 [ext_resource type="Script" uid="uid://cg5qffp8akvjq" path="res://scripts/state_machine.gd" id="16_s1ycm"]
+[ext_resource type="PackedScene" uid="uid://irjpkdyd2l5o" path="res://scenes/health_component.tscn" id="17_1x4g4"]
 [ext_resource type="Script" uid="uid://dxh4tm3yrxaxx" path="res://scripts/enemy/states/enemy_idle_state.gd" id="18_ile5s"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lioqc"]
@@ -92,18 +93,20 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0lg75"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_1x4g4"]
 
-[node name="Enemy" type="CharacterBody2D" unique_id=1814257504]
+[node name="Enemy" type="CharacterBody2D" unique_id=1860361879 node_paths=PackedStringArray("health_component") groups=["enemies"]]
 script = ExtResource("1_shcg2")
+health_component = NodePath("HealthComponent")
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=461835623]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=461835623]
 z_index = 10
 sprite_frames = SubResource("SpriteFrames_lioqc")
 animation = &"walk_up_right"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1111372045]
-shape = SubResource("CircleShape2D_0lg75")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=988916062]
+z_index = 20
+shape = SubResource("CircleShape2D_1x4g4")
 
 [node name="toindicateenemy" type="ColorRect" parent="." unique_id=1566976688]
 offset_left = -30.0
@@ -112,12 +115,14 @@ offset_right = 25.0
 offset_bottom = 30.0
 color = Color(0.99257606, 0.08052162, 0.5568904, 1)
 
+[node name="HealthComponent" parent="." unique_id=863237339 instance=ExtResource("17_1x4g4")]
+
 [node name="StateMachine" type="Node" parent="." unique_id=1016421695]
 script = ExtResource("16_s1ycm")
 
 [node name="Normal" type="Node" parent="StateMachine" unique_id=904105396 node_paths=PackedStringArray("enemy")]
 script = ExtResource("18_ile5s")
-enemy = NodePath("../..")
+enemy = NodePath("")
 
 [node name="Hurt" type="Node" parent="StateMachine" unique_id=608500507]
 
