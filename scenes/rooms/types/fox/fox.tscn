@@ -2,11 +2,9 @@
 
 [ext_resource type="Script" uid="uid://brtkbla55kkox" path="res://scripts/room/room.gd" id="1_cp7ic"]
 [ext_resource type="PackedScene" uid="uid://wmffeydq5x56" path="res://scenes/spawn_point.tscn" id="2_7b1ai"]
+[ext_resource type="TileSet" uid="uid://bmvtpi81nq7ka" path="res://resources/wasteland.tres" id="2_dcvnj"]
 [ext_resource type="PackedScene" uid="uid://d137sgviyscfm" path="res://scenes/player.tscn" id="3_dcvnj"]
 [ext_resource type="PackedScene" uid="uid://baaun8u3q5t8j" path="res://scenes/rooms/horizontal_door.tscn" id="4_abp0k"]
-
-[sub_resource type="TileSet" id="TileSet_eejpr"]
-tile_size = Vector2i(64, 64)
 
 [node name="fox" type="Node2D" unique_id=1338668542 node_paths=PackedStringArray("player")]
 script = ExtResource("1_cp7ic")
@@ -14,12 +12,13 @@ room_type = 6
 player = NodePath("Player")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=358604943]
-tile_set = SubResource("TileSet_eejpr")
+position = Vector2(10, 4)
+tile_set = ExtResource("2_dcvnj")
 
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=1822267601]
 
 [node name="Main" parent="SpawnPoints" unique_id=825871877 instance=ExtResource("2_7b1ai")]
-position = Vector2(588, 609)
+position = Vector2(1105, 982)
 
 [node name="Player" parent="." unique_id=800656356 instance=ExtResource("3_dcvnj")]
 position = Vector2(558, 433)
@@ -27,12 +26,4 @@ position = Vector2(558, 433)
 [node name="Doors" type="Node2D" parent="." unique_id=1858633695]
 
 [node name="HorizontalDoor" parent="Doors" unique_id=589182169 instance=ExtResource("4_abp0k")]
-position = Vector2(587, 196)
-
-[node name="Label" type="Label" parent="." unique_id=2132072169]
-offset_left = 546.0
-offset_top = 330.0
-offset_right = 644.0
-offset_bottom = 353.0
-text = "FOX ROOM"
-metadata/_edit_use_anchors_ = true
+position = Vector2(1648, 202)
