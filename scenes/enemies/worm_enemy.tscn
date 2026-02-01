@@ -1,0 +1,64 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/enemy/worm_enemy.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://cg5qffp8akvjq" path="res://scripts/state_machine.gd" id="2_sm"]
+[ext_resource type="Script" path="res://scripts/enemy/states/worm_chase_state.gd" id="3_chase"]
+[ext_resource type="Script" uid="uid://bk4neubpa0t1v" path="res://scripts/enemy/states/enemy_dead_state.gd" id="4_dead"]
+[ext_resource type="Script" uid="uid://dxh4tm3yrxaxx" path="res://scripts/enemy/states/enemy_idle_state.gd" id="5_idle"]
+[ext_resource type="PackedScene" uid="uid://irjpkdyd2l5o" path="res://scenes/health_component.tscn" id="6_health"]
+[ext_resource type="Texture2D" uid="uid://bk6mwpb2mgscg" path="res://assets/enemy/bear/worm-1.png" id="7_worm1"]
+[ext_resource type="Texture2D" uid="uid://cun2364ly7ggg" path="res://assets/enemy/bear/worm-2.png" id="8_worm2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_worm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_worm1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_worm1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_worm2")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_worm"]
+radius = 10.0
+
+[node name="Worm" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 6
+script = ExtResource("1_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_worm")
+animation = &"walk"
+autoplay = "walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_worm")
+
+[node name="HealthComponent" parent="." instance=ExtResource("6_health")]
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_sm")
+initial_state = NodePath("Chase")
+
+[node name="Chase" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("3_chase")
+enemy = NodePath("../..")
+
+[node name="Dead" type="Node" parent="StateMachine"]
+script = ExtResource("4_dead")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("5_idle")

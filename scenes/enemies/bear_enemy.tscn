@@ -1,0 +1,72 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/enemy/bear_enemy.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://cg5qffp8akvjq" path="res://scripts/state_machine.gd" id="2_sm"]
+[ext_resource type="Script" path="res://scripts/enemy/states/bear_flee_state.gd" id="3_flee"]
+[ext_resource type="Script" uid="uid://bk4neubpa0t1v" path="res://scripts/enemy/states/enemy_dead_state.gd" id="4_dead"]
+[ext_resource type="Script" uid="uid://dxh4tm3yrxaxx" path="res://scripts/enemy/states/enemy_idle_state.gd" id="5_idle"]
+[ext_resource type="PackedScene" uid="uid://irjpkdyd2l5o" path="res://scenes/health_component.tscn" id="6_health"]
+[ext_resource type="Texture2D" uid="uid://gva62f4wpprb" path="res://assets/enemy/bear/bear-1.png" id="7_bear1"]
+[ext_resource type="Texture2D" uid="uid://1yush1oiqo7d" path="res://assets/enemy/bear/bear-2.png" id="8_bear2"]
+[ext_resource type="Texture2D" uid="uid://3oiugp2jhuxo" path="res://assets/enemy/bear/bear-3.png" id="9_bear3"]
+[ext_resource type="Texture2D" uid="uid://firjrnpi4yhc" path="res://assets/enemy/bear/bear-4.png" id="10_bear4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bear"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_bear1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_bear1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_bear2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_bear3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_bear4")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bear"]
+radius = 25.0
+
+[node name="Bear" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 6
+script = ExtResource("1_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bear")
+animation = &"walk"
+autoplay = "walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bear")
+
+[node name="HealthComponent" parent="." instance=ExtResource("6_health")]
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_sm")
+initial_state = NodePath("Flee")
+
+[node name="Flee" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("3_flee")
+enemy = NodePath("../..")
+
+[node name="Dead" type="Node" parent="StateMachine"]
+script = ExtResource("4_dead")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("5_idle")
