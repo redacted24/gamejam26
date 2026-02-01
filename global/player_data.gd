@@ -11,6 +11,7 @@ var kills : int = 0
 var pickups : int = 0
 
 var post_tutorial_shown : bool = false
+var death_reason : String = ""
 
 var upgrades: Dictionary = {}
 

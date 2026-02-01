@@ -31,8 +31,8 @@ func _ready() -> void:
 	if NavManager:
 		NavManager.player_spawn.connect(_on_spawn)
 	EventBus.player_hunger_reduced.connect(_hunger_reduce)
-	#if health_component:
-		#health_component.died.connect(_on_died)
+	if health_component:
+		health_component.died.connect(_on_died)
 	weapon_type = PlayerData.selected_weapon as WeaponType
 	_equip_weapon(weapon_type)
 	if CosmeticsData:
@@ -44,6 +44,7 @@ func _hunger_reduce(amount: int) -> void:
 	EventBus.refresh_ui.emit()
 	if PlayerData.hunger <= 0:
 		PlayerData.hunger = 0
+		PlayerData.death_reason = "Starved to death"
 		_do_death()
 		if NetworkManager.is_online():
 			_sync_death.rpc()
@@ -95,6 +96,9 @@ func take_damage(amount: int, hit_position: Vector2 = Vector2.ZERO) -> void:
 		return
 	last_hit_position = hit_position
 	health_component.take_damage(amount)
+	PlayerData.hitpoints = health_component.current_hp
+	PlayerData.max_hitpoints = health_component.max_hp
+	EventBus.refresh_ui.emit()
 	EventBus.player_damaged.emit(peer_id, health_component.current_hp, health_component.max_hp)
 	if health_component.current_hp > 0:
 		var sm := get_node("StateMachine")
@@ -102,6 +106,9 @@ func take_damage(amount: int, hit_position: Vector2 = Vector2.ZERO) -> void:
 
 func heal(amount: int) -> void:
 	health_component.heal(amount)
+	PlayerData.hitpoints = health_component.current_hp
+	PlayerData.max_hitpoints = health_component.max_hp
+	EventBus.refresh_ui.emit()
 	EventBus.player_healed.emit(peer_id, health_component.current_hp, health_component.max_hp)
 
 func apply_pickup(pickup_type: String, value: float) -> void:
@@ -118,6 +125,7 @@ func apply_pickup(pickup_type: String, value: float) -> void:
 	EventBus.player_stats_changed.emit(peer_id, stats)
 
 func _on_died() -> void:
+	PlayerData.death_reason = "Slain by enemies"
 	_do_death()
 	if NetworkManager.is_online():
 		_sync_death.rpc()
