@@ -13,14 +13,19 @@ const BAR_MAX_WIDTH := 234.0
 
 var game_over_screen: Control
 var _game_over_bg: ColorRect
+var _hp_tween: Tween
+var _hunger_tween: Tween
 
 func _ready() -> void:
+	# Fallback: find bars by path if exports aren't wired
+	if not hp_bar:
+		hp_bar = get_node_or_null("Control/HP/hp_bar")
+	if not hunger_bar:
+		hunger_bar = get_node_or_null("Control/Hunger/HPBar")
+
 	# initially hide the game ui elements
 	control_node.hide()
-	update_hunger_label()
-	update_hunger_bar()
-	update_hitpoints_label()
-	update_hitpoints_bar()
+	_refresh_bars_instant()
 	_create_game_over_screen()
 
 	# Signals
@@ -35,9 +40,21 @@ func _on_cutscene_enter() -> void:
 
 func _on_ui_show_signal() -> void:
 	control_node.show()
+	_refresh_bars_instant()
 	
 func _on_ui_hide_signal() -> void:
 	control_node.hide()
+
+# Sets all bars and labels instantly (no tween) — used on init and after reset
+func _refresh_bars_instant() -> void:
+	update_hunger_label()
+	update_hitpoints_label()
+	if hp_bar and PlayerData.max_hitpoints > 0:
+		var ratio := clampf(float(PlayerData.hitpoints) / float(PlayerData.max_hitpoints), 0.0, 1.0)
+		hp_bar.size.x = BAR_MAX_WIDTH * ratio
+	if hunger_bar and PlayerData.max_hunger > 0:
+		var ratio := clampf(float(PlayerData.hunger) / float(PlayerData.max_hunger), 0.0, 1.0)
+		hunger_bar.size.x = BAR_MAX_WIDTH * ratio
 
 	
 # Fetches the player data for hunger and max hunger from PlayerData and updates label
@@ -49,7 +66,11 @@ func update_hunger_bar() -> void:
 	if not hunger_bar or PlayerData.max_hunger <= 0:
 		return
 	var ratio := clampf(float(PlayerData.hunger) / float(PlayerData.max_hunger), 0.0, 1.0)
-	hunger_bar.size.x = BAR_MAX_WIDTH * ratio
+	var target_width := BAR_MAX_WIDTH * ratio
+	if _hunger_tween:
+		_hunger_tween.kill()
+	_hunger_tween = create_tween()
+	_hunger_tween.tween_property(hunger_bar, "size:x", target_width, 0.25).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 
 # Fetches the player data for hitpoints and max hitpoints from PlayerData and updates data
 func update_hitpoints_label() -> void:
@@ -60,7 +81,11 @@ func update_hitpoints_bar() -> void:
 	if not hp_bar or PlayerData.max_hitpoints <= 0:
 		return
 	var ratio := clampf(float(PlayerData.hitpoints) / float(PlayerData.max_hitpoints), 0.0, 1.0)
-	hp_bar.size.x = BAR_MAX_WIDTH * ratio
+	var target_width := BAR_MAX_WIDTH * ratio
+	if _hp_tween:
+		_hp_tween.kill()
+	_hp_tween = create_tween()
+	_hp_tween.tween_property(hp_bar, "size:x", target_width, 0.25).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 
 # Called when a signal to refresh ui is made
 func _on_ui_refresh() -> void:
@@ -152,6 +177,7 @@ func _on_player_died(_peer_id: int = 0) -> void:
 func _on_restart_pressed() -> void:
 	game_over_screen.visible = false
 	PlayerData.reset()
+	_refresh_bars_instant()
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 func _exit_tree() -> void:

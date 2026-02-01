@@ -26,7 +26,7 @@ func reset_upgrades() -> void:
 
 func reset() -> void:
 	max_hunger = 150
-	hunger = max_hunger
+	hunger = 35
 	max_hitpoints = 10
 	hitpoints = max_hitpoints
 	kills = 0

@@ -4,7 +4,7 @@ class_name HealthComponent
 signal health_changed(current_hp: int, max_hp: int)
 signal died
 
-@export var max_hp: int = 6
+@export var max_hp: int = 10
 var current_hp: int
 
 var invincible: bool = false

@@ -4,11 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://cwkixp17jbwx3" path="res://assets/ui/heart.png" id="2_vec8q"]
 [ext_resource type="Texture2D" uid="uid://gsfv3h8ne6le" path="res://assets/items/meat.png" id="3_70a6y"]
 
-[node name="UserInterface" type="CanvasLayer" unique_id=71292675 node_paths=PackedStringArray("control_node", "hunger_label", "hitpoints_label", "hunger_bar")]
+[node name="UserInterface" type="CanvasLayer" unique_id=71292675 node_paths=PackedStringArray("control_node", "hunger_label", "hitpoints_label", "hp_bar", "hunger_bar")]
 script = ExtResource("1_fl0ln")
 control_node = NodePath("Control")
 hunger_label = NodePath("Control/Hunger/hunger_label")
 hitpoints_label = NodePath("Control/HP/hitpoints_label")
+hp_bar = NodePath("Control/HP/hp_bar")
 hunger_bar = NodePath("Control/Hunger/HPBar")
 
 [node name="Control" type="Control" parent="." unique_id=1265062161]
