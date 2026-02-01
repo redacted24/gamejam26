@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://bxum6lhxe3nam"]
 
 [ext_resource type="Script" uid="uid://ct2lm8ehu1lvx" path="res://scripts/weapons/spear_weapon.gd" id="1_spear"]
-[ext_resource type="Texture2D" uid="uid://dv4nl6rgcsod5" path="res://assets/weapons/spear.png" id="2_sprite"]
+[ext_resource type="Texture2D" uid="uid://trno7aa24av3" path="res://assets/weapons/new_spear.png" id="2_sprite"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hitbox"]
 size = Vector2(80, 20)
 
 [node name="SpearWeapon" type="Node2D" unique_id=1707992964]
 position = Vector2(-2, 1)
+scale = Vector2(0.335, 0.335)
 script = ExtResource("1_spear")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1975133965]

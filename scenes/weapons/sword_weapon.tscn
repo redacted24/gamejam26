@@ -1,46 +1,21 @@
 [gd_scene format=3 uid="uid://b10swx20ngekn"]
 
 [ext_resource type="Script" uid="uid://d4bwi0bj387g" path="res://scripts/weapons/sword_weapon.gd" id="1_sword"]
-[ext_resource type="Texture2D" uid="uid://bwfqmpegcphai" path="res://assets/weapons/sword_idle.png" id="2_idle"]
-[ext_resource type="Texture2D" uid="uid://37rfy176ndyc" path="res://assets/weapons/sword_frame_1.png" id="3_frame1"]
-[ext_resource type="Texture2D" uid="uid://ccq7fonlfh4ac" path="res://assets/weapons/sword_frame_2.png" id="4_frame2"]
-[ext_resource type="Texture2D" uid="uid://bx4ohf4epjscn" path="res://assets/weapons/sword_frame_3.png" id="5_frame3"]
-[ext_resource type="Texture2D" uid="uid://ejgl2rfag0uv" path="res://assets/weapons/sword_frame_4.png" id="6_frame4"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_swing"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_frame1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_frame2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_frame3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_frame4")
-}],
-"loop": false,
-"name": &"swing",
-"speed": 15.0
-}]
+[ext_resource type="Texture2D" uid="uid://dix54yuf1jmpj" path="res://assets/weapons/new_sword.png" id="2_idle"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_hitbox"]
 points = PackedVector2Array(0, -2, 20, -2, 20, 2, 0, 2)
 
 [node name="SwordWeapon" type="Node2D" unique_id=2094173275]
-scale = Vector2(2.2, 2.2)
+scale = Vector2(1.47, 1.47)
 script = ExtResource("1_sword")
 
 [node name="IdleSprite" type="Sprite2D" parent="." unique_id=1514258540]
 texture = ExtResource("2_idle")
 
-[node name="SwingSprite" type="AnimatedSprite2D" parent="." unique_id=641632365]
+[node name="SwingSprite" type="Sprite2D" parent="." unique_id=641632365]
 visible = false
-sprite_frames = SubResource("SpriteFrames_swing")
-animation = &"swing"
+texture = ExtResource("2_idle")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=787536047]
 collision_layer = 8

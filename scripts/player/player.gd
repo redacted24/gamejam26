@@ -24,6 +24,9 @@ var weapon_type: WeaponType = WeaponType.BOW  # Overridden in _ready from Player
 var invincible: bool = false
 var last_hit_position: Vector2 = Vector2.ZERO
 
+var _sync_timer: float = 0.0
+const SYNC_RATE: float = 0.0167  # 60 Hz
+
 func _ready() -> void:
 	if NavManager:
 		NavManager.player_spawn.connect(_on_spawn)
@@ -51,6 +54,21 @@ func _on_spawn(spawn_location: Vector2) -> void:
 		position = spawn_location + Vector2(idx * 30, 0)
 	else:
 		position = spawn_location
+
+func _process(delta: float) -> void:
+	if not NetworkManager.is_online():
+		return
+	if is_multiplayer_authority():
+		_sync_timer += delta
+		if _sync_timer >= SYNC_RATE:
+			_sync_timer = 0.0
+			_sync_position.rpc(global_position, velocity, aim_direction)
+
+@rpc("any_peer", "call_remote", "unreliable")
+func _sync_position(pos: Vector2, vel: Vector2, aim: Vector2) -> void:
+	global_position = pos
+	velocity = vel
+	aim_direction = aim
 
 func _equip_weapon(type: WeaponType) -> void:
 	if current_weapon:
