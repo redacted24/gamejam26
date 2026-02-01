@@ -36,9 +36,8 @@ func _explode() -> void:
 	var radius := exploding_rat.explosion_radius
 	var dmg := exploding_rat.explosion_damage
 
-	# Damage player if in range
-	var player := get_tree().get_first_node_in_group("player")
-	if player:
+	# Damage all players in range
+	for player in get_tree().get_nodes_in_group("player"):
 		var dist := enemy.global_position.distance_to(player.global_position)
 		if dist < radius and player.has_method("take_damage"):
 			player.take_damage(dmg, enemy.global_position)

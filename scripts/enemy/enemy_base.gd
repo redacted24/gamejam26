@@ -7,29 +7,92 @@ class_name EnemyBase
 
 @onready var health_component: HealthComponent = $HealthComponent
 
+var _sync_timer: float = 0.0
+var _last_pos: Vector2 = Vector2.ZERO
+const SYNC_RATE: float = 0.0167  # 60 Hz
+
 func _ready() -> void:
 	add_to_group("enemies")
 	health_component.max_hp = max_hp
 	health_component.died.connect(_on_died)
 
+	if NetworkManager.is_online():
+		set_multiplayer_authority(1)  # Host owns all enemies
+		if not multiplayer.is_server():
+			# Client: disable AI, positions come from host
+			var sm := get_node_or_null("StateMachine")
+			if sm:
+				sm.process_mode = Node.PROCESS_MODE_DISABLED
+
+func _process(delta: float) -> void:
+	if not NetworkManager.is_online():
+		return
+	if multiplayer.is_server():
+		_sync_timer += delta
+		if _sync_timer >= SYNC_RATE:
+			_sync_timer = 0.0
+			var visual := get_node_or_null("AnimatedSprite2D")
+			var rot: float = visual.rotation if visual else 0.0
+			var flip: bool = visual.flip_h if visual else false
+			_sync_state.rpc(global_position, rot, flip)
+	else:
+		_last_pos = global_position
+
+@rpc("authority", "call_remote", "unreliable")
+func _sync_state(pos: Vector2, sprite_rot: float, sprite_flip: bool) -> void:
+	global_position = pos
+	var visual := get_node_or_null("AnimatedSprite2D")
+	if visual:
+		visual.rotation = sprite_rot
+		visual.flip_h = sprite_flip
+
 func _on_died() -> void:
-	#EventBus.enemy_died.emit(global_position)
+	EventBus.enemy_died.emit(global_position)
+	if NetworkManager.is_online() and multiplayer.is_server():
+		_remote_die.rpc()
+	queue_free()
+
+@rpc("authority", "call_remote", "reliable")
+func _remote_die() -> void:
+	EventBus.enemy_died.emit(global_position)
 	queue_free()
 
 func take_damage(amount: int, from_position: Vector2 = Vector2.ZERO) -> void:
 	health_component.take_damage(amount)
-	
+
 	# Apply knockback to current active state
 	if from_position != Vector2.ZERO:
 		var knockback_dir := (global_position - from_position).normalized()
 		var sm := get_node_or_null("StateMachine")
 		if sm and sm.current_state and sm.current_state.has_method("apply_knockback"):
 			sm.current_state.apply_knockback(knockback_dir, 300.0)
-	
+
+	_show_damage_flash()
+	if NetworkManager.is_online() and multiplayer.is_server():
+		_remote_damage_flash.rpc()
+
+func _show_damage_flash() -> void:
 	var visual := get_node_or_null("AnimatedSprite2D")
 	if visual and health_component.current_hp > 0:
 		var tween := create_tween()
 		tween.tween_property(visual, "modulate", Color.WHITE, 0.15).from(Color.RED)
 
+@rpc("authority", "call_remote", "reliable")
+func _remote_damage_flash() -> void:
+	_show_damage_flash()
+
 func get_player() -> Node2D:
-	return get_tree().get_first_node_in_group("player")
+	# Find the nearest player (supports multiplayer with 2+ players)
+	var players := get_tree().get_nodes_in_group("player")
+	if players.is_empty():
+		return null
+	if players.size() == 1:
+		return players[0]
+	var nearest: Node2D = null
+	var nearest_dist := INF
+	for p in players:
+		var dist := global_position.distance_squared_to(p.global_position)
+		if dist < nearest_dist:
+			nearest_dist = dist
+			nearest = p
+	return nearest

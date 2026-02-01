@@ -24,14 +24,18 @@ func setup(p: CharacterBody2D) -> void:
 func try_attack() -> void:
 	if not can_attack:
 		return
+	if NetworkManager.is_online() and not player.is_multiplayer_authority():
+		return
 	if not Input.is_action_pressed("shoot"):
 		return
 	var attack_dir := _get_attack_direction()
 	_perform_attack(attack_dir)
 
 func _get_attack_direction() -> Vector2:
-	var mouse_pos := player.get_global_mouse_position()
-	return (mouse_pos - player.global_position).normalized()
+	if not NetworkManager.is_online() or player.is_multiplayer_authority():
+		return (player.get_global_mouse_position() - player.global_position).normalized()
+	else:
+		return player.aim_direction
 
 func _perform_attack(_dir: Vector2) -> void:
 	can_attack = false
@@ -40,15 +44,16 @@ func _perform_attack(_dir: Vector2) -> void:
 func _update_aim() -> void:
 	if not sprite or not player:
 		return
-	var mouse_pos := player.get_global_mouse_position()
-	var direction := (mouse_pos - player.global_position).normalized()
+	var direction: Vector2
+	var is_left: bool
+	if not NetworkManager.is_online() or player.is_multiplayer_authority():
+		var mouse_pos := player.get_global_mouse_position()
+		direction = (mouse_pos - player.global_position).normalized()
+		is_left = mouse_pos.x < player.global_position.x
+	else:
+		direction = player.aim_direction
+		is_left = player.aim_direction.x < 0
 
-	# Rotate weapon to point at cursor
 	rotation = direction.angle()
-
-	# Flip sprite vertically when aiming left to prevent upside-down appearance
-	var is_left := mouse_pos.x < player.global_position.x
 	sprite.flip_v = is_left
-
-	# Offset weapon position based on aim direction
 	position.x = -horizontal_offset if is_left else horizontal_offset

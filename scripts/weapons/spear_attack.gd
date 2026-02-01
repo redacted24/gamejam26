@@ -59,4 +59,8 @@ func _on_body_entered(body: Node2D) -> void:
 	_hit_targets.append(body)
 
 	if body.has_method("take_damage"):
+		# Only host processes damage to enemies
+		if body.is_in_group("enemies"):
+			if NetworkManager.is_online() and not multiplayer.is_server():
+				return
 		body.take_damage(damage, global_position)

@@ -29,7 +29,7 @@ func enter() -> void:
 		base_scale = visual.scale
 
 	# Lock charge direction toward player
-	var player := get_tree().get_first_node_in_group("player")
+	var player: Node2D = enemy.get_player()
 	if player:
 		charge_dir = (player.global_position - enemy.global_position).normalized()
 	else:

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://crnx52u1546uw"]
+
+[ext_resource type="Script" uid="uid://b3ogsxekj71pn" path="res://scripts/helpers/dialogue_interact_zone.gd" id="1_6ict3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4281m"]
+radius = 18.0
+
+[node name="dialogue_interact_zone" type="Node2D" unique_id=754355913]
+script = ExtResource("1_6ict3")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=657859659]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1891714986]
+shape = SubResource("CircleShape2D_4281m")
+
+[node name="Label" type="Label" parent="." unique_id=1599438388]
+offset_left = -47.0
+offset_top = -52.0
+offset_right = 49.0
+offset_bottom = -29.0
+text = "Interact text"

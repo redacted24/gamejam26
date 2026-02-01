@@ -13,11 +13,52 @@ func _ready() -> void:
 	# Reduce player hunger by the amount specified
 	EventBus.player_hunger_reduced.emit(hunger_cost)
 	is_cleared = false
+
+	_setup_multiplayer_players()
+
 	# Connect spawn location signal
 	if NavManager and NavManager.spawn_location != null:
 		_on_level_spawn(NavManager.spawn_location)
-		
-	assign_doors()
+
+	# Only the host assigns doors in multiplayer (client gets door paths via RPC)
+	if not NetworkManager.is_online() or multiplayer.is_server():
+		assign_doors()
+
+func _setup_multiplayer_players() -> void:
+	if not NetworkManager.is_online():
+		return
+
+	# Remove ALL pre-placed Player instances
+	var spawn_pos := Vector2.ZERO
+	for child in get_children():
+		if child is Player:
+			spawn_pos = child.position
+			remove_child(child)
+			child.queue_free()
+
+	# Build peer list from the actual multiplayer API (avoids stale entries)
+	var my_id := multiplayer.get_unique_id()
+	var peer_ids: Array = [my_id]
+	for pid in multiplayer.get_peers():
+		peer_ids.append(pid)
+
+	# Create one Player per peer with proper authority and camera
+	var player_scene := preload("res://scenes/player.tscn")
+	var offset_idx := 0
+
+	for pid in peer_ids:
+		var p: Player = player_scene.instantiate()
+		p.name = "Player_%d" % pid
+		p.peer_id = pid
+		p.set_multiplayer_authority(pid)
+		p.position = spawn_pos + Vector2(offset_idx * 30, 0)
+		add_child(p)
+
+		var cam := p.get_node_or_null("Camera2D") as Camera2D
+		if cam:
+			cam.enabled = (pid == my_id)
+
+		offset_idx += 1
 
 # Function that assigns door
 func assign_doors() -> void:
@@ -41,4 +82,5 @@ func spawn_enemies() -> void:
 func _on_level_spawn(spawn_location : String) -> void:
 	var spawn_path = "SpawnPoints/" + spawn_location
 	var spawn : Node2D = get_node(spawn_path)
-	NavManager.trigger_player_spawn(spawn.global_position)
+	# Defer so dynamically created multiplayer players have connected their signals
+	NavManager.call_deferred("trigger_player_spawn", spawn.global_position)

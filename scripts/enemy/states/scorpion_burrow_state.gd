@@ -48,7 +48,7 @@ func physics_process(delta: float) -> void:
 
 func _do_burrowed(delta: float) -> void:
 	# Move toward player while underground
-	var player := get_tree().get_first_node_in_group("player")
+	var player: Node2D = enemy.get_player()
 	if not player:
 		enemy.velocity = Vector2.ZERO
 		enemy.move_and_slide()
@@ -87,7 +87,7 @@ func _do_burrowing(delta: float) -> void:
 
 func _do_stab_attack() -> void:
 	var scorpion := enemy as ScorpionEnemy
-	var player := get_tree().get_first_node_in_group("player")
+	var player: Node2D = enemy.get_player()
 	if not player:
 		return
 
