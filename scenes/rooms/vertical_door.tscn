@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://78cv40xchjsy"]
 
 [ext_resource type="Script" uid="uid://drcnbi04lpw7t" path="res://scripts/room/door.gd" id="1_p5qoh"]
+[ext_resource type="Texture2D" uid="uid://cj4cicp8whrq5" path="res://assets/ui/GAMEJAM2026_UI_DialogueBox.png" id="2_s5pa3"]
+[ext_resource type="Texture2D" uid="uid://gsfv3h8ne6le" path="res://assets/items/meat.png" id="3_nufk3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mwdy5"]
 size = Vector2(20, 64)
@@ -19,5 +21,32 @@ offset_top = -32.0
 offset_right = 10.0
 offset_bottom = 32.0
 color = Color(0.99999994, 0.00086000026, 0.8219488, 1)
+
+[node name="Control" type="Control" parent="." unique_id=2062357687]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Gamejam2026UiDialogueBox" type="Sprite2D" parent="Control" unique_id=1023643296]
+position = Vector2(-1.9999847, -157.00002)
+scale = Vector2(0.14095241, 0.14095238)
+texture = ExtResource("2_s5pa3")
+region_enabled = true
+region_rect = Rect2(36, 259, 2409, 1050)
+
+[node name="Label" type="Label" parent="Control/Gamejam2026UiDialogueBox" unique_id=798466479]
+offset_left = -659.79724
+offset_top = -248.3107
+offset_right = 290.87817
+offset_bottom = 297.6893
+theme_override_colors/font_color = Color(0.9166399, 0.91663986, 0.9166398, 1)
+theme_override_font_sizes/font_size = 400
+text = "- 50"
+
+[node name="Meat" type="Sprite2D" parent="Control/Gamejam2026UiDialogueBox" unique_id=1607096840]
+position = Vector2(340.54037, 35.47308)
+scale = Vector2(6.5131955, 6.513195)
+texture = ExtResource("3_nufk3")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
