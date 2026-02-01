@@ -102,7 +102,7 @@ func _update_highlight() -> void:
 
 func _on_start_button_pressed() -> void:
 	EventBus.game_started.emit()
-	get_tree().change_scene_to_file("res://scenes/rooms/types/room_crossroads.tscn")
+	get_tree().change_scene_to_file("res://scenes/rooms/types/tutorial/tutorial_room.tscn")
 
 func _on_back_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
