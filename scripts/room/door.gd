@@ -1,19 +1,18 @@
 extends Area2D
 class_name Door
 
-@onready var hunger_reduction = $Control/Gamejam2026UiDialogueBox/Label
+@onready var hunger_reduction_label = $Control/Gamejam2026UiDialogueBox/Label
 @onready var ui_popup = $Control
 
 var next_level = {
 	"path": "",
 	"spawnpoint": "",
-	"type": MapGeneration.room_types,
+	"type": null
 }
 
 func _ready() -> void:
 	get_node("ColorRect").queue_free()
 	ui_popup.hide()
-	pass
 
 func _on_body_entered(body: Node2D) -> void:
 	if not body.is_in_group("player"):
@@ -39,6 +38,14 @@ func _sync_door_transition(path: String, spawnpoint: String, type: int) -> void:
 		NavManager.go_to_level(path, spawnpoint)
 		
 func _on_interactable_area_entered(body: Node2D) -> void:
+	var hunger = 0
+	if next_level.type == MapGeneration.room_types.COMBAT_ROOM or next_level.type == MapGeneration.room_types.CROSSROADS_ROOM:
+		hunger = 20
+	elif next_level.type == MapGeneration.room_types.PEACEFUL_ROOM:
+		hunger = 10
+	elif next_level.type == MapGeneration.room_types.TUTORIAL_ROOM or next_level.type == MapGeneration.room_types.SHOP_ROOM or next_level.type == MapGeneration.room_types.FOX_ROOM:
+		hunger = 0
+	hunger_reduction_label.text = "- %d" % hunger
 	ui_popup.show()
 
 func _on_interactable_area_leave(body: Node2D) -> void:

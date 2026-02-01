@@ -10,7 +10,7 @@ tile_size = Vector2i(64, 64)
 
 [node name="fox" type="Node2D" unique_id=1338668542 node_paths=PackedStringArray("player")]
 script = ExtResource("1_cp7ic")
-room_type = 2
+room_type = 6
 player = NodePath("Player")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=358604943]
