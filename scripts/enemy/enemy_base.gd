@@ -47,10 +47,21 @@ func _sync_state(pos: Vector2, sprite_rot: float, sprite_flip: bool) -> void:
 		visual.flip_h = sprite_flip
 
 func _on_died() -> void:
+	_drop_meat()
 	EventBus.enemy_died.emit(global_position)
 	if NetworkManager.is_online() and multiplayer.is_server():
 		_remote_die.rpc()
 	queue_free()
+
+func _drop_meat() -> void:
+	var pickup := Pickup.new()
+	pickup.pickup_type = "food"
+	pickup.value = 1.0
+	pickup._visual_texture = preload("res://assets/items/meat.png")
+	pickup._visual_scale = 0.45
+	pickup.attract_radius = 80.0
+	pickup.position = global_position
+	get_tree().current_scene.call_deferred("add_child", pickup)
 
 @rpc("authority", "call_remote", "reliable")
 func _remote_die() -> void:

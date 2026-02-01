@@ -6,13 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://irjpkdyd2l5o" path="res://scenes/health_component.tscn" id="2_os0ep"]
 [ext_resource type="Script" uid="uid://bk4neubpa0t1v" path="res://scripts/enemy/states/enemy_dead_state.gd" id="6_teh6i"]
 [ext_resource type="Script" uid="uid://dxh4tm3yrxaxx" path="res://scripts/enemy/states/enemy_idle_state.gd" id="7_yfv5o"]
+[ext_resource type="AudioStream" uid="uid://djfimeeo8dx4w" path="res://assets/sounds/rat-death.wav" id="snd_death"]
 [ext_resource type="Texture2D" uid="uid://vsm44ko32p83" path="res://assets/enemy/rat/Rat_back.png" id="tex_back"]
 [ext_resource type="Texture2D" uid="uid://uej84muhv7qb" path="res://assets/enemy/rat/Rat_front.png" id="tex_front"]
 [ext_resource type="Texture2D" uid="uid://dxui673eeif7x" path="res://assets/enemy/rat/Rat_side.png" id="tex_side"]
 [ext_resource type="Texture2D" uid="uid://deq2bfelfpfyv" path="res://assets/enemy/rat/Rat_walk_left-1.png" id="tex_walk1"]
 [ext_resource type="Texture2D" uid="uid://5d2bgr8ir4ms" path="res://assets/enemy/rat/Rat_walk_left-2.png" id="tex_walk2"]
 [ext_resource type="Texture2D" uid="uid://nabyyomr2ab3" path="res://assets/enemy/rat/Rat_walk_left-3.png" id="tex_walk3"]
-[ext_resource type="AudioStreamWAV" uid="uid://djfimeeo8dx4w" path="res://assets/sounds/rat-death.wav" id="snd_death"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yfv5o"]
 animations = [{
@@ -65,7 +65,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2jdfr"]
 radius = 15.0
-height = 55.0
+height = 100.0
 
 [node name="Rat" type="CharacterBody2D" unique_id=1175572835]
 collision_layer = 4
@@ -79,12 +79,14 @@ animation = &"walk_side"
 offset = Vector2(15, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2058187689]
+position = Vector2(15, 0)
+rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_2jdfr")
 
 [node name="HealthComponent" parent="." unique_id=863237339 instance=ExtResource("2_os0ep")]
 position = Vector2(139, 90)
 
-[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+[node name="DeathSound" type="AudioStreamPlayer" parent="." unique_id=386863437]
 stream = ExtResource("snd_death")
 
 [node name="StateMachine" type="Node" parent="." unique_id=57823443 node_paths=PackedStringArray("initial_state")]

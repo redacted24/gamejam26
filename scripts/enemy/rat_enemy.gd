@@ -30,6 +30,7 @@ func _process(_delta: float) -> void:
 		animated_sprite.flip_v = upside_down
 
 func _on_died() -> void:
+	_drop_meat()
 	velocity = Vector2.ZERO
 	collision_shape.set_deferred("disabled", true)
 	var sm := get_node_or_null("StateMachine")

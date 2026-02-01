@@ -1,11 +1,12 @@
 extends CharacterBody2D
 class_name Player
 
-enum WeaponType { BOW, SPEAR }
+enum WeaponType { BOW, SPEAR, SWORD }
 
 const WEAPON_SCENES := {
 	WeaponType.BOW: preload("res://scenes/weapons/bow_weapon.tscn"),
 	WeaponType.SPEAR: preload("res://scenes/weapons/spear_weapon.tscn"),
+	WeaponType.SWORD: preload("res://scenes/weapons/sword_weapon.tscn"),
 }
 
 @onready var health_component: HealthComponent = $HealthComponent
@@ -19,7 +20,7 @@ var stats := {
 }
 
 var current_weapon: WeaponBase
-var weapon_type: WeaponType = WeaponType.BOW
+var weapon_type: WeaponType = WeaponType.BOW  # Overridden in _ready from PlayerData
 var invincible: bool = false
 var last_hit_position: Vector2 = Vector2.ZERO
 
@@ -29,6 +30,7 @@ func _ready() -> void:
 	EventBus.player_hunger_reduced.connect(_hunger_reduce)
 	#if health_component:
 		#health_component.died.connect(_on_died)
+	weapon_type = PlayerData.selected_weapon as WeaponType
 	_equip_weapon(weapon_type)
 	if CosmeticsData:
 		$AnimatedSprite2D.modulate = CosmeticsData.selected_color
@@ -89,6 +91,9 @@ func apply_pickup(pickup_type: String, value: float) -> void:
 			stats.damage += int(value)
 		"speed_up":
 			stats.speed += value
+		"food":
+			PlayerData.hunger = mini(PlayerData.hunger + int(value), PlayerData.max_hunger)
+			EventBus.refresh_ui.emit()
 	EventBus.player_stats_changed.emit(peer_id, stats)
 
 func _on_died() -> void:
