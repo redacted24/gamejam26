@@ -43,6 +43,7 @@ position = Vector2(553, 157)
 cards_container_path = NodePath("../ShopCards")
 
 [node name="ShopCards" type="Node2D" parent="." unique_id=796819611]
+visible = false
 position = Vector2(7, -60)
 
 [node name="Card1" type="Sprite2D" parent="ShopCards" unique_id=753232379]

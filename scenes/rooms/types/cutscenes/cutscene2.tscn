@@ -8,7 +8,7 @@
 
 [node name="cutscene2" type="Node2D" unique_id=778351197 node_paths=PackedStringArray("player")]
 script = ExtResource("1_cr82i")
-resource_path = "res://dialogues/4_post_scenery.dialogue"
+resource_path = "res://dialogues/0_cutscene_monologue.dialogue"
 room_type = 8
 player = NodePath("Player")
 
