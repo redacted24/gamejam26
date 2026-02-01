@@ -21,15 +21,19 @@ func _ready() -> void:
 	
 	# Signals
 	EventBus.refresh_ui.connect(_on_ui_refresh)
-	EventBus.game_started.connect(_on_game_started)
+	EventBus.show_ui.connect(_on_ui_show_signal)
+	EventBus.hide_ui.connect(_on_ui_hide_signal)
 	EventBus.cutscene_enter.connect(_on_cutscene_enter)
 	
 func _on_cutscene_enter() -> void:
 	control_node.hide()
-	
-func _on_game_started() -> void:
+
+func _on_ui_show_signal() -> void:
 	control_node.show()
-	pass
+	
+func _on_ui_hide_signal() -> void:
+	control_node.hide()
+
 	
 # Fetches the player data for hunger and max hunger from PlayerData and updates label
 func update_hunger_label() -> void:

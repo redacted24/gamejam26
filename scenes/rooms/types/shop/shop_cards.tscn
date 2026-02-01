@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b8yfjkyxkiyha"]
+
+[ext_resource type="Texture2D" uid="uid://jqu3klprld13" path="res://assets/ui/GAMEJAM2026_UI_WeaponSelectionNoGlow.png" id="1_cfytx"]
+
+[node name="ShopCards" type="Node2D" unique_id=916167064]
+
+[node name="Card1" type="Sprite2D" parent="." unique_id=280234767]
+position = Vector2(-150, 0)
+scale = Vector2(0.249, 0.249)
+texture = ExtResource("1_cfytx")
+
+[node name="Card2" type="Sprite2D" parent="." unique_id=148578299]
+position = Vector2(150, 0)
+scale = Vector2(0.249, 0.249)
+texture = ExtResource("1_cfytx")

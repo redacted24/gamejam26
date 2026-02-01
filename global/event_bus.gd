@@ -12,6 +12,10 @@ signal refresh_ui
 # Enemy signals
 signal enemy_died(pos: Vector2)
 
+# UI signals
+signal show_ui
+signal hide_ui
+
 # Room signals
 signal room_entered(room_data: Dictionary)
 signal room_cleared(next_level_type: MapGeneration.room_types)

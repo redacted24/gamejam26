@@ -23,7 +23,7 @@ position = Vector2(621, 615)
 [node name="Doors" type="Node2D" parent="." unique_id=772646206]
 
 [node name="HorizontalDoor" parent="Doors" unique_id=589182169 instance=ExtResource("4_fs2ye")]
-position = Vector2(621, 18)
+position = Vector2(584, 314)
 
 [node name="Storybackground" type="Sprite2D" parent="." unique_id=1856469954]
 z_index = -1
