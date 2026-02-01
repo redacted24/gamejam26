@@ -3,6 +3,7 @@ class_name Room
 
 @export var room_type : MapGeneration.room_types
 @export var hunger_cost : int
+@export var player : CharacterBody2D
 
 var enemy_count : int
 var door_count : int
@@ -10,6 +11,8 @@ var is_cleared : bool
 var all_doors : Array # array holds all doors (exits)
 
 func _ready() -> void:
+	# Fade in. Make player not move
+	SceneChanger.animation_player.play("fade_in")
 	# Reduce player hunger by the amount specified
 	EventBus.player_hunger_reduced.emit(hunger_cost)
 	is_cleared = false

@@ -1,7 +1,4 @@
-extends Node
-class_name State
-
-signal Transitioned
+extends State
 
 func enter() -> void:
 	pass

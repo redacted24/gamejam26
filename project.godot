@@ -26,6 +26,7 @@ NetworkManager="*res://global/network_manager.gd"
 PlayerData="*uid://cnp7kfw22j2vr"
 UserInterface="*uid://drs1kl8225u00"
 CosmeticsData="*res://global/cosmetics_data.gd"
+SceneChanger="*uid://c4adx1w7035n4"
 
 [dialogue_manager]
 
