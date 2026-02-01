@@ -2,6 +2,10 @@ extends Control
 
 @onready var hover_sound: AudioStreamPlayer = $HoverSound
 @onready var select_sound: AudioStreamPlayer = $SelectSound
+@onready var music_button: TextureButton = $TopRightButtons/MusicButton
+
+var music_on_texture: Texture2D = preload("res://assets/ui/music.png")
+var music_off_texture: Texture2D = preload("res://assets/ui/nomusic.png")
 @onready var join_panel: VBoxContainer = $JoinPanel
 @onready var ip_input: LineEdit = $JoinPanel/IpInput
 @onready var status_label: Label = $StatusLabel
@@ -15,6 +19,7 @@ func _ready() -> void:
 	NetworkManager.connection_succeeded.connect(_on_connection_succeeded)
 	NetworkManager.connection_failed.connect(_on_connection_failed)
 	NetworkManager.server_started.connect(_on_server_started)
+	_update_music_button()
 
 func _on_play_button_pressed() -> void:
 	select_sound.play()
@@ -90,6 +95,12 @@ func _on_quit_button_pressed() -> void:
 func _on_button_hover() -> void:
 	hover_sound.play()
 	
-func _on_settings_button_pressed() -> void:
+func _on_music_button_pressed() -> void:
 	select_sound.play()
-	get_tree().change_scene_to_file("res://scenes/settings_menu.tscn")
+	var bus_idx := AudioServer.get_bus_index("Master")
+	AudioServer.set_bus_mute(bus_idx, not AudioServer.is_bus_mute(bus_idx))
+	_update_music_button()
+
+func _update_music_button() -> void:
+	var muted := AudioServer.is_bus_mute(AudioServer.get_bus_index("Master"))
+	music_button.texture_normal = music_off_texture if muted else music_on_texture
