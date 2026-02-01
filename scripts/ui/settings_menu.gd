@@ -2,6 +2,7 @@ extends Control
 
 @onready var volume_slider: HSlider = $VolumeSlider
 @onready var volume_value_label: Label = $VolumeValueLabel
+@onready var select_sound: AudioStreamPlayer = $SelectSound
 
 func _ready() -> void:
 	var current_db := AudioServer.get_bus_volume_db(0)
@@ -18,4 +19,5 @@ func _update_volume_label(value: float) -> void:
 	volume_value_label.text = "%d%%" % int(value)
 
 func _on_back_button_pressed() -> void:
+	select_sound.play()
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
