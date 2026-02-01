@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://b45nadgppgcqm" path="res://scripts/ui/main_user_interface.gd" id="1_fl0ln"]
 
-[node name="UserInterface" type="CanvasLayer" unique_id=71292675 node_paths=PackedStringArray("hunger_label", "hitpoints_label")]
+[node name="UserInterface" type="CanvasLayer" unique_id=71292675 node_paths=PackedStringArray("control_node", "hunger_label", "hitpoints_label")]
 script = ExtResource("1_fl0ln")
+control_node = NodePath("Control")
 hunger_label = NodePath("Control/hunger_label")
 hitpoints_label = NodePath("Control/hitpoints_label")
 

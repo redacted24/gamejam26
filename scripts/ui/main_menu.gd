@@ -16,6 +16,7 @@ func _ready() -> void:
 
 func _on_play_button_pressed() -> void:
 	NetworkManager.close_connection()
+	EventBus.game_started.emit()
 	get_tree().change_scene_to_file("res://scenes/rooms/types/room_crossroads.tscn")
 
 func _on_host_button_pressed() -> void:
