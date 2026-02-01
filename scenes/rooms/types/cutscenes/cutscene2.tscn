@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://b6fx54x6pifir"]
+
+[ext_resource type="Script" uid="uid://ctg2fmlhi3fv" path="res://scenes/rooms/types/cutscenes/cutscene2.gd" id="1_cr82i"]
+[ext_resource type="PackedScene" uid="uid://d137sgviyscfm" path="res://scenes/player.tscn" id="2_jtt6f"]
+[ext_resource type="PackedScene" uid="uid://wmffeydq5x56" path="res://scenes/spawn_point.tscn" id="3_p2lo5"]
+[ext_resource type="PackedScene" uid="uid://baaun8u3q5t8j" path="res://scenes/rooms/horizontal_door.tscn" id="4_fs2ye"]
+[ext_resource type="Texture2D" uid="uid://clm5468xbml56" path="res://assets/backgrounds/storybackground.jpg" id="5_vydcr"]
+
+[node name="cutscene2" type="Node2D" unique_id=778351197 node_paths=PackedStringArray("player")]
+script = ExtResource("1_cr82i")
+resource_path = "res://dialogues/0_cutscene_monologue.dialogue"
+room_type = 8
+player = NodePath("Player")
+
+[node name="Player" parent="." unique_id=800656356 instance=ExtResource("2_jtt6f")]
+position = Vector2(586, 315)
+
+[node name="SpawnPoints" type="Node2D" parent="." unique_id=1878610551]
+
+[node name="Main" parent="SpawnPoints" unique_id=825871877 instance=ExtResource("3_p2lo5")]
+position = Vector2(621, 615)
+
+[node name="Doors" type="Node2D" parent="." unique_id=772646206]
+
+[node name="HorizontalDoor" parent="Doors" unique_id=589182169 instance=ExtResource("4_fs2ye")]
+position = Vector2(584, 314)
+
+[node name="Storybackground" type="Sprite2D" parent="." unique_id=1856469954]
+z_index = -1
+position = Vector2(588.00006, 341)
+scale = Vector2(0.5624999, 0.5625)
+texture = ExtResource("5_vydcr")
+
+[node name="Timer" type="Timer" parent="." unique_id=922512546]
+wait_time = 3.0
+autostart = true

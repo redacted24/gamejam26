@@ -8,8 +8,10 @@ class_name Projectile
 var direction: Vector2 = Vector2.ZERO
 var damage: int = 1
 var owner_peer_id: int = -1
+var piercing: bool = false
 
 var _timer: float = 0.0
+var _pierce_count: int = 0
 
 func setup(dir: Vector2, dmg: int, spd: float = 300.0, player_proj: bool = true, owner_id: int = -1) -> void:
 	direction = dir.normalized()
@@ -60,4 +62,7 @@ func _on_body_entered(body: Node2D) -> void:
 					body.take_damage(damage, global_position)
 			else:
 				body.take_damage(damage, global_position)
+	if piercing and not (body is StaticBody2D) and _pierce_count < 1:
+		_pierce_count += 1
+		return
 	queue_free()

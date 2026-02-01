@@ -19,8 +19,7 @@ func _ready() -> void:
 func _on_play_button_pressed() -> void:
 	select_sound.play()
 	NetworkManager.close_connection()
-	EventBus.game_started.emit()
-	get_tree().change_scene_to_file("res://scenes/rooms/types/room_crossroads.tscn")
+	get_tree().change_scene_to_file("res://scenes/weapon_select_menu.tscn")
 
 func _on_host_button_pressed() -> void:
 	select_sound.play()
@@ -90,7 +89,7 @@ func _on_quit_button_pressed() -> void:
 
 func _on_button_hover() -> void:
 	hover_sound.play()
-
+	
 func _on_settings_button_pressed() -> void:
 	select_sound.play()
 	get_tree().change_scene_to_file("res://scenes/settings_menu.tscn")

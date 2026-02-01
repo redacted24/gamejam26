@@ -22,9 +22,25 @@ var is_charging: bool = false
 var charge_time: float = 0.0
 var charge_state: ChargeState = ChargeState.IDLE
 
+# Upgrades
+var has_multishot: bool = false
+var has_piercing: bool = false
+var has_quick_draw: bool = false
+var _charge_midpoint: float = 0.66
+
 func _ready() -> void:
 	super._ready()
+	_apply_upgrades()
 	_update_sprite()
+
+func _apply_upgrades() -> void:
+	has_multishot = PlayerData.has_upgrade("bow_multishot")
+	has_piercing = PlayerData.has_upgrade("bow_piercing")
+	has_quick_draw = PlayerData.has_upgrade("bow_quick_draw")
+	if has_quick_draw:
+		min_charge_time *= 0.5
+		max_charge_time *= 0.5
+	_charge_midpoint = (min_charge_time + max_charge_time) / 2.0
 
 func _process(delta: float) -> void:
 	_update_aim()
@@ -51,7 +67,7 @@ func _update_charge_state() -> void:
 
 	if charge_time < min_charge_time:
 		new_state = ChargeState.IDLE
-	elif charge_time < 0.66:
+	elif charge_time < _charge_midpoint:
 		new_state = ChargeState.CHARGE_1
 	elif charge_time < max_charge_time:
 		new_state = ChargeState.CHARGE_2
@@ -87,14 +103,24 @@ func _fire_charged_arrow() -> void:
 	var final_speed := projectile_speed * lerpf(min_speed_multiplier, max_speed_multiplier, charge_ratio)
 	var spawn_pos := player.global_position + dir * 20.0
 
-	# Spawn locally and on all peers
-	_spawn_arrow(dir, final_damage, final_speed, spawn_pos)
-	if NetworkManager.is_online():
-		_spawn_arrow_remote.rpc(dir, final_damage, final_speed, spawn_pos)
+	if has_multishot:
+		var spread := deg_to_rad(10.0)
+		var dir_left := dir.rotated(-spread)
+		var dir_right := dir.rotated(spread)
+		_spawn_arrow(dir_left, final_damage, final_speed, spawn_pos)
+		_spawn_arrow(dir_right, final_damage, final_speed, spawn_pos)
+		if NetworkManager.is_online():
+			_spawn_arrow_remote.rpc(dir_left, final_damage, final_speed, spawn_pos)
+			_spawn_arrow_remote.rpc(dir_right, final_damage, final_speed, spawn_pos)
+	else:
+		_spawn_arrow(dir, final_damage, final_speed, spawn_pos)
+		if NetworkManager.is_online():
+			_spawn_arrow_remote.rpc(dir, final_damage, final_speed, spawn_pos)
 
 func _spawn_arrow(dir: Vector2, dmg: int, spd: float, pos: Vector2) -> void:
 	var proj: Projectile = projectile_scene.instantiate()
 	proj.setup(dir, dmg, spd, true, player.peer_id)
+	proj.piercing = has_piercing
 	proj.global_position = pos
 	player.get_tree().current_scene.add_child(proj)
 

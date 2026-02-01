@@ -1,9 +1,32 @@
 [gd_scene format=3 uid="uid://baaun8u3q5t8j"]
 
 [ext_resource type="Script" uid="uid://drcnbi04lpw7t" path="res://scripts/room/door.gd" id="1_kqciq"]
+[ext_resource type="Texture2D" uid="uid://cwkixp17jbwx3" path="res://assets/ui/heart.png" id="2_w7me2"]
+[ext_resource type="Texture2D" uid="uid://cj4cicp8whrq5" path="res://assets/ui/GAMEJAM2026_UI_DialogueBox.png" id="3_bnb6r"]
+[ext_resource type="Texture2D" uid="uid://gsfv3h8ne6le" path="res://assets/items/meat.png" id="3_rutkn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mwdy5"]
 size = Vector2(64, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kqciq"]
+radius = 74.00676
+
+[sub_resource type="Animation" id="Animation_3yald"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_rutkn"]
+resource_name = "fade_in"
+length = 0.4
+
+[sub_resource type="Animation" id="Animation_l5yu7"]
+resource_name = "fade_out"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3yald"]
+_data = {
+&"RESET": SubResource("Animation_3yald"),
+&"fade_in": SubResource("Animation_rutkn"),
+&"fade_out": SubResource("Animation_l5yu7")
+}
 
 [node name="HorizontalDoor" type="Area2D" unique_id=589182169]
 collision_layer = 64
@@ -22,4 +45,49 @@ offset_bottom = 10.0
 color = Color(0.87360615, 0.00031246484, 0.8028527, 1)
 metadata/_edit_use_anchors_ = true
 
+[node name="Area2D" type="Area2D" parent="." unique_id=1431568467]
+collision_layer = 128
+collision_mask = 2
+
+[node name="interactable" type="CollisionShape2D" parent="Area2D" unique_id=1181263959]
+shape = SubResource("CircleShape2D_kqciq")
+
+[node name="Control" type="Control" parent="." unique_id=683508161]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -5.0
+offset_top = -111.0
+offset_right = 35.0
+offset_bottom = -71.0
+
+[node name="Gamejam2026UiDialogueBox" type="Sprite2D" parent="Control" unique_id=906023811]
+position = Vector2(3, -3.0517578e-05)
+scale = Vector2(0.14095241, 0.14095238)
+texture = ExtResource("3_bnb6r")
+region_enabled = true
+region_rect = Rect2(36, 259, 2409, 1050)
+
+[node name="Label" type="Label" parent="Control/Gamejam2026UiDialogueBox" unique_id=719908835]
+offset_left = -659.79724
+offset_top = -248.3107
+offset_right = 290.87817
+offset_bottom = 297.6893
+theme_override_colors/font_color = Color(0.9166399, 0.91663986, 0.9166398, 1)
+theme_override_font_sizes/font_size = 400
+text = "- 50"
+
+[node name="Meat" type="Sprite2D" parent="Control/Gamejam2026UiDialogueBox" unique_id=142466540]
+position = Vector2(340.54037, 35.47308)
+scale = Vector2(6.5131955, 6.513195)
+texture = ExtResource("3_rutkn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control" unique_id=413510720]
+libraries/ = SubResource("AnimationLibrary_3yald")
+
+[node name="Heart" type="Sprite2D" parent="." unique_id=1446475037]
+scale = Vector2(0.59375, 0.59375)
+texture = ExtResource("2_w7me2")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_interactable_area_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_interactable_area_leave"]

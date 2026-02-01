@@ -1,0 +1,14 @@
+[gd_resource type="Theme" format=3 uid="uid://cxbttgf61xe8d"]
+
+[ext_resource type="Texture2D" uid="uid://b0llbsfkg6u2t" path="res://assets/dialogue/dialogue_box.png" id="1_sgjk4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sgjk4"]
+texture = ExtResource("1_sgjk4")
+region_rect = Rect2(0, 249.7721, 2480, 1061.4396)
+
+[resource]
+MarginContainer/constants/margin_bottom = 0
+MarginContainer/constants/margin_left = 0
+MarginContainer/constants/margin_right = 0
+MarginContainer/constants/margin_top = 0
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_sgjk4")

@@ -125,6 +125,7 @@ shape = SubResource("CircleShape2D_oprun")
 [node name="HealthComponent" parent="." unique_id=863237339 instance=ExtResource("17_qfm1y")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=768018205]
+zoom = Vector2(0.585, 0.585)
 
 [node name="StateMachine" type="Node" parent="." unique_id=2002574735 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("18_fulsm")
@@ -144,8 +145,9 @@ script = ExtResource("21_hurt")
 [node name="Idle" type="Node" parent="StateMachine" unique_id=1860971028]
 script = ExtResource("22_idle")
 
-[node name="Immobile" type="Node" parent="StateMachine" unique_id=21664050]
+[node name="Immobile" type="Node" parent="StateMachine" unique_id=21664050 node_paths=PackedStringArray("animation")]
 script = ExtResource("23_4ni07")
+animation = NodePath("../../AnimatedSprite2D")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1088731715]
 replication_config = SubResource("SceneReplicationConfig_sync")

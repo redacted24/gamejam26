@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://drs1kl8225u00"]
 
 [ext_resource type="Script" uid="uid://b45nadgppgcqm" path="res://scripts/ui/main_user_interface.gd" id="1_fl0ln"]
+[ext_resource type="Texture2D" uid="uid://cwkixp17jbwx3" path="res://assets/ui/heart.png" id="2_vec8q"]
+[ext_resource type="Texture2D" uid="uid://gsfv3h8ne6le" path="res://assets/items/meat.png" id="3_70a6y"]
 
-[node name="UserInterface" type="CanvasLayer" unique_id=71292675 node_paths=PackedStringArray("control_node", "hunger_label", "hitpoints_label", "hp_bar", "hunger_bar")]
+[node name="UserInterface" type="CanvasLayer" unique_id=71292675 node_paths=PackedStringArray("control_node", "hunger_label", "hitpoints_label", "hunger_bar")]
 script = ExtResource("1_fl0ln")
 control_node = NodePath("Control")
 hunger_label = NodePath("Control/Hunger/hunger_label")
 hitpoints_label = NodePath("Control/HP/hitpoints_label")
-hp_bar = NodePath("Control/HP/HPBar")
 hunger_bar = NodePath("Control/Hunger/HPBar")
 
 [node name="Control" type="Control" parent="." unique_id=1265062161]
@@ -22,13 +23,10 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="hitpoints_word" type="Label" parent="Control/HP" unique_id=586434887]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 9.0
-offset_right = 42.0
-offset_bottom = 32.0
-text = "HP:"
+[node name="Heart" type="Sprite2D" parent="Control/HP" unique_id=1186002470]
+position = Vector2(23, 22)
+scale = Vector2(0.53125, 0.53125)
+texture = ExtResource("2_vec8q")
 
 [node name="hp_bar" type="ColorRect" parent="Control/HP" unique_id=301934289]
 z_index = -1
@@ -46,6 +44,7 @@ offset_left = 44.0
 offset_top = 10.0
 offset_right = 278.0
 offset_bottom = 33.0
+color = Color(0.19607843, 0.19607843, 0.19607843, 1)
 
 [node name="hitpoints_label" type="Label" parent="Control/HP" unique_id=1826761656]
 layout_mode = 0
@@ -59,14 +58,6 @@ text = "10/10"
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="hunger_word" type="Label" parent="Control/Hunger" unique_id=1750282769]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 44.0
-offset_right = 93.0
-offset_bottom = 70.0
-text = "Hu:"
 
 [node name="hunger_label" type="Label" parent="Control/Hunger" unique_id=1608689834]
 layout_mode = 0
@@ -88,7 +79,13 @@ color = Color(0.6313241, 0.15423745, 0.22009265, 1)
 [node name="FullBar" type="ColorRect" parent="Control/Hunger" unique_id=324080805]
 z_index = -2
 layout_mode = 0
-offset_left = 44.0
+offset_left = 45.0
 offset_top = 46.0
 offset_right = 278.0
 offset_bottom = 69.0
+color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+
+[node name="Meat" type="Sprite2D" parent="Control" unique_id=897266862]
+position = Vector2(24, 58)
+scale = Vector2(0.46875, 0.46875)
+texture = ExtResource("3_70a6y")

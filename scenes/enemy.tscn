@@ -94,6 +94,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1x4g4"]
+radius = 19.697716
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1860361879 groups=["enemies"]]
 collision_layer = 4
@@ -108,13 +109,6 @@ animation = &"walk_up_right"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=988916062]
 z_index = 20
 shape = SubResource("CircleShape2D_1x4g4")
-
-[node name="toindicateenemy" type="ColorRect" parent="." unique_id=1566976688]
-offset_left = -30.0
-offset_top = -30.0
-offset_right = 25.0
-offset_bottom = 30.0
-color = Color(0.99257606, 0.08052162, 0.5568904, 1)
 
 [node name="HealthComponent" parent="." unique_id=863237339 instance=ExtResource("17_1x4g4")]
 

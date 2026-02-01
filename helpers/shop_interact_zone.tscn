@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://c4b04um1ixrsq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_shop1"]
+radius = 18.0
+
+[node name="shop_interact_zone" type="Node2D" unique_id=1580947955]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=367521727]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=989591075]
+shape = SubResource("CircleShape2D_shop1")
+
+[node name="InteractText" type="Label" parent="." unique_id=1340163555]
+offset_left = -92.0
+offset_top = -59.0
+offset_right = 106.0
+offset_bottom = -36.0
+text = "Press E to open shop"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=248123056]
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 18.0
+offset_bottom = 18.0
+color = Color(0.8, 0.6, 0.2, 0.7)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
