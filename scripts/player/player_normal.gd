@@ -14,8 +14,8 @@ func get_input() -> void:
 	var input_direction: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	player.velocity = input_direction * speed
 
-func _on_dialogue_start() -> void:
-	pass
+func _on_dialogue_start(resource : DialogueResource) -> void:
+	Transitioned.emit(self, "Immobile")
 
 func enter() -> void:
 	pass
