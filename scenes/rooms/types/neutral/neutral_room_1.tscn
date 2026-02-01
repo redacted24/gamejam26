@@ -11,7 +11,6 @@ tile_size = Vector2i(64, 64)
 [node name="neutral_room_1" type="Node2D" unique_id=1338668542 node_paths=PackedStringArray("player")]
 script = ExtResource("1_hb1ja")
 room_type = 1
-hunger_cost = 10
 player = NodePath("Player")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=358604943]
@@ -28,4 +27,4 @@ position = Vector2(1043, 632)
 [node name="Doors" type="Node2D" parent="." unique_id=631697427]
 
 [node name="HorizontalDoor" parent="Doors" unique_id=589182169 instance=ExtResource("3_3khwk")]
-position = Vector2(180, 164)
+position = Vector2(1734, 283)

@@ -12,7 +12,7 @@
 [node name="crossroads_1" type="Node2D" unique_id=1338668542 node_paths=PackedStringArray("player")]
 script = ExtResource("1_to4io")
 room_type = 2
-hunger_cost = 20
+hunger_cost = 10
 player = NodePath("Player")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=358604943]

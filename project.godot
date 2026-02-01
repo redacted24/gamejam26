@@ -45,6 +45,10 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 player="Group for all entities that are playable"
 enemies="Any type of entity that is against the player"
 
+[gui]
+
+theme/custom="res://assets/fonts/default_theme.tres"
+
 [input]
 
 move_up={

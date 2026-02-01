@@ -53,7 +53,7 @@ const COMBAT_ROOM_PATHS = [
 
 const CUTSCENE_ROOM_PATHS = [
 	"res://scenes/rooms/types/cutscene_1.tscn",
-	"res://scenes/rooms/types/cutsce"
+	"res://scenes/rooms/types/cutscene_3.tscn"
 ]
 # All variation of peaceful rooms
 const PEACEFUL_ROOM_PATHS = [
@@ -118,7 +118,7 @@ func generate_next_rooms() -> Dictionary:
 	var rand_idx : int
 	var en = room_types
 	
-	if current_stage >= 7:
+	if current_stage >= 9:
 		# enable wastelands
 		if next_room_type == MapGeneration.room_types.COMBAT_ROOM:
 			num_that_type = COMBAT_ROOM_PATH_WASTELANDS.size()
@@ -155,8 +155,10 @@ func generate_next_rooms() -> Dictionary:
 		out.path = SHOP_ROOM_PATHS[0]
 		out.type = en.SHOP_ROOM
 	elif next_room_type == en.CUTSCENE_ROOM:
+		print("cutscene room")
 		out.path = CUTSCENE_ROOM_PATHS[current_cutscene]
 		out.type = en.CUTSCENE_ROOM
+		current_cutscene += 1
 	elif next_room_type == en.BOSS_ROOM:
 		out.path = BOSS_ROOM_PATHS[0]
 		out.type = en.BOSS_ROOM

@@ -10,7 +10,7 @@
 [node name="crossroads_wasteland1" type="Node2D" unique_id=1338668542 node_paths=PackedStringArray("player")]
 script = ExtResource("1_wyjud")
 room_type = 2
-hunger_cost = 20
+hunger_cost = 10
 player = NodePath("Player")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=360084056]
