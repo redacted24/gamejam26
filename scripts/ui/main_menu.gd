@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func _on_play_button_pressed() -> void:
 	NetworkManager.close_connection()
-	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	get_tree().change_scene_to_file("res://scenes/rooms/types/room_crossroads.tscn")
 
 func _on_host_button_pressed() -> void:
 	var err := NetworkManager.host_game()
@@ -49,7 +49,7 @@ func _on_start_button_pressed() -> void:
 
 @rpc("authority", "call_local", "reliable")
 func _start_game() -> void:
-	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	get_tree().change_scene_to_file("res://scenes/rooms/types/room_crossroads.tscn")
 
 func _on_server_started() -> void:
 	status_label.text = "Hosting... Waiting for player to join."

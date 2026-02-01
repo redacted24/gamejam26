@@ -1,10 +1,6 @@
 [gd_scene format=3 uid="uid://d137sgviyscfm"]
 
-[ext_resource type="Script" path="res://scripts/player/player.gd" id="19_plr"]
 [ext_resource type="Script" uid="uid://ci8f81ncp1c7h" path="res://scripts/player/player_normal.gd" id="1_a8ls1"]
-[ext_resource type="Script" uid="uid://bmrxdlaopisbv" path="res://scripts/player/player_dead_state.gd" id="20_dead"]
-[ext_resource type="Script" uid="uid://birawjg84psuf" path="res://scripts/player/player_hurt_state.gd" id="21_hurt"]
-[ext_resource type="Script" uid="uid://d1an52es430w8" path="res://scripts/player/player_idle_state.gd" id="22_idle"]
 [ext_resource type="Texture2D" uid="uid://dgia8ok2aquay" path="res://assets/character/walkdown1.png" id="1_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://c6d1vwslrrdf" path="res://assets/character/walkdown2.png" id="2_fjrip"]
 [ext_resource type="Texture2D" uid="uid://fdu3qgc82wkj" path="res://assets/character/walkdown3.png" id="3_smehm"]
@@ -22,6 +18,10 @@
 [ext_resource type="Texture2D" uid="uid://co0iymu5gfxbn" path="res://assets/character/walkupright3.png" id="15_qfm1y"]
 [ext_resource type="PackedScene" uid="uid://irjpkdyd2l5o" path="res://scenes/health_component.tscn" id="17_qfm1y"]
 [ext_resource type="Script" uid="uid://cg5qffp8akvjq" path="res://scripts/state_machine.gd" id="18_fulsm"]
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="19_plr"]
+[ext_resource type="Script" uid="uid://bmrxdlaopisbv" path="res://scripts/player/player_dead_state.gd" id="20_dead"]
+[ext_resource type="Script" uid="uid://birawjg84psuf" path="res://scripts/player/player_hurt_state.gd" id="21_hurt"]
+[ext_resource type="Script" uid="uid://d1an52es430w8" path="res://scripts/player/player_idle_state.gd" id="22_idle"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3v2ag"]
 animations = [{
@@ -96,6 +96,8 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_oprun"]
+
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_sync"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
@@ -107,12 +109,10 @@ properties/2/path = NodePath(".:aim_direction")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_oprun"]
-
 [node name="Player" type="CharacterBody2D" unique_id=800656356 groups=["player"]]
-script = ExtResource("19_plr")
 z_index = 10
 collision_layer = 2
+script = ExtResource("19_plr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1310342505]
 sprite_frames = SubResource("SpriteFrames_3v2ag")
@@ -132,7 +132,6 @@ initial_state = NodePath("Normal")
 [node name="Normal" type="Node" parent="StateMachine" unique_id=1951469564 node_paths=PackedStringArray("player", "animation")]
 script = ExtResource("1_a8ls1")
 player = NodePath("../..")
-speed = 300
 animation = NodePath("../../AnimatedSprite2D")
 
 [node name="Dead" type="Node" parent="StateMachine" unique_id=152165329]
@@ -144,7 +143,7 @@ script = ExtResource("21_hurt")
 [node name="Idle" type="Node" parent="StateMachine" unique_id=1860971028]
 script = ExtResource("22_idle")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1088731715]
 replication_config = SubResource("SceneReplicationConfig_sync")
 
 [node name="Abilities" type="Node2D" parent="." unique_id=1447767386]
