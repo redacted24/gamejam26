@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://wmffeydq5x56" path="res://scenes/spawn_point.tscn" id="2_t3wp0"]
 [ext_resource type="PackedScene" uid="uid://d137sgviyscfm" path="res://scenes/player.tscn" id="3_p5lcm"]
 [ext_resource type="PackedScene" uid="uid://baaun8u3q5t8j" path="res://scenes/rooms/horizontal_door.tscn" id="4_nj05e"]
+[ext_resource type="PackedScene" uid="uid://d30q18qg72ds6" path="res://scenes/enemy.tscn" id="5_t3wp0"]
 
 [sub_resource type="TileSet" id="TileSet_eejpr"]
 tile_size = Vector2i(64, 64)
@@ -36,3 +37,6 @@ offset_top = 287.0
 offset_right = 599.0
 offset_bottom = 310.0
 text = "Tutorial room"
+
+[node name="Enemy" parent="." unique_id=1860361879 instance=ExtResource("5_t3wp0")]
+position = Vector2(556, 242)
