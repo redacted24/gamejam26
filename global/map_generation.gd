@@ -51,7 +51,7 @@ const COMBAT_ROOM_PATHS = [
 ]
 
 const CUTSCENE_ROOM_PATHS = [
-	"res://scenes/rooms/types/cutscenes/cutscene1.tscn"
+	"res://scenes/rooms/types/cutscenes/cutscene2.tscn"
 ]
 # All variation of peaceful rooms
 const PEACEFUL_ROOM_PATHS = [
