@@ -123,7 +123,6 @@ func _try_dodge() -> bool:
 	return false
 
 func _enter_dodge(direction: Vector2) -> void:
-	print("Wolf dodged!")
 	phase_before_dodge = phase
 	timer_before_dodge = timer
 	phase = Phase.DODGING

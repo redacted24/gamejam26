@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://d30q18qg72ds6" path="res://scenes/enemy.tscn" id="4_5b6fp"]
 [ext_resource type="Texture2D" uid="uid://4avppwab8phv" path="res://assets/environment/room/crossroad_sign.png" id="5_e42aq"]
 [ext_resource type="PackedScene" uid="uid://wmffeydq5x56" path="res://scenes/spawn_point.tscn" id="6_pf6f5"]
-[ext_resource type="PackedScene" path="res://scenes/enemies/wolf_enemy.tscn" id="9_wolf"]
 [ext_resource type="PackedScene" uid="uid://baaun8u3q5t8j" path="res://scenes/rooms/horizontal_door.tscn" id="7_xgpc4"]
 [ext_resource type="PackedScene" uid="uid://78cv40xchjsy" path="res://scenes/rooms/vertical_door.tscn" id="8_r16nb"]
 
@@ -66,9 +65,6 @@ color = Color(0.34609187, 0.54117996, 0.3691714, 1)
 
 [node name="Enemy" parent="." unique_id=1860361879 instance=ExtResource("4_5b6fp")]
 position = Vector2(321, 445)
-
-[node name="Wolf" parent="." instance=ExtResource("9_wolf")]
-position = Vector2(450, 350)
 
 [node name="CrossroadSign" type="Sprite2D" parent="." unique_id=267308220]
 position = Vector2(643, 281)
