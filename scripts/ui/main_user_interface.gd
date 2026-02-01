@@ -177,6 +177,8 @@ func _on_player_died(_peer_id: int = 0) -> void:
 func _on_restart_pressed() -> void:
 	game_over_screen.visible = false
 	PlayerData.reset()
+	MapGeneration.current_stage = 0
+	MapGeneration.current_cutscene = 0
 	_refresh_bars_instant()
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
