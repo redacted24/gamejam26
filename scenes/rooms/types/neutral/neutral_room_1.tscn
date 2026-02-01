@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cavbrlovf3kwa"]
+
+[ext_resource type="PackedScene" uid="uid://wmffeydq5x56" path="res://scenes/spawn_point.tscn" id="1_tagny"]
+[ext_resource type="PackedScene" uid="uid://d137sgviyscfm" path="res://scenes/player.tscn" id="2_3khwk"]
+
+[sub_resource type="TileSet" id="TileSet_eejpr"]
+tile_size = Vector2i(64, 64)
+
+[node name="neutral_room_1" type="Node2D" unique_id=1338668542]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=358604943]
+tile_set = SubResource("TileSet_eejpr")
+
+[node name="SpawnPoints" type="Node2D" parent="." unique_id=1822267601]
+
+[node name="Spawnpoint" parent="SpawnPoints" unique_id=825871877 instance=ExtResource("1_tagny")]
+position = Vector2(588, 609)
+
+[node name="Player" parent="." unique_id=800656356 instance=ExtResource("2_3khwk")]
+position = Vector2(558, 433)

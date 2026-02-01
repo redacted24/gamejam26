@@ -16,20 +16,19 @@ func _ready() -> void:
 	pass
 
 func _on_body_entered(body: Node2D) -> void:
+	assert(next_level_path != null)
 	if not body.is_in_group("player"):
 		return
 
 	# In multiplayer, only the host processes door transitions
 	if NetworkManager.is_online() and not multiplayer.is_server():
 		return
-
-	print("Door entered: switching rooms to %s" % next_level.path)
-	EventBus.room_cleared.emit(next_level.type)
-
 	# Sync transition to client in multiplayer
 	if NetworkManager.is_online():
 		_sync_door_transition.rpc(next_level.path, next_level.spawnpoint, int(next_level.type))
-
+		
+	print("Door entered: switching rooms to %s" % next_level.path)
+	EventBus.room_cleared.emit(next_level.type)
 	if NavManager:
 		NavManager.go_to_level(next_level.path, next_level.spawnpoint)
 

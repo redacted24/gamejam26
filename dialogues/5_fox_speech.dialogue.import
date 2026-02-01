@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://csuc2wqub16va"
+path="res://.godot/imported/5_fox_speech.dialogue-116336a682a1a5ca4928ab7cfc91baa3.tres"
+
+[deps]
+
+source_file="res://dialogues/5_fox_speech.dialogue"
+dest_files=["res://.godot/imported/5_fox_speech.dialogue-116336a682a1a5ca4928ab7cfc91baa3.tres"]
+
+[params]
+
+defaults=true

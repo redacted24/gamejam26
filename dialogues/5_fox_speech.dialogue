@@ -1,0 +1,24 @@
+~ start
+Fox: Greetings.
+MC: Who’s there?!
+Fox: You’ve slain and halted heartbeats, but are startled by a harmless fox. Truly laughable, if I may.
+Fox: Say, hunter… do you have a reason to bring such havoc to the forest’s respite? For what have my companions lost their lives for?
+- I needed to survive.
+	MC: I needed to survive. In a world like this, you either hunt or are hunted. I took what I needed, nothing more - I have not succumbed to greed just yet.”
+	Fox: You really are a mirror of your inner desires, aren’t you?
+	Fox: Not you, but… [wait=1][font_size=32][wave][color=red]YOU[/color][/wave][/font_size].
+	Fox: You may not be aware, [name]... but I see you. Your subconscious, your soul. The hands behind your fate.
+	Fox: This has taken an interesting path. I’m curious to see what else you have to show me… hunter.
+	Fox: One last thing -
+	Fox: The past you are looking for is long gone. Serenity is a luxury now; it has already been taken away by your kin.
+	Fox: Go on. Prove to me that you are different.
+- I needed to stay full.
+	MC: I needed to stay full. For myself, and my mission at hand… I need to take everything.
+	Fox: You really are a mirror of your inner desires, aren’t you?
+	Fox: Not you, but… [wait=1][font_size=32][wave][color=red]YOU[/color][/wave][/font_size].
+	Fox: You may not be aware, [name]... but I see you. Your subconscious, your soul. The hands behind your fate.
+	Fox: You do not need to consume more than you can take.
+	Fox: Why, pray tell, do you need to slay so many? For satisfaction? For completion? Or to fill your insatiable greed?
+	Fox: All of you are the same. Give a nugget, and you’ll take an ingot.
+	Fox: It is not yet too late. Go, young one. I sure do hope you will prove me wrong.
+=> END
