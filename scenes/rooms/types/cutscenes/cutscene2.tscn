@@ -15,22 +15,6 @@ player = NodePath("Player")
 [node name="Player" parent="." unique_id=800656356 instance=ExtResource("2_jtt6f")]
 position = Vector2(586, 315)
 
-[node name="Control" type="Control" parent="." unique_id=1677885350]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" type="Label" parent="Control" unique_id=1796792444]
-layout_mode = 0
-offset_left = 559.0
-offset_top = 317.0
-offset_right = 675.0
-offset_bottom = 340.0
-text = "cutscene room"
-metadata/_edit_use_anchors_ = true
-
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=1878610551]
 
 [node name="Main" parent="SpawnPoints" unique_id=825871877 instance=ExtResource("3_p2lo5")]
@@ -46,3 +30,7 @@ z_index = -1
 position = Vector2(588.00006, 341)
 scale = Vector2(0.5624999, 0.5625)
 texture = ExtResource("5_vydcr")
+
+[node name="Timer" type="Timer" parent="." unique_id=922512546]
+wait_time = 3.0
+autostart = true

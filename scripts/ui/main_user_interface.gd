@@ -22,6 +22,10 @@ func _ready() -> void:
 	# Signals
 	EventBus.refresh_ui.connect(_on_ui_refresh)
 	EventBus.game_started.connect(_on_game_started)
+	EventBus.cutscene_enter.connect(_on_cutscene_enter)
+	
+func _on_cutscene_enter() -> void:
+	control_node.hide()
 	
 func _on_game_started() -> void:
 	control_node.show()

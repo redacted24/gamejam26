@@ -24,3 +24,4 @@ signal restart_requested
 signal game_started
 signal scene_exit
 signal scene_enter
+signal cutscene_enter
