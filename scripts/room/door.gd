@@ -42,7 +42,7 @@ func _get_hunger_cost() -> int:
 		return 10
 	elif next_level.type == MapGeneration.room_types.PEACEFUL_ROOM:
 		return 5
-	return 0
+	return 5
 
 func _on_interactable_area_entered(body: Node2D) -> void:
 	var hunger := _get_hunger_cost()
