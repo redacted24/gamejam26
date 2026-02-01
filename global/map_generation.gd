@@ -2,6 +2,20 @@ extends Node
 
 enum room_types {COMBAT_ROOM, PEACEFUL_ROOM, CROSSROADS_ROOM, END_ROOM, NULL_ROOM}
 
+const COMBAT_ROOM_PATHS = [
+	"res://scenes/rooms/types/combat/combat_room_1.tscn",
+	"res://scenes/rooms/types/combat/combat_room_2.tscn",
+]
+
+const PEACEFUL_ROOM_PATHS = [
+	"res://scenes/rooms/types/neutral/neutral_room_1.tscn",
+]
+
+const CROSSROADS_ROOM_PATHS = [
+	"res://scenes/rooms/types/crossroads/crossroads_1.tscn",
+	"res://scenes/rooms/types/crossroads/crossroads_2.tscn",
+]
+
 var room_spawn_limit = {
 	peaceful_room = 1,
 	combat_room = 2,
@@ -43,15 +57,23 @@ func generate_next_rooms() -> Dictionary:
 	}
 	
 	var next_room_type = get_next_room_type() # randomly generate next room type
+	var num_that_type : int
+	var rand_idx : int
 	
 	if next_room_type == MapGeneration.room_types.PEACEFUL_ROOM:
-		out.path = "res://scenes/rooms/types/peaceful_room.tscn"
+		num_that_type = PEACEFUL_ROOM_PATHS.size()
+		rand_idx = randi() % num_that_type
+		out.path = PEACEFUL_ROOM_PATHS[rand_idx]
 		out.type = MapGeneration.room_types.PEACEFUL_ROOM
 	elif next_room_type == MapGeneration.room_types.COMBAT_ROOM:
-		out.path = "res://scenes/rooms/types/combat_room.tscn"
+		num_that_type = COMBAT_ROOM_PATHS.size()
+		rand_idx = randi() % num_that_type
+		out.path = COMBAT_ROOM_PATHS[rand_idx]
 		out.type = MapGeneration.room_types.COMBAT_ROOM
 	elif next_room_type == MapGeneration.room_types.CROSSROADS_ROOM:
-		out.path = "res://scenes/rooms/types/room_crossroads.tscn"
+		num_that_type = CROSSROADS_ROOM_PATHS.size()
+		rand_idx = randi() % num_that_type
+		out.path = CROSSROADS_ROOM_PATHS[rand_idx]
 		out.type = MapGeneration.room_types.CROSSROADS_ROOM
 	elif next_room_type == MapGeneration.room_types.END_ROOM:
 		out.path = "res://scenes/rooms/types/end_room.tscn"

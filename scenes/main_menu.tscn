@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cb7jwyr7528hi" path="res://scripts/ui/main_menu.gd" id="1_menu"]
 [ext_resource type="Texture2D" uid="uid://dloykjisicll2" path="res://assets/menu/GAMEJAM2026_backgroundSpecialScene.jpg" id="2_bg"]
 [ext_resource type="Texture2D" uid="uid://dw0qupumbmqnu" path="res://assets/menu/GAMEJAM2026_UI_cosmetics.png" id="3_cosmetics_btn"]
+[ext_resource type="Texture2D" uid="uid://b0llbsfkg6u2t" path="res://assets/dialogue/dialogue_box.png" id="4_oa1go"]
 [ext_resource type="Texture2D" uid="uid://ctxnyngy54sl6" path="res://assets/menu/GAMEJAM2026_UI_settings.png" id="4_settings_btn"]
 [ext_resource type="Texture2D" uid="uid://fcd778prblbv" path="res://assets/menu/GAMEJAM2026_UI_quit.png" id="5_quit_btn"]
 [ext_resource type="AudioStream" uid="uid://du2civskk4c0v" path="res://assets/sounds/menu.wav" id="6_menu_music"]
@@ -45,52 +46,79 @@ theme_override_font_sizes/font_size = 72
 text = "The Hunt"
 
 [node name="PlayButton" type="Button" parent="." unique_id=973954142]
+z_index = 1
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -310.0
-offset_top = -280.0
-offset_right = -40.0
-offset_bottom = -220.0
+offset_left = -303.0
+offset_top = -356.0
+offset_right = -33.0
+offset_bottom = -296.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_type_variation = &"FlatButton"
 theme_override_font_sizes/font_size = 24
 text = "Play Solo"
+flat = true
+
+[node name="PlayButtonBackground" type="Sprite2D" parent="PlayButton" unique_id=1156139460]
+z_as_relative = false
+position = Vector2(135, 37)
+scale = Vector2(0.09210526, 0.09210526)
+texture = ExtResource("4_oa1go")
 
 [node name="HostButton" type="Button" parent="." unique_id=562178654]
+z_index = 4
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -310.0
-offset_top = -210.0
-offset_right = -40.0
-offset_bottom = -150.0
+offset_left = -298.0
+offset_top = -231.0
+offset_right = -28.0
+offset_bottom = -171.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_type_variation = &"FlatButton"
 theme_override_font_sizes/font_size = 24
 text = "Host Game"
+flat = true
+
+[node name="HostButtonBackground" type="Sprite2D" parent="HostButton" unique_id=1165520370]
+z_index = -1
+position = Vector2(130, 36)
+scale = Vector2(0.09210526, 0.09210526)
+texture = ExtResource("4_oa1go")
 
 [node name="JoinButton" type="Button" parent="." unique_id=741163365]
+z_index = 2
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -310.0
-offset_top = -140.0
-offset_right = -40.0
-offset_bottom = -80.0
+offset_left = -299.0
+offset_top = -114.0
+offset_right = -29.0
+offset_bottom = -54.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_type_variation = &"FlatButton"
 theme_override_font_sizes/font_size = 24
 text = "Join Game"
+flat = true
+
+[node name="JoinButtonBackground" type="Sprite2D" parent="JoinButton" unique_id=651617367]
+z_index = -1
+position = Vector2(130, 36)
+scale = Vector2(0.09210526, 0.09210526)
+texture = ExtResource("4_oa1go")
 
 [node name="JoinPanel" type="VBoxContainer" parent="." unique_id=958107950]
 visible = false
