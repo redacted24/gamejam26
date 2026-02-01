@@ -57,15 +57,23 @@ func generate_next_rooms() -> Dictionary:
 	}
 	
 	var next_room_type = get_next_room_type() # randomly generate next room type
+	var num_that_type : int
+	var rand_idx : int
 	
 	if next_room_type == MapGeneration.room_types.PEACEFUL_ROOM:
-		out.path = "res://scenes/rooms/types/peaceful_room.tscn"
+		num_that_type = PEACEFUL_ROOM_PATHS.size()
+		rand_idx = randi() % num_that_type
+		out.path = PEACEFUL_ROOM_PATHS[rand_idx]
 		out.type = MapGeneration.room_types.PEACEFUL_ROOM
 	elif next_room_type == MapGeneration.room_types.COMBAT_ROOM:
-		out.path = "res://scenes/rooms/types/combat_room.tscn"
+		num_that_type = COMBAT_ROOM_PATHS.size()
+		rand_idx = randi() % num_that_type
+		out.path = COMBAT_ROOM_PATHS[rand_idx]
 		out.type = MapGeneration.room_types.COMBAT_ROOM
 	elif next_room_type == MapGeneration.room_types.CROSSROADS_ROOM:
-		out.path = "res://scenes/rooms/types/room_crossroads.tscn"
+		num_that_type = CROSSROADS_ROOM_PATHS.size()
+		rand_idx = randi() % num_that_type
+		out.path = CROSSROADS_ROOM_PATHS[rand_idx]
 		out.type = MapGeneration.room_types.CROSSROADS_ROOM
 	elif next_room_type == MapGeneration.room_types.END_ROOM:
 		out.path = "res://scenes/rooms/types/end_room.tscn"
