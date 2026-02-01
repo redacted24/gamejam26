@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://d3b0a42pfohgx"
+path="res://.godot/imported/4_post_scenery.dialogue-d7036b81317875a984ddb74660276e7a.tres"
+
+[deps]
+
+source_file="res://dialogues/4_post_scenery.dialogue"
+dest_files=["res://.godot/imported/4_post_scenery.dialogue-d7036b81317875a984ddb74660276e7a.tres"]
+
+[params]
+
+defaults=true

@@ -92,7 +92,7 @@ shoot={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogues/main.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogues/1_post_monster_monologue.dialogue", "res://dialogues/2_house_monologue.dialogue", "res://dialogues/3_post_tutorial.dialogue", "res://dialogues/4_post_scenery.dialogue", "res://dialogues/5_fox_speech.dialogue", "res://dialogues/6_good_ending.dialogue", "res://dialogues/7_bad_ending.dialogue")
 
 [layer_names]
 

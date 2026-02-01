@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bklmditwcluy2"
+path="res://.godot/imported/1_post_monster_monologue.dialogue-c3bf0c706c6197445879e375f1db035c.tres"
+
+[deps]
+
+source_file="res://dialogues/1_post_monster_monologue.dialogue"
+dest_files=["res://.godot/imported/1_post_monster_monologue.dialogue-c3bf0c706c6197445879e375f1db035c.tres"]
+
+[params]
+
+defaults=true
