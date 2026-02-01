@@ -29,7 +29,7 @@ func _ready() -> void:
 	EventBus.pickup_collected.connect(_on_pickup_collect)
 	EventBus.enemy_died.connect(_on_enemy_died)
 	max_hunger = 150
-	hunger = max_hunger
+	hunger = 35
 	
 	max_hitpoints = 10
 	hitpoints = max_hitpoints
