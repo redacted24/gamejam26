@@ -4,6 +4,7 @@ extends CanvasLayer
 ## Portrait
 @onready var portrait = %Portrait
 @export_file_path var riham_portrait_path : String
+@export_file_path var fox_portrait_path : String
 
 ## The dialogue resource
 @export var dialogue_resource: DialogueResource
@@ -142,6 +143,8 @@ func apply_dialogue_line() -> void:
 	# Modify portrait based on character and emotion
 	if dialogue_line.character == "Riham":
 		portrait_path = riham_portrait_path
+	elif dialogue_line.character == "Fox":
+		portrait_path = fox_portrait_path
 	
 	if FileAccess.file_exists(portrait_path):
 		portrait.texture = load(portrait_path)

@@ -102,6 +102,7 @@ _data = {
 [node name="ExampleBalloon" type="CanvasLayer" unique_id=294728151]
 script = ExtResource("1_36de5")
 riham_portrait_path = "res://assets/character/riham_nobg.png"
+fox_portrait_path = "res://assets/character/foxheadshot.png"
 
 [node name="Balloon" type="Control" parent="." unique_id=1643255384]
 unique_name_in_owner = true
