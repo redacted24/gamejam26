@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dixkarjmrws6c"]
+
+[ext_resource type="PackedScene" uid="uid://wmffeydq5x56" path="res://scenes/spawn_point.tscn" id="1_e7mpr"]
+[ext_resource type="PackedScene" uid="uid://d137sgviyscfm" path="res://scenes/player.tscn" id="2_eejpr"]
+
+[node name="combat_room_1" type="Node2D" unique_id=1338668542]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=358604943]
+
+[node name="SpawnPoints" type="Node2D" parent="." unique_id=1822267601]
+
+[node name="Spawnpoint" parent="SpawnPoints" unique_id=825871877 instance=ExtResource("1_e7mpr")]
+position = Vector2(588, 609)
+
+[node name="Player" parent="." unique_id=800656356 instance=ExtResource("2_eejpr")]
+position = Vector2(558, 433)
