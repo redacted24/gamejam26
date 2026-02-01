@@ -17,7 +17,7 @@ func _ready() -> void:
 
 # show example baloon
 func show_example_dialogue_baloon(resource: DialogueResource, title: String = "", extra_game_states: Array = []):
-	var balloon : Node = load("res://scenes/balloon.tscn").instantiate()
+	var balloon : Node = load("res://scenes/dialogue/balloon.tscn").instantiate()
 	DialogueManager.show_dialogue_balloon_scene(balloon, resource, title)
 	
 func _on_dialogue_finished(resource : DialogueResource) -> void:
@@ -38,6 +38,7 @@ func _process(delta: float) -> void:
 # On player character body entered
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
+		print('hi')
 		valid_interact = true
 		interact_text.show()
 

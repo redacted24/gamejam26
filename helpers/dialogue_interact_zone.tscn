@@ -9,13 +9,25 @@ radius = 18.0
 script = ExtResource("1_6ict3")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=657859659]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1891714986]
 shape = SubResource("CircleShape2D_4281m")
 
-[node name="Label" type="Label" parent="." unique_id=1599438388]
-offset_left = -47.0
-offset_top = -52.0
-offset_right = 49.0
-offset_bottom = -29.0
-text = "Interact text"
+[node name="InteractText" type="Label" parent="." unique_id=1599438388]
+offset_left = -92.0
+offset_top = -59.0
+offset_right = 106.0
+offset_bottom = -36.0
+text = "INTERACT WITH THIS BRO"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=631159430]
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 18.0
+offset_bottom = 18.0
+color = Color(0.2, 0.6, 0.8, 0.7)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

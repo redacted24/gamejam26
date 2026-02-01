@@ -1,14 +1,17 @@
 [gd_scene format=3 uid="uid://bg6x7tn8u0qb8"]
 
-[ext_resource type="Script" uid="uid://brtkbla55kkox" path="res://scripts/room/room.gd" id="1_mwujn"]
+[ext_resource type="Script" uid="uid://dhl70y45k2m8b" path="res://scripts/room/cutscene_1.gd" id="1_cutscene"]
 [ext_resource type="PackedScene" uid="uid://wmffeydq5x56" path="res://scenes/spawn_point.tscn" id="1_qsx3j"]
 [ext_resource type="PackedScene" uid="uid://d137sgviyscfm" path="res://scenes/player.tscn" id="2_mwujn"]
+[ext_resource type="Resource" uid="uid://ds5jdd0bv2uuo" path="res://dialogues/2_house_monologue.dialogue" id="3_dialogue"]
+[ext_resource type="PackedScene" uid="uid://crnx52u1546uw" path="res://helpers/dialogue_interact_zone.tscn" id="5_2b171"]
 
 [sub_resource type="TileSet" id="TileSet_eejpr"]
 tile_size = Vector2i(64, 64)
 
 [node name="cutscene_1" type="Node2D" unique_id=1338668542]
-script = ExtResource("1_mwujn")
+script = ExtResource("1_cutscene")
+dialogue_resource = ExtResource("3_dialogue")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=358604943]
 tile_set = SubResource("TileSet_eejpr")
@@ -20,3 +23,9 @@ position = Vector2(588, 609)
 
 [node name="Player" parent="." unique_id=800656356 instance=ExtResource("2_mwujn")]
 position = Vector2(558, 433)
+
+[node name="Doors" type="Node2D" parent="." unique_id=1481334555]
+
+[node name="dialogue_interact_zone" parent="." unique_id=754355913 instance=ExtResource("5_2b171")]
+position = Vector2(564, 325)
+dialogue_path = "res://dialogues/2_house_monologue.dialogue"
