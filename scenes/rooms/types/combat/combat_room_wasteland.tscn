@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dtrjapkie80fa"]
+
+[ext_resource type="Script" uid="uid://brtkbla55kkox" path="res://scripts/room/room.gd" id="1_dmmsc"]
+[ext_resource type="PackedScene" uid="uid://wmffeydq5x56" path="res://scenes/spawn_point.tscn" id="2_tt86n"]
+[ext_resource type="PackedScene" uid="uid://d137sgviyscfm" path="res://scenes/player.tscn" id="3_xthll"]
+[ext_resource type="PackedScene" uid="uid://baaun8u3q5t8j" path="res://scenes/rooms/horizontal_door.tscn" id="4_04r75"]
+
+[sub_resource type="TileSet" id="TileSet_eejpr"]
+tile_size = Vector2i(64, 64)
+
+[node name="combat_room_wasteland" type="Node2D" unique_id=1338668542 node_paths=PackedStringArray("player")]
+script = ExtResource("1_dmmsc")
+room_type = 2
+hunger_cost = 20
+player = NodePath("Player")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=358604943]
+tile_set = SubResource("TileSet_eejpr")
+
+[node name="SpawnPoints" type="Node2D" parent="." unique_id=1822267601]
+
+[node name="Main" parent="SpawnPoints" unique_id=825871877 instance=ExtResource("2_tt86n")]
+position = Vector2(588, 609)
+
+[node name="Player" parent="." unique_id=800656356 instance=ExtResource("3_xthll")]
+position = Vector2(558, 433)
+
+[node name="Doors" type="Node2D" parent="." unique_id=404805049]
+
+[node name="HorizontalDoor" parent="Doors" unique_id=589182169 instance=ExtResource("4_04r75")]
+position = Vector2(579, 142)

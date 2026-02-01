@@ -5,7 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://dw0qupumbmqnu" path="res://assets/menu/GAMEJAM2026_UI_cosmetics.png" id="3_cosmetics_btn"]
 [ext_resource type="Texture2D" uid="uid://bpt721ndhjjw7" path="res://assets/menu/logo.png" id="4_jk1qb"]
 [ext_resource type="Texture2D" uid="uid://b0llbsfkg6u2t" path="res://assets/dialogue/dialogue_box.png" id="4_oa1go"]
-[ext_resource type="Texture2D" uid="uid://ctxnyngy54sl6" path="res://assets/menu/GAMEJAM2026_UI_settings.png" id="4_settings_btn"]
+[ext_resource type="Texture2D" path="res://assets/ui/music.png" id="4_music_on"]
+[ext_resource type="Texture2D" path="res://assets/ui/nomusic.png" id="4_music_off"]
 [ext_resource type="Texture2D" uid="uid://fcd778prblbv" path="res://assets/menu/GAMEJAM2026_UI_quit.png" id="5_quit_btn"]
 [ext_resource type="AudioStream" uid="uid://du2civskk4c0v" path="res://assets/sounds/menu.wav" id="6_menu_music"]
 [ext_resource type="AudioStream" uid="uid://dnvmg433uud70" path="res://assets/sounds/menu select.wav" id="7_hover_snd"]
@@ -206,10 +207,10 @@ texture_normal = ExtResource("3_cosmetics_btn")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="SettingsButton" type="TextureButton" parent="TopRightButtons" unique_id=1668597733]
+[node name="MusicButton" type="TextureButton" parent="TopRightButtons" unique_id=1668597733]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-texture_normal = ExtResource("4_settings_btn")
+texture_normal = ExtResource("4_music_on")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -239,7 +240,7 @@ stream = ExtResource("8_select_snd")
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="mouse_entered" from="TopRightButtons/CosmeticsButton" to="." method="_on_button_hover"]
 [connection signal="pressed" from="TopRightButtons/CosmeticsButton" to="." method="_on_cosmetics_button_pressed"]
-[connection signal="mouse_entered" from="TopRightButtons/SettingsButton" to="." method="_on_button_hover"]
-[connection signal="pressed" from="TopRightButtons/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="mouse_entered" from="TopRightButtons/MusicButton" to="." method="_on_button_hover"]
+[connection signal="pressed" from="TopRightButtons/MusicButton" to="." method="_on_music_button_pressed"]
 [connection signal="mouse_entered" from="TopRightButtons/QuitButton" to="." method="_on_button_hover"]
 [connection signal="pressed" from="TopRightButtons/QuitButton" to="." method="_on_quit_button_pressed"]
