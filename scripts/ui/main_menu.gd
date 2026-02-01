@@ -50,6 +50,7 @@ func _on_start_button_pressed() -> void:
 
 @rpc("authority", "call_local", "reliable")
 func _start_game() -> void:
+	EventBus.game_started.emit()
 	get_tree().change_scene_to_file("res://scenes/rooms/types/room_crossroads.tscn")
 
 func _on_server_started() -> void:

@@ -24,9 +24,15 @@ func process(_delta: float) -> void:
 	pass
 
 func physics_process(_delta: float) -> void:
-	get_input()
+	# Only process input, physics, and attacks on the authority player.
+	# Non-authority players have their position/velocity synced by MultiplayerSynchronizer.
+	if not NetworkManager.is_online() or player.is_multiplayer_authority():
+		get_input()
+		player.move_and_slide()
+		player.try_attack()
+		player.aim_direction = (player.get_global_mouse_position() - player.global_position).normalized()
 
-	# Handle animation
+	# Handle animation for all players (uses synced velocity for remote players)
 	if player.velocity.y < 0 and player.velocity.x == 0:
 		animation.flip_h = 0
 		animation.play("walk_up")
@@ -53,8 +59,3 @@ func physics_process(_delta: float) -> void:
 		animation.play("walk_down_right")
 	elif player.velocity.y == 0 and player.velocity.x == 0:
 		animation.stop()
-	player.move_and_slide()
-
-	if not NetworkManager.is_online() or player.is_multiplayer_authority():
-		player.try_attack()
-		player.aim_direction = (player.get_global_mouse_position() - player.global_position).normalized()

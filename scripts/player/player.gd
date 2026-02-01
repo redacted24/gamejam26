@@ -24,6 +24,7 @@ var stats := {
 var current_weapon: WeaponBase
 var weapon_type: WeaponType = WeaponType.BOW
 var invincible: bool = false
+var last_hit_position: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	if PlayerData:
@@ -47,7 +48,14 @@ func _hunger_reduce(amount: int) -> void:
 		_on_died()
 
 func _on_spawn(spawn_location: Vector2) -> void:
-	position = spawn_location
+	if NetworkManager.is_online():
+		var peer_ids := NetworkManager.get_peer_ids()
+		var idx := peer_ids.find(peer_id)
+		if idx == -1:
+			idx = 0
+		position = spawn_location + Vector2(idx * 30, 0)
+	else:
+		position = spawn_location
 
 func _equip_weapon(type: WeaponType) -> void:
 	if current_weapon:
@@ -66,9 +74,10 @@ func try_attack() -> void:
 	if current_weapon:
 		current_weapon.try_attack()
 
-func take_damage(amount: int, _hit_position: Vector2 = Vector2.ZERO) -> void:
+func take_damage(amount: int, hit_position: Vector2 = Vector2.ZERO) -> void:
 	if invincible:
 		return
+	last_hit_position = hit_position
 	health_component.take_damage(amount)
 	EventBus.player_damaged.emit(peer_id, health_component.current_hp, health_component.max_hp)
 	if health_component.current_hp > 0:
@@ -90,9 +99,18 @@ func apply_pickup(pickup_type: String, value: float) -> void:
 	EventBus.player_stats_changed.emit(peer_id, stats)
 
 func _on_died() -> void:
+	_do_death()
+	if NetworkManager.is_online():
+		_sync_death.rpc()
+
+func _do_death() -> void:
 	var sm := get_node("StateMachine")
 	sm.on_state_transition(sm.current_state, "dead")
 	EventBus.player_died.emit(peer_id)
+
+@rpc("any_peer", "call_remote", "reliable")
+func _sync_death() -> void:
+	_do_death()
 
 func _on_health_changed(_current_hp: int, _max_hp: int) -> void:
 	pass

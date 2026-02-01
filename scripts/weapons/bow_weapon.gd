@@ -94,7 +94,7 @@ func _fire_charged_arrow() -> void:
 
 func _spawn_arrow(dir: Vector2, dmg: int, spd: float, pos: Vector2) -> void:
 	var proj: Projectile = projectile_scene.instantiate()
-	proj.setup(dir, dmg, spd, true)
+	proj.setup(dir, dmg, spd, true, player.peer_id)
 	proj.global_position = pos
 	player.get_tree().current_scene.add_child(proj)
 
