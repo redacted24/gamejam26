@@ -14,7 +14,8 @@ func _ready() -> void:
 var sprite_angle_offset: float = PI
 var _hurt: bool = false
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	super._process(delta)
 	if not animated_sprite:
 		return
 	if velocity.length() > 5.0:

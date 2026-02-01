@@ -13,7 +13,8 @@ var all_doors : Array # array holds all doors (exits)
 func _ready() -> void:
 	# Fade in. Make player not move
 	EventBus.show_ui.emit()
-	SceneChanger.animation_player.play("fade_in")
+	if SceneChanger and SceneChanger.animation_player:
+		SceneChanger.animation_player.play("fade_in")
 	# Reduce player hunger by the amount specified
 	EventBus.player_hunger_reduced.emit(hunger_cost)
 	is_cleared = false

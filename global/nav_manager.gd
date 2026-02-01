@@ -10,8 +10,9 @@ func go_to_level(level_path : String, spawn_point : String):
 	var scene_to_load := load(level_path)
 	if scene_to_load != null:
 		spawn_location = spawn_point
-		SceneChanger.change_scene("")
-		await EventBus.scene_exit
+		if SceneChanger:
+			SceneChanger.change_scene("")
+			await EventBus.scene_exit
 		get_tree().call_deferred("change_scene_to_packed", scene_to_load)
 
 func trigger_player_spawn(spawn_position) -> void:
