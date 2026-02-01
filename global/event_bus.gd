@@ -22,3 +22,5 @@ signal pickup_collected(pickup_type: String, value: float)
 # Game flow signals
 signal restart_requested
 signal game_started
+signal scene_exit
+signal scene_enter

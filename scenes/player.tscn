@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://bmrxdlaopisbv" path="res://scripts/player/player_dead_state.gd" id="20_dead"]
 [ext_resource type="Script" uid="uid://birawjg84psuf" path="res://scripts/player/player_hurt_state.gd" id="21_hurt"]
 [ext_resource type="Script" uid="uid://d1an52es430w8" path="res://scripts/player/player_idle_state.gd" id="22_idle"]
+[ext_resource type="Script" uid="uid://drbojchhgsmey" path="res://scripts/player/player_immobile.gd" id="23_4ni07"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3v2ag"]
 animations = [{
@@ -142,6 +143,9 @@ script = ExtResource("21_hurt")
 
 [node name="Idle" type="Node" parent="StateMachine" unique_id=1860971028]
 script = ExtResource("22_idle")
+
+[node name="Immobile" type="Node" parent="StateMachine" unique_id=21664050]
+script = ExtResource("23_4ni07")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1088731715]
 replication_config = SubResource("SceneReplicationConfig_sync")
