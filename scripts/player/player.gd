@@ -92,7 +92,7 @@ func try_attack() -> void:
 		current_weapon.try_attack()
 
 func take_damage(amount: int, hit_position: Vector2 = Vector2.ZERO) -> void:
-	if invincible:
+	if invincible or health_component.current_hp <= 0:
 		return
 	last_hit_position = hit_position
 	health_component.take_damage(amount)

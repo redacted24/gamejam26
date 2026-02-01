@@ -151,6 +151,7 @@ func _on_player_died(_peer_id: int = 0) -> void:
 
 func _on_restart_pressed() -> void:
 	game_over_screen.visible = false
+	PlayerData.reset()
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 func _exit_tree() -> void:

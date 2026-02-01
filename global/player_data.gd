@@ -24,6 +24,16 @@ func has_upgrade(upgrade_name: String) -> bool:
 func reset_upgrades() -> void:
 	upgrades.clear()
 
+func reset() -> void:
+	max_hunger = 150
+	hunger = max_hunger
+	max_hitpoints = 10
+	hitpoints = max_hitpoints
+	kills = 0
+	pickups = 0
+	death_reason = ""
+	upgrades.clear()
+
 # initialize all values for players
 func _ready() -> void:
 	# Signals
