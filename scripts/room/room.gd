@@ -10,6 +10,8 @@ var is_cleared : bool
 var all_doors : Array # array holds all doors (exits)
 
 func _ready() -> void:
+	# Fade in
+	SceneChanger.animation_player.play("fade_in")
 	# Reduce player hunger by the amount specified
 	EventBus.player_hunger_reduced.emit(hunger_cost)
 	is_cleared = false
