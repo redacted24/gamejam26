@@ -1,24 +1,64 @@
 extends Node
 
-enum room_types {COMBAT_ROOM, PEACEFUL_ROOM, CROSSROADS_ROOM, END_ROOM, NULL_ROOM}
+# There will be 15 total "rooms" to go through.
+var stages_count = 15
+var current_stage = 0
 
+enum room_types {
+	COMBAT_ROOM, 
+	PEACEFUL_ROOM, 
+	CROSSROADS_ROOM, 
+	TUTORIAL_ROOM,
+	BOSS_ROOM,
+	SHOP_ROOM,
+	FOX_ROOM,
+	END_ROOM,
+	CUTSCENE_ROOM, 
+	NULL_ROOM
+}
+
+# Room types depending on current stage
+const stage_types = {
+	0: room_types.CUTSCENE_ROOM,
+	1: room_types.TUTORIAL_ROOM,
+	2: room_types.COMBAT_ROOM,
+	3: room_types.COMBAT_ROOM,
+	4: room_types.PEACEFUL_ROOM,
+	5: room_types.CROSSROADS_ROOM,
+	6: room_types.SHOP_ROOM,
+	7: room_types.COMBAT_ROOM,
+	8: room_types.FOX_ROOM,
+	9: room_types.CROSSROADS_ROOM,
+	10: room_types.COMBAT_ROOM,
+	11: room_types.COMBAT_ROOM,
+	12: room_types.COMBAT_ROOM,
+	13: room_types.PEACEFUL_ROOM,
+	14: room_types.SHOP_ROOM,
+	15: room_types.BOSS_ROOM,
+	16: room_types.END_ROOM
+}
+
+# All variations of combat rooms
 const COMBAT_ROOM_PATHS = [
 	"res://scenes/rooms/types/combat/combat_room_1.tscn",
 	"res://scenes/rooms/types/combat/combat_room_2.tscn",
 ]
 
+# All variation of peaceful rooms
 const PEACEFUL_ROOM_PATHS = [
 	"res://scenes/rooms/types/neutral/neutral_room_1.tscn",
 ]
 
+# All variations of crossroads rooms
 const CROSSROADS_ROOM_PATHS = [
 	"res://scenes/rooms/types/crossroads/crossroads_1.tscn",
 	"res://scenes/rooms/types/crossroads/crossroads_2.tscn",
 ]
 
+
 var room_spawn_limit = {
-	peaceful_room = 1,
-	combat_room = 2,
+	peaceful_room = 2,
+	combat_room = 3,
 	crossroads_room = 1,
 }
 
@@ -29,17 +69,25 @@ func _ready() -> void:
 # Finds what the next room type is and link it to a "door" in a level
 func get_next_room_type():
 	var rand = randf()
-	if rand <= 0.333 and room_spawn_limit.peaceful_room > 0:
-		return room_types.PEACEFUL_ROOM
-	if rand <= 0.66 and room_spawn_limit.combat_room > 0:
-		return room_types.COMBAT_ROOM
-	if rand < 1 and room_spawn_limit.crossroads_room > 0:
-		return room_types.CROSSROADS_ROOM
+	# If all room numbers are exhausted.
+	if room_spawn_limit.peaceful_room == 0 and room_spawn_limit.combat_room == 0 and room_spawn_limit.crossroads_room == 0:
+		return room_types.END_ROOM
+		
+	# Setup rolling until you get something usable
+	
+	while true:
+		rand = randf()		
+		if rand <= 0.333 and room_spawn_limit.peaceful_room > 0:
+			return room_types.PEACEFUL_ROOM
+		if rand <= 0.66 and room_spawn_limit.combat_room > 0:
+			return room_types.COMBAT_ROOM
+		if rand < 1 and room_spawn_limit.crossroads_room > 0:
+			return room_types.CROSSROADS_ROOM
 	# No more rooms to spawn!
-	return room_types.END_ROOM
 
 # Update the room count based on what room was taken
 func update_room_count(room : MapGeneration.room_types) -> void:
+	print("updating room type %s" % room_spawn_limit)
 	if room == room_types.PEACEFUL_ROOM:
 		room_spawn_limit.peaceful_room -= 1
 	elif room == room_types.COMBAT_ROOM:
