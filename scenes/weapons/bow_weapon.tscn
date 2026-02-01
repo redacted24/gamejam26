@@ -1,19 +1,20 @@
 [gd_scene format=3 uid="uid://bc617hvj6834e"]
 
-[ext_resource type="Script" path="res://scripts/weapons/bow_weapon.gd" id="1_qn7mn"]
+[ext_resource type="Script" uid="uid://bfvitkm3ceom0" path="res://scripts/weapons/bow_weapon.gd" id="1_bow"]
 [ext_resource type="Texture2D" uid="uid://dewk1cgevfeda" path="res://assets/weapons/bow000.png" id="2_qn7mn"]
-[ext_resource type="PackedScene" uid="uid://cjjyltbcau0nx" path="res://scenes/weapons/projectile.tscn" id="3_proj"]
-[ext_resource type="Texture2D" uid="uid://qghna4cjpf6s" path="res://assets/weapons/bow002.png" id="4_chrg1"]
-[ext_resource type="Texture2D" uid="uid://l1lav6qwsgu0" path="res://assets/weapons/bow003.png" id="5_chrg2"]
-[ext_resource type="Texture2D" uid="uid://btj44tjb07t7e" path="res://assets/weapons/bow004.png" id="6_drawn"]
+[ext_resource type="Texture2D" uid="uid://qghna4cjpf6s" path="res://assets/weapons/bow002.png" id="3_1ulqm"]
+[ext_resource type="Texture2D" uid="uid://l1lav6qwsgu0" path="res://assets/weapons/bow003.png" id="4_a5qfp"]
+[ext_resource type="Texture2D" uid="uid://btj44tjb07t7e" path="res://assets/weapons/bow004.png" id="5_dddqp"]
+[ext_resource type="PackedScene" uid="uid://cjjyltbcau0nx" path="res://scenes/weapons/projectile.tscn" id="6_arrow"]
 
 [node name="BowWeapon" type="Node2D" unique_id=595246194]
-script = ExtResource("1_qn7mn")
-projectile_scene = ExtResource("3_proj")
+script = ExtResource("1_bow")
+projectile_scene = ExtResource("6_arrow")
+projectile_speed = 500.0
 sprite_idle = ExtResource("2_qn7mn")
-sprite_charge_1 = ExtResource("4_chrg1")
-sprite_charge_2 = ExtResource("5_chrg2")
-sprite_bow_drawn = ExtResource("6_drawn")
+sprite_charge_1 = ExtResource("3_1ulqm")
+sprite_charge_2 = ExtResource("4_a5qfp")
+sprite_bow_drawn = ExtResource("5_dddqp")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1559690004]
 scale = Vector2(3.72, 3.72)
