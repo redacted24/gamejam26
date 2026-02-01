@@ -9,7 +9,7 @@
 [sub_resource type="TileSet" id="TileSet_eejpr"]
 tile_size = Vector2i(64, 64)
 
-[node name="crossroads_2" type="Node2D" unique_id=1338668542 node_paths=PackedStringArray("player")]
+[node name="tutorial" type="Node2D" unique_id=1338668542 node_paths=PackedStringArray("player")]
 script = ExtResource("1_gmlso")
 room_type = 2
 hunger_cost = 20
