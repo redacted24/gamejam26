@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3iu02ej2oxhd"
-path="res://.godot/imported/bat.png-e8e28a23793254a3709a413adf39d9b2.ctex"
+uid="uid://d2d174f4m6pqu"
+path="res://.godot/imported/boar.png-efe9a7422a1f4abae81f4e9391129781.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemy/rat/bat.png"
-dest_files=["res://.godot/imported/bat.png-e8e28a23793254a3709a413adf39d9b2.ctex"]
+source_file="res://assets/enemy/other/boar.png"
+dest_files=["res://.godot/imported/boar.png-efe9a7422a1f4abae81f4e9391129781.ctex"]
 
 [params]
 

@@ -62,23 +62,25 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2jdfr"]
-radius = 15.0
-height = 55.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_2jdfr"]
+radius = 16.68832
 
 [node name="Rat" type="CharacterBody2D" unique_id=1175572835]
 collision_layer = 4
 collision_mask = 6
 script = ExtResource("1_script")
+speed = null
+contact_damage = null
+max_hp = null
 metadata/_edit_vertical_guides_ = [-137.0]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1606955101]
 sprite_frames = SubResource("SpriteFrames_yfv5o")
 animation = &"walk_side"
-offset = Vector2(15, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2058187689]
-shape = SubResource("CapsuleShape2D_2jdfr")
+position = Vector2(-32, 1)
+shape = SubResource("CircleShape2D_2jdfr")
 
 [node name="HealthComponent" parent="." unique_id=863237339 instance=ExtResource("2_os0ep")]
 position = Vector2(139, 90)
@@ -90,7 +92,6 @@ initial_state = NodePath("Chase")
 [node name="Chase" type="Node" parent="StateMachine" unique_id=844555683 node_paths=PackedStringArray("enemy")]
 script = ExtResource("2_ey5y1")
 enemy = NodePath("../..")
-turn_speed = null
 
 [node name="Dead" type="Node" parent="StateMachine" unique_id=871552550]
 script = ExtResource("6_teh6i")

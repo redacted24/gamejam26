@@ -68,11 +68,17 @@ func _load_room(room_id: int, entry_direction: Vector2i) -> void:
 
 	# Spawn enemies if room not cleared and not start room
 	if not already_cleared and room_data.type != "start":
-		var count := EnemySpawner.spawn_enemies(room, room_container)
-		if count == 0:
-			room.is_cleared = true
-			room.unlock_doors()
-			GameData.mark_room_cleared(room_id)
+		if not NetworkManager.is_online() or multiplayer.is_server():
+			var count := EnemySpawner.spawn_enemies(room, room_container)
+			if count == 0:
+				room.is_cleared = true
+				room.unlock_doors()
+				GameData.mark_room_cleared(room_id)
+		else:
+			# Client: register expected enemy count so door tracking works
+			# when _remote_die RPCs arrive
+			for _pt in room.spawn_points:
+				room.register_enemy()
 	else:
 		room.is_cleared = true
 		room.unlock_doors()

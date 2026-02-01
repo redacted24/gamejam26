@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2d174f4m6pqu"
-path="res://.godot/imported/boar.png-7252846657dac315fcd73fe7ed0bbe76.ctex"
+uid="uid://37rfy176ndyc"
+path="res://.godot/imported/sword_frame_1.png-c1bc9a1f05d832dc87a4dcb085d02c25.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemy/rat/boar.png"
-dest_files=["res://.godot/imported/boar.png-7252846657dac315fcd73fe7ed0bbe76.ctex"]
+source_file="res://assets/weapons/sword_frame_1.png"
+dest_files=["res://.godot/imported/sword_frame_1.png-c1bc9a1f05d832dc87a4dcb085d02c25.ctex"]
 
 [params]
 

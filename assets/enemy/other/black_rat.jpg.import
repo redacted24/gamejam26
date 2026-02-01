@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d24rd7lniiq7a"
-path="res://.godot/imported/brown_rat.png-d6f5efc4e6116229d7586f54eceecb3b.ctex"
+uid="uid://dd8aikc5rc3te"
+path="res://.godot/imported/black_rat.jpg-4072ead8be6a4b0659ffba265e6b5de5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemy/rat/brown_rat.png"
-dest_files=["res://.godot/imported/brown_rat.png-d6f5efc4e6116229d7586f54eceecb3b.ctex"]
+source_file="res://assets/enemy/other/black_rat.jpg"
+dest_files=["res://.godot/imported/black_rat.jpg-4072ead8be6a4b0659ffba265e6b5de5.ctex"]
 
 [params]
 

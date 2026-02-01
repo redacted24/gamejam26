@@ -4,17 +4,18 @@
 [ext_resource type="Texture2D" uid="uid://d1mj8sf1yyw0g" path="res://assets/weapons/arrow.png" id="2_qp4n5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qp4n5"]
-size = Vector2(71, 32)
+size = Vector2(47, 13)
 
-[node name="Projectile" type="Area2D"]
+[node name="Projectile" type="Area2D" unique_id=339780850]
 collision_layer = 8
 collision_mask = 261
 script = ExtResource("1_proj")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -2)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1042983386]
+z_index = 4
+position = Vector2(-1.5, -2.5)
 shape = SubResource("RectangleShape2D_qp4n5")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1555530115]
 scale = Vector2(4.46, 4.46)
 texture = ExtResource("2_qp4n5")

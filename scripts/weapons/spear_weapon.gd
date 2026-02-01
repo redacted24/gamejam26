@@ -1,11 +1,9 @@
 extends WeaponBase
 class_name SpearWeapon
 
-@export var horizontal_offset: float = 15.0
 @export var attack_duration: float = 0.15
 @export var thrust_distance: float = 50.0
 
-@onready var sprite: Sprite2D = $Sprite
 @onready var hitbox: Area2D = $Hitbox
 
 var _hit_targets: Array[Node2D] = []
@@ -18,23 +16,6 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	_update_aim()
-
-func _update_aim() -> void:
-	if not sprite or not player:
-		return
-	var direction: Vector2
-	var is_left: bool
-	if not NetworkManager.is_online() or player.is_multiplayer_authority():
-		var mouse_pos := player.get_global_mouse_position()
-		direction = (mouse_pos - player.global_position).normalized()
-		is_left = mouse_pos.x < player.global_position.x
-	else:
-		direction = player.aim_direction
-		is_left = player.aim_direction.x < 0
-
-	rotation = direction.angle()
-	sprite.flip_v = is_left
-	position.x = -horizontal_offset if is_left else horizontal_offset
 
 func _perform_attack(_dir: Vector2) -> void:
 	super._perform_attack(_dir)

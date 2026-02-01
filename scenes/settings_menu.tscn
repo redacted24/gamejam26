@@ -1,0 +1,67 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/settings_menu.gd" id="1_settings"]
+
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_settings")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 40.0
+offset_right = 400.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 48
+text = "Settings"
+
+[node name="AudioLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 120.0
+offset_right = 400.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 22
+text = "Audio"
+
+[node name="VolumeLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 170.0
+offset_right = 250.0
+offset_bottom = 200.0
+theme_override_font_sizes/font_size = 18
+text = "Volume"
+
+[node name="VolumeSlider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 260.0
+offset_top = 170.0
+offset_right = 560.0
+offset_bottom = 200.0
+value = 100.0
+
+[node name="VolumeValueLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 575.0
+offset_top = 170.0
+offset_right = 650.0
+offset_bottom = 200.0
+theme_override_font_sizes/font_size = 18
+text = "100%"
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 520.0
+offset_right = 311.0
+offset_bottom = 570.0
+text = "Back"
+
+[connection signal="value_changed" from="VolumeSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

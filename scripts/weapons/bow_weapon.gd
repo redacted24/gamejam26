@@ -11,7 +11,6 @@ enum ChargeState { IDLE, CHARGE_1, CHARGE_2, BOW_DRAWN }
 @export var max_damage_multiplier: float = 5.0
 @export var min_speed_multiplier: float = 1.0
 @export var max_speed_multiplier: float = 3.0
-@export var horizontal_offset: float = 15.0
 
 @export_group("Bow Sprites")
 @export var sprite_idle: Texture2D
@@ -21,16 +20,14 @@ enum ChargeState { IDLE, CHARGE_1, CHARGE_2, BOW_DRAWN }
 
 var is_charging: bool = false
 var charge_time: float = 0.0
-var charge_state: ChargeState = ChargeState.IDLE
-
-@onready var sprite: Sprite2D = $Sprite
+var charge_state: ChargeState = ChargeState.IDLE # initial charging state
 
 func _ready() -> void:
 	super._ready()
 	_update_sprite()
 
 func _process(delta: float) -> void:
-	_update_flip()
+	_update_aim()
 
 	if not player or (NetworkManager.is_online() and not player.is_multiplayer_authority()):
 		return
@@ -48,23 +45,6 @@ func _process(delta: float) -> void:
 		charge_time = 0.0
 		charge_state = ChargeState.IDLE
 		_update_sprite()
-
-func _update_flip() -> void:
-	if not sprite or not player:
-		return
-	var direction: Vector2
-	var is_left: bool
-	if not NetworkManager.is_online() or player.is_multiplayer_authority():
-		var mouse_pos := player.get_global_mouse_position()
-		direction = (mouse_pos - player.global_position).normalized()
-		is_left = mouse_pos.x < player.global_position.x
-	else:
-		direction = player.aim_direction
-		is_left = player.aim_direction.x < 0
-
-	rotation = direction.angle()
-	sprite.flip_v = is_left
-	position.x = -horizontal_offset if is_left else horizontal_offset
 
 func _update_charge_state() -> void:
 	var new_state: ChargeState

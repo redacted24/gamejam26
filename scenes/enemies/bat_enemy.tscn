@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cyjgqooggrnws"]
 
 [ext_resource type="Script" uid="uid://brv5puc2b1td3" path="res://scripts/enemy/bat_enemy.gd" id="1_o8anq"]
-[ext_resource type="Texture2D" uid="uid://3iu02ej2oxhd" path="res://assets/enemy/rat/bat.png" id="2_o8anq"]
+[ext_resource type="Texture2D" uid="uid://3iu02ej2oxhd" path="res://assets/enemy/other/bat.png" id="2_o8anq"]
 [ext_resource type="PackedScene" uid="uid://irjpkdyd2l5o" path="res://scenes/health_component.tscn" id="3_m0x8h"]
 [ext_resource type="Script" uid="uid://cg5qffp8akvjq" path="res://scripts/state_machine.gd" id="4_m5s8h"]
 [ext_resource type="Script" uid="uid://djyw8ol867kwv" path="res://scripts/enemy/states/bat_fly_state.gd" id="5_o8anq"]
