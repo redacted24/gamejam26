@@ -1,6 +1,9 @@
 extends CanvasLayer
 ## A basic dialogue balloon for use with Dialogue Manager.
 
+## Portrait
+@onready var portrait = %Portrait
+@export_file_path var riham_portrait_path : String
 
 ## The dialogue resource
 @export var dialogue_resource: DialogueResource
@@ -134,6 +137,17 @@ func apply_dialogue_line() -> void:
 
 	responses_menu.hide()
 	responses_menu.responses = dialogue_line.responses
+	
+	var portrait_path : String
+	# Modify portrait based on character and emotion
+	if dialogue_line.character == "Riham":
+		portrait_path = riham_portrait_path
+	
+	if FileAccess.file_exists(portrait_path):
+		print("loading texture")
+		portrait.texture = load(portrait_path)
+	else:
+		portrait.texture = null
 
 	# Show our balloon
 	balloon.show()
