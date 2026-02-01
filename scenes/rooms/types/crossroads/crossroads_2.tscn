@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://d4emo5381oea"]
+
+[ext_resource type="Script" uid="uid://brtkbla55kkox" path="res://scripts/room/room.gd" id="1_b712j"]
+[ext_resource type="PackedScene" uid="uid://wmffeydq5x56" path="res://scenes/spawn_point.tscn" id="2_uad5t"]
+[ext_resource type="PackedScene" uid="uid://d137sgviyscfm" path="res://scenes/player.tscn" id="3_0qukg"]
+
+[sub_resource type="TileSet" id="TileSet_eejpr"]
+tile_size = Vector2i(64, 64)
+
+[node name="crossroads_2" type="Node2D" unique_id=1338668542]
+script = ExtResource("1_b712j")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=358604943]
+tile_set = SubResource("TileSet_eejpr")
+
+[node name="SpawnPoints" type="Node2D" parent="." unique_id=1822267601]
+
+[node name="Spawnpoint" parent="SpawnPoints" unique_id=825871877 instance=ExtResource("2_uad5t")]
+position = Vector2(588, 609)
+
+[node name="Player" parent="." unique_id=800656356 instance=ExtResource("3_0qukg")]
+position = Vector2(558, 433)

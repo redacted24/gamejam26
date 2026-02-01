@@ -18,3 +18,5 @@ position = Vector2(588, 609)
 
 [node name="Player" parent="." unique_id=800656356 instance=ExtResource("2_nohdb")]
 position = Vector2(558, 433)
+
+[node name="Doors" type="Node2D" parent="." unique_id=2065039189]

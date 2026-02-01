@@ -2,6 +2,20 @@ extends Node
 
 enum room_types {COMBAT_ROOM, PEACEFUL_ROOM, CROSSROADS_ROOM, END_ROOM, NULL_ROOM}
 
+const COMBAT_ROOM_PATHS = [
+	"res://scenes/rooms/types/combat/combat_room_1.tscn",
+	"res://scenes/rooms/types/combat/combat_room_2.tscn",
+]
+
+const PEACEFUL_ROOM_PATHS = [
+	"res://scenes/rooms/types/neutral/neutral_room_1.tscn",
+	"res://scenes/rooms/types/crossroads/crossroads_2.tscn"
+]
+
+const CROSSROADS_ROOM_PATHS = [
+	""
+]
+
 var room_spawn_limit = {
 	peaceful_room = 1,
 	combat_room = 2,
