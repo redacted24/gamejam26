@@ -56,7 +56,7 @@ func _sync_state(pos: Vector2, sprite_rot: float, sprite_flip: bool) -> void:
 
 func _on_died() -> void:
 	_drop_meat()
-	EventBus.enemy_died.emit(global_position)
+	EventBus.enemy_died.emit()
 	if NetworkManager.is_online() and multiplayer.is_server():
 		_remote_die.rpc()
 	queue_free()

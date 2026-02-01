@@ -39,9 +39,9 @@ func _sync_door_transition(path: String, spawnpoint: String, type: int) -> void:
 		
 func _get_hunger_cost() -> int:
 	if next_level.type == MapGeneration.room_types.COMBAT_ROOM or next_level.type == MapGeneration.room_types.CROSSROADS_ROOM:
-		return 20
-	elif next_level.type == MapGeneration.room_types.PEACEFUL_ROOM:
 		return 10
+	elif next_level.type == MapGeneration.room_types.PEACEFUL_ROOM:
+		return 5
 	return 0
 
 func _on_interactable_area_entered(body: Node2D) -> void:
