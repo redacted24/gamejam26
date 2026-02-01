@@ -108,9 +108,9 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 			if sm and sm.current_state and sm.current_state.has_method("apply_knockback"):
 				sm.current_state.apply_knockback(knockback_dir, 500.0)
 
-		if has_fire_aspect:
-			if not body.has_node("BurnEffect"):
-				var burn := BurnEffect.new()
-				burn.name = "BurnEffect"
-				burn.setup(1, 0.5, 2.0)
-				body.add_child(burn)
+		#if has_fire_aspect:
+		#	if not body.has_node("BurnEffect"):
+		#		var burn := BurnEffect.new()
+		#		burn.name = "BurnEffect"
+		#		burn.setup(1, 0.5, 2.0)
+		#		body.add_child(burn)
