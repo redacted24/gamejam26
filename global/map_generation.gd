@@ -51,7 +51,7 @@ const COMBAT_ROOM_PATHS = [
 ]
 
 const CUTSCENE_ROOM_PATHS = [
-	"res://scenes/rooms/types/cutscenes/cutscene2.tscn"
+	"res://scenes/rooms/types/cutscene_1.tscn"
 ]
 # All variation of peaceful rooms
 const PEACEFUL_ROOM_PATHS = [
@@ -96,6 +96,7 @@ func generate_next_rooms() -> Dictionary:
 	}
 	
 	current_stage += 1
+	print("current_stage %d" % current_stage)
 	var next_room_type : room_types = stage_types[current_stage]
 	var num_that_type : int
 	var rand_idx : int

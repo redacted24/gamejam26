@@ -21,6 +21,8 @@ func _ready() -> void:
 	await timer.timeout
 	var resource : DialogueResource = load(resource_path)
 	show_example_dialogue_baloon(resource, "start", [])
+	# Assign doors
+	assign_doors()
 	
 func _on_dialogue_end(resource : DialogueResource) -> void:
 	print("reenabling door collision")
