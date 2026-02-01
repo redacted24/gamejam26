@@ -2,11 +2,13 @@
 
 [ext_resource type="Script" uid="uid://b45nadgppgcqm" path="res://scripts/ui/main_user_interface.gd" id="1_fl0ln"]
 
-[node name="UserInterface" type="CanvasLayer" unique_id=71292675 node_paths=PackedStringArray("control_node", "hunger_label", "hitpoints_label")]
+[node name="UserInterface" type="CanvasLayer" unique_id=71292675 node_paths=PackedStringArray("control_node", "hunger_label", "hitpoints_label", "hp_bar", "hunger_bar")]
 script = ExtResource("1_fl0ln")
 control_node = NodePath("Control")
 hunger_label = NodePath("Control/Hunger/hunger_label")
 hitpoints_label = NodePath("Control/HP/hitpoints_label")
+hp_bar = NodePath("Control/HP/HPBar")
+hunger_bar = NodePath("Control/Hunger/HPBar")
 
 [node name="Control" type="Control" parent="." unique_id=1265062161]
 z_index = 50
@@ -28,7 +30,7 @@ offset_right = 42.0
 offset_bottom = 32.0
 text = "HP:"
 
-[node name="HPBar" type="ColorRect" parent="Control/HP" unique_id=301934289]
+[node name="hp_bar" type="ColorRect" parent="Control/HP" unique_id=301934289]
 z_index = -1
 layout_mode = 0
 offset_left = 44.0
