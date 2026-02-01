@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://baaun8u3q5t8j" path="res://scenes/rooms/horizontal_door.tscn" id="4_grm46"]
 [ext_resource type="PackedScene" uid="uid://cyjgqooggrnws" path="res://scenes/enemies/bat_enemy.tscn" id="6_ibio2"]
 [ext_resource type="PackedScene" uid="uid://bb2x3hluhmwpv" path="res://scenes/enemies/rat_enemy.tscn" id="7_gjslc"]
+[ext_resource type="Texture2D" uid="uid://codyljeblkey6" path="res://assets/environment/tilesets/world1/tree.png" id="8_gxfnb"]
 
 [node name="crossroads_1" type="Node2D" unique_id=1338668542 node_paths=PackedStringArray("player")]
 script = ExtResource("1_to4io")
@@ -54,3 +55,45 @@ position = Vector2(908, 113)
 
 [node name="Bat4" parent="Enemies" unique_id=1716398305 instance=ExtResource("6_ibio2")]
 position = Vector2(205, 298)
+
+[node name="Assets" type="Node2D" parent="." unique_id=1480692838]
+
+[node name="Tree6" type="Sprite2D" parent="Assets" unique_id=74487992]
+position = Vector2(700, 1004)
+texture = ExtResource("8_gxfnb")
+
+[node name="Tree" type="Sprite2D" parent="Assets" unique_id=713102128]
+position = Vector2(152, 474)
+texture = ExtResource("8_gxfnb")
+
+[node name="Tree2" type="Sprite2D" parent="Assets" unique_id=1981655783]
+position = Vector2(1465, 280)
+texture = ExtResource("8_gxfnb")
+
+[node name="Tree3" type="Sprite2D" parent="Assets" unique_id=1196895335]
+position = Vector2(107, 495)
+texture = ExtResource("8_gxfnb")
+
+[node name="Tree4" type="Sprite2D" parent="Assets" unique_id=1961357430]
+position = Vector2(183, 508)
+texture = ExtResource("8_gxfnb")
+
+[node name="Tree5" type="Sprite2D" parent="Assets" unique_id=685182774]
+position = Vector2(540, 545)
+texture = ExtResource("8_gxfnb")
+
+[node name="Tree7" type="Sprite2D" parent="Assets" unique_id=518173983]
+position = Vector2(932, 327)
+texture = ExtResource("8_gxfnb")
+
+[node name="Tree8" type="Sprite2D" parent="Assets" unique_id=262084132]
+position = Vector2(873, 309)
+texture = ExtResource("8_gxfnb")
+
+[node name="Tree9" type="Sprite2D" parent="Assets" unique_id=1566334897]
+position = Vector2(261, 674)
+texture = ExtResource("8_gxfnb")
+
+[node name="Tree10" type="Sprite2D" parent="Assets" unique_id=146723320]
+position = Vector2(1611, 606)
+texture = ExtResource("8_gxfnb")

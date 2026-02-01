@@ -84,6 +84,20 @@ const FOX_ROOM_PATHS = [
 	"res://scenes/rooms/types/fox/fox.tscn"
 ]
 
+# After stage 7, it becomes wasteland
+const CROSSROADS_ROOM_PATH_WASTELANDS = [
+	"res://scenes/rooms/types/crossroads/crossroads_wasteland_1.tscn",
+	"res://scenes/rooms/types/crossroads/crossroads_wastelands_2.tscn"
+]
+
+const COMBAT_ROOM_PATH_WASTELANDS = [
+	"res://scenes/rooms/types/combat/combat_room_wasteland.tscn"
+]
+
+const PEACEFUL_ROOM_WASTELANDS = [
+	"res://scenes/rooms/types/neutral/peaceful_wastelands1.tscn"
+]
+
 func _ready() -> void:
 	seed(12345)
 
@@ -100,10 +114,24 @@ func generate_next_rooms() -> Dictionary:
 	var next_room_type : room_types = stage_types[current_stage]
 	var num_that_type : int
 	var rand_idx : int
+	var en = room_types
+	
+	if current_stage >= 7:
+		# enable wastelands
+		if next_room_type == MapGeneration.room_types.COMBAT_ROOM:
+			num_that_type = COMBAT_ROOM_PATH_WASTELANDS.size()
+			rand_idx = randi() % num_that_type
+			out.path = COMBAT_ROOM_PATH_WASTELANDS[rand_idx]
+			out.type = en.COMBAT_ROOM
+		elif next_room_type == MapGeneration.room_types.FOX_ROOM:
+			out.path = FOX_ROOM_PATHS[0]
+			out.type = en.FOX_ROOM
+		elif next_room_type == MapGeneration.room_types.PEACEFUL_ROOM:
+			out.path = PEACEFUL_ROOM_WASTELANDS[0]
+			out.type = en.PEACEFUL_ROOM
 	
 	# Match next room type and get the proper resource for it
-	var en = room_types
-	if next_room_type == en.PEACEFUL_ROOM:
+	elif next_room_type == en.PEACEFUL_ROOM:
 		num_that_type = PEACEFUL_ROOM_PATHS.size()
 		rand_idx = randi() % num_that_type
 		out.path = PEACEFUL_ROOM_PATHS[rand_idx]
