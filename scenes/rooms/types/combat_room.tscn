@@ -23,12 +23,14 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="Control" unique_id=42064468]
 layout_mode = 0
 offset_right = 1173.0
 offset_bottom = 670.0
 color = Color(0.3911897, 0.52641046, 0.83843714, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="Control" unique_id=1796792444]
 layout_mode = 0
@@ -37,6 +39,7 @@ offset_top = 317.0
 offset_right = 675.0
 offset_bottom = 340.0
 text = "Combat Room"
+metadata/_edit_use_anchors_ = true
 
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=1878610551]
 
