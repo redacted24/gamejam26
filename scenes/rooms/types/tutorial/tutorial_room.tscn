@@ -10,8 +10,7 @@
 
 [node name="tutorial" type="Node2D" unique_id=1338668542 node_paths=PackedStringArray("player")]
 script = ExtResource("1_gmlso")
-room_type = 2
-hunger_cost = 20
+room_type = 3
 player = NodePath("Player")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=358604943]
