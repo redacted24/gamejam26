@@ -27,6 +27,7 @@ var stage_types = [
 	room_types.COMBAT_ROOM,
 	room_types.PEACEFUL_ROOM,
 	room_types.CROSSROADS_ROOM,
+	room_types.CUTSCENE_ROOM,
 	room_types.SHOP_ROOM,
 	room_types.COMBAT_ROOM,
 	room_types.FOX_ROOM,
@@ -51,7 +52,8 @@ const COMBAT_ROOM_PATHS = [
 ]
 
 const CUTSCENE_ROOM_PATHS = [
-	"res://scenes/rooms/types/cutscene_1.tscn"
+	"res://scenes/rooms/types/cutscene_1.tscn",
+	"res://scenes/rooms/types/cutsce"
 ]
 # All variation of peaceful rooms
 const PEACEFUL_ROOM_PATHS = [
