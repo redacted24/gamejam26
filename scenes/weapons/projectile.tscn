@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cjjyltbcau0nx"]
 
 [ext_resource type="Script" uid="uid://b4w1khvta6nko" path="res://scripts/projectile/projectile.gd" id="1_proj"]
-[ext_resource type="Texture2D" uid="uid://d1mj8sf1yyw0g" path="res://assets/weapons/arrow.png" id="2_qp4n5"]
+[ext_resource type="Texture2D" uid="uid://oesi2chs2kg0" path="res://assets/weapons/new_arrow.png" id="2_qp4n5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qp4n5"]
 size = Vector2(47, 13)
@@ -17,5 +17,6 @@ position = Vector2(-1.5, -2.5)
 shape = SubResource("RectangleShape2D_qp4n5")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1555530115]
-scale = Vector2(4.46, 4.46)
+position = Vector2(-1, 2.9999847)
+scale = Vector2(0.8393751, 1.7768749)
 texture = ExtResource("2_qp4n5")

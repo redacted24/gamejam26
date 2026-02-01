@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qghna4cjpf6s"
-path="res://.godot/imported/bow002.png-019844273c1503f55cbeb9cfb2681b2a.ctex"
+uid="uid://dibt3mi3mfal5"
+path="res://.godot/imported/diagonalgrass.png-380e2ecd1ae6ebe3dda39d4a90fcc19f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/weapons/bow002.png"
-dest_files=["res://.godot/imported/bow002.png-019844273c1503f55cbeb9cfb2681b2a.ctex"]
+source_file="res://assets/environment/tilesets/world1/diagonalgrass.png"
+dest_files=["res://.godot/imported/diagonalgrass.png-380e2ecd1ae6ebe3dda39d4a90fcc19f.ctex"]
 
 [params]
 

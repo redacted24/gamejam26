@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://bdhhbro1o5gc2"]
 
-[ext_resource type="Texture2D" uid="uid://d1mj8sf1yyw0g" path="res://assets/weapons/arrow.png" id="1_om7dp"]
-[ext_resource type="Script" uid="uid://88a2qi43gqhe" path="res://scripts/weapons/bow_normal_arrow.gd" id="1_yjigm"]
+[ext_resource type="Script" path="C:/Users/lelod/godot/gamejam26/assets/weapons/new_arrow.png" id="1_yjigm"]
+[ext_resource type="Texture2D" uid="uid://oesi2chs2kg0" path="res://assets/weapons/new_arrow.png" id="2_yjigm"]
 
 [node name="BowNormalArrow" type="Node2D" unique_id=400284568]
 script = ExtResource("1_yjigm")
 
 [node name="Arrow" type="Sprite2D" parent="." unique_id=1366508806]
-position = Vector2(-1, 0)
-texture = ExtResource("1_om7dp")
+scale = Vector2(0.625, 1)
+texture = ExtResource("2_yjigm")
+region_enabled = true
+region_rect = Rect2(0, 20, 64, 15.199997)
