@@ -2,12 +2,14 @@ extends Room
 
 @export_file_path var resource_path : String
 @onready var door_collision : CollisionShape2D = $Doors/HorizontalDoor/CollisionShape2D
+@onready var door : Area2D = $Doors/HorizontalDoor
 
 # Hard-coded cutscene
 
 func _ready() -> void:
 	# Hide doors because it is currently directly on the player. Only unhide collision at the end of cutscene
 	door_collision.set_deferred("disabled", true)
+	door.hide()
 	# Signals handling (emitting and connecting)
 	EventBus.cutscene_enter.emit()
 	DialogueManager.dialogue_ended.connect(_on_dialogue_end)

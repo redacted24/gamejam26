@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b45nadgppgcqm" path="res://scripts/ui/main_user_interface.gd" id="1_fl0ln"]
 [ext_resource type="Texture2D" uid="uid://cwkixp17jbwx3" path="res://assets/ui/heart.png" id="2_vec8q"]
+[ext_resource type="Texture2D" uid="uid://gsfv3h8ne6le" path="res://assets/items/meat.png" id="3_70a6y"]
 
 [node name="UserInterface" type="CanvasLayer" unique_id=71292675 node_paths=PackedStringArray("control_node", "hunger_label", "hitpoints_label", "hunger_bar")]
 script = ExtResource("1_fl0ln")
@@ -83,3 +84,8 @@ offset_top = 46.0
 offset_right = 278.0
 offset_bottom = 69.0
 color = Color(0.19607843, 0.19607843, 0.19607843, 1)
+
+[node name="Meat" type="Sprite2D" parent="Control" unique_id=897266862]
+position = Vector2(24, 58)
+scale = Vector2(0.46875, 0.46875)
+texture = ExtResource("3_70a6y")

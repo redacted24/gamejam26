@@ -111,6 +111,7 @@ locale/translations_pot_files=PackedStringArray("res://dialogues/1_post_monster_
 2d_physics/layer_5="enemy_projectiles"
 2d_physics/layer_6="pickups"
 2d_physics/layer_7="doors"
+2d_physics/layer_8="interactables"
 2d_physics/layer_9="flying"
 
 [physics]
