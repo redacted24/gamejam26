@@ -9,11 +9,11 @@ const COMBAT_ROOM_PATHS = [
 
 const PEACEFUL_ROOM_PATHS = [
 	"res://scenes/rooms/types/neutral/neutral_room_1.tscn",
-	"res://scenes/rooms/types/crossroads/crossroads_2.tscn"
 ]
 
 const CROSSROADS_ROOM_PATHS = [
-	""
+	"res://scenes/rooms/types/crossroads/crossroads_1.tscn",
+	"res://scenes/rooms/types/crossroads/crossroads_2.tscn",
 ]
 
 var room_spawn_limit = {
