@@ -12,8 +12,9 @@ func _ready() -> void:
 	control_node.hide()
 	update_hunger_label()
 	update_hitpoints_label()
-	EventBus.player_hunger_reduced.connect(_on_player_hunger_reduced)
-	EventBus.player_damaged.connect(_on_player_damaged)
+	
+	# Signals
+	EventBus.refresh_ui.connect(_on_ui_refresh)
 	EventBus.game_started.connect(_on_game_started)
 	
 func _on_game_started() -> void:
@@ -22,17 +23,16 @@ func _on_game_started() -> void:
 	
 # Fetches the player data for hunger and max hunger from PlayerData and updates label
 func update_hunger_label() -> void:
-	hunger_label.text = "Hunger: %d / %d" % [PlayerData.hunger, PlayerData.max_hunger]
+	hunger_label.text = "%d / %d" % [PlayerData.hunger, PlayerData.max_hunger]
 	
-func _on_player_hunger_reduced(amount : int) -> void:
-	call_deferred("update_hunger_label")
-
 # Fetches the player data for hitpoints and max hitpoints from PlayerData and updates data
 func update_hitpoints_label() -> void:
-	hitpoints_label.text = "HP: %d / %d" % [PlayerData.hitpoints, PlayerData.max_hitpoints]
-	
-func _on_player_damaged(amount : int) -> void:
-	call_deferred("update_hitpoints_label")
+	hitpoints_label.text = "%d / %d" % [PlayerData.hitpoints, PlayerData.max_hitpoints]
+
+# Called when a signal to refresh ui is made
+func _on_ui_refresh() -> void:
+	update_hunger_label()
+	update_hitpoints_label()
 	
 func process() -> void:
 	pass

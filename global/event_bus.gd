@@ -7,6 +7,7 @@ signal player_healed(peer_id: int, current_hp: int, max_hp: int)
 signal player_died(peer_id: int)
 signal player_stats_changed(peer_id: int, stats: Dictionary)
 signal player_entered_door(direction: Vector2i)
+signal refresh_ui
 
 # Enemy signals
 signal enemy_died(pos: Vector2)

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dokf6rq5p35ck"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+
+[node name="Main" type="Node2D" unique_id=1910872806]
+script = ExtResource("1_main")
+
+[node name="RoomContainer" type="Node2D" parent="." unique_id=1268552005]

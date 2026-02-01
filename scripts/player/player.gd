@@ -10,15 +10,12 @@ const WEAPON_SCENES := {
 
 @onready var health_component: HealthComponent = $HealthComponent
 
-const HUNGER_MAX := 200
-
 var peer_id: int = 1  # Multiplayer peer id owning this player
 var aim_direction: Vector2 = Vector2.RIGHT  # Synced for remote players
 
 var stats := {
 	speed = 200.0,
 	damage = 1,
-	hunger = HUNGER_MAX / 2,
 }
 
 var current_weapon: WeaponBase
@@ -27,25 +24,21 @@ var invincible: bool = false
 var last_hit_position: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
-	if PlayerData:
-		stats.hunger = PlayerData.hunger
 	if NavManager:
 		NavManager.player_spawn.connect(_on_spawn)
 	EventBus.player_hunger_reduced.connect(_hunger_reduce)
-	if health_component:
-		health_component.died.connect(_on_died)
+	#if health_component:
+		#health_component.died.connect(_on_died)
 	_equip_weapon(weapon_type)
 	if CosmeticsData:
 		$AnimatedSprite2D.modulate = CosmeticsData.selected_color
 
-func _exit_tree() -> void:
-	if PlayerData:
-		PlayerData.hunger = stats.hunger
-
 func _hunger_reduce(amount: int) -> void:
-	stats.hunger -= amount
-	if stats.hunger <= 0:
-		_on_died()
+	PlayerData.hunger -= amount
+	print("hunger amount is onw %d" % PlayerData.hunger)
+	EventBus.refresh_ui.emit()
+	if PlayerData.hunger <= 0:
+		EventBus.player_died.emit()
 
 func _on_spawn(spawn_location: Vector2) -> void:
 	if NetworkManager.is_online():

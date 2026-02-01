@@ -5,8 +5,8 @@
 [node name="UserInterface" type="CanvasLayer" unique_id=71292675 node_paths=PackedStringArray("control_node", "hunger_label", "hitpoints_label")]
 script = ExtResource("1_fl0ln")
 control_node = NodePath("Control")
-hunger_label = NodePath("Control/hunger_label")
-hitpoints_label = NodePath("Control/hitpoints_label")
+hunger_label = NodePath("Control/Hunger/hunger_label")
+hitpoints_label = NodePath("Control/HP/hitpoints_label")
 
 [node name="Control" type="Control" parent="." unique_id=1265062161]
 z_index = 50
@@ -15,18 +15,78 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="hunger_label" type="Label" parent="Control" unique_id=1750282769]
-layout_mode = 0
-offset_left = 25.0
-offset_top = 51.0
-offset_right = 106.0
-offset_bottom = 77.0
-text = "Hunger: "
+[node name="HP" type="Control" parent="Control" unique_id=78051013]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="hitpoints_label" type="Label" parent="Control" unique_id=586434887]
+[node name="hitpoints_word" type="Label" parent="Control/HP" unique_id=586434887]
 layout_mode = 0
-offset_left = 25.0
-offset_top = 21.0
-offset_right = 65.0
-offset_bottom = 44.0
+offset_left = 12.0
+offset_top = 9.0
+offset_right = 42.0
+offset_bottom = 32.0
 text = "HP:"
+
+[node name="HPBar" type="ColorRect" parent="Control/HP" unique_id=301934289]
+z_index = -1
+layout_mode = 0
+offset_left = 44.0
+offset_top = 10.0
+offset_right = 278.0
+offset_bottom = 33.0
+color = Color(0.6313241, 0.15423745, 0.22009265, 1)
+
+[node name="FullBar" type="ColorRect" parent="Control/HP" unique_id=245149886]
+z_index = -2
+layout_mode = 0
+offset_left = 44.0
+offset_top = 10.0
+offset_right = 278.0
+offset_bottom = 33.0
+
+[node name="hitpoints_label" type="Label" parent="Control/HP" unique_id=1826761656]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 9.0
+offset_right = 179.0
+offset_bottom = 32.0
+text = "10/10"
+
+[node name="Hunger" type="Control" parent="Control" unique_id=503246176]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="hunger_word" type="Label" parent="Control/Hunger" unique_id=1750282769]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 44.0
+offset_right = 93.0
+offset_bottom = 70.0
+text = "Hu:"
+
+[node name="hunger_label" type="Label" parent="Control/Hunger" unique_id=1608689834]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 46.0
+offset_right = 190.0
+offset_bottom = 69.0
+text = "150/150"
+
+[node name="HPBar" type="ColorRect" parent="Control/Hunger" unique_id=763245727]
+z_index = -1
+layout_mode = 0
+offset_left = 44.0
+offset_top = 46.0
+offset_right = 278.0
+offset_bottom = 69.0
+color = Color(0.6313241, 0.15423745, 0.22009265, 1)
+
+[node name="FullBar" type="ColorRect" parent="Control/Hunger" unique_id=324080805]
+z_index = -2
+layout_mode = 0
+offset_left = 44.0
+offset_top = 46.0
+offset_right = 278.0
+offset_bottom = 69.0
