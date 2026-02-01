@@ -34,19 +34,15 @@ func _process(delta: float) -> void:
 		# maybe load an error dialogue if nothing is found
 		var resource : DialogueResource = load(dialogue_path)
 		show_example_dialogue_baloon(resource, "start", [])
-	pass
 
 # On player character body entered
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		valid_interact = true
 		interact_text.show()
-	pass # Replace with function body.
 
 # On player character body exit
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		valid_interact = false
 		interact_text.hide()
-		
-	pass # Replace with function body.

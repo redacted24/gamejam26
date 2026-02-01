@@ -3,9 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://wmffeydq5x56" path="res://scenes/spawn_point.tscn" id="1_e7mpr"]
 [ext_resource type="PackedScene" uid="uid://d137sgviyscfm" path="res://scenes/player.tscn" id="2_eejpr"]
 
+[sub_resource type="TileSet" id="TileSet_eejpr"]
+tile_size = Vector2i(64, 64)
+
 [node name="combat_room_1" type="Node2D" unique_id=1338668542]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=358604943]
+tile_set = SubResource("TileSet_eejpr")
 
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=1822267601]
 

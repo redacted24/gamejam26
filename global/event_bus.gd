@@ -2,7 +2,7 @@ extends Node
 
 # Player signals (peer_id identifies which player in multiplayer)
 signal player_hunger_reduced(amount: int)
-signal player_damaged(peer_id: int, current_hp: int, max_hp: int)
+signal player_damaged(amout: int)
 signal player_healed(peer_id: int, current_hp: int, max_hp: int)
 signal player_died(peer_id: int)
 signal player_stats_changed(peer_id: int, stats: Dictionary)
