@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://clm5468xbml56" path="res://assets/backgrounds/storybackground.jpg" id="5_vydcr"]
 
 [node name="cutscene2" type="Node2D" unique_id=778351197 node_paths=PackedStringArray("player")]
+position = Vector2(397, 231)
 script = ExtResource("1_cr82i")
 resource_path = "res://dialogues/0_cutscene_monologue.dialogue"
 room_type = 8

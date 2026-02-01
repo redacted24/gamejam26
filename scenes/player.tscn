@@ -126,6 +126,10 @@ shape = SubResource("CircleShape2D_oprun")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=768018205]
 zoom = Vector2(0.585, 0.585)
+limit_left = 4
+limit_top = 1
+limit_right = 5017
+limit_bottom = 3009
 
 [node name="StateMachine" type="Node" parent="." unique_id=2002574735 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("18_fulsm")
