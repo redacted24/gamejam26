@@ -1,12 +1,58 @@
-[gd_scene format=3 uid="uid://dqb5t4dg5mub4"]
+[gd_scene format=4 uid="uid://dqb5t4dg5mub4"]
 
 [ext_resource type="Script" uid="uid://brtkbla55kkox" path="res://scripts/room/room.gd" id="1_to4io"]
 [ext_resource type="PackedScene" uid="uid://wmffeydq5x56" path="res://scenes/spawn_point.tscn" id="2_grm46"]
+[ext_resource type="Texture2D" uid="uid://yrrtvh7ouhxc" path="res://assets/environment/tilesets/world1/main.png" id="2_w3180"]
 [ext_resource type="PackedScene" uid="uid://d137sgviyscfm" path="res://scenes/player.tscn" id="3_w3180"]
 [ext_resource type="PackedScene" uid="uid://baaun8u3q5t8j" path="res://scenes/rooms/horizontal_door.tscn" id="4_grm46"]
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w3180"]
+texture = ExtResource("2_w3180")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/next_alternative_id = 4
+2:0/0 = 0
+2:0/1 = 1
+2:0/1/flip_h = true
+2:0/2 = 2
+2:0/2/transpose = true
+2:0/3 = 3
+2:0/3/flip_v = true
+2:0/3/transpose = true
+3:0/0 = 0
+4:0/0 = 0
+5:0/next_alternative_id = 2
+5:0/0 = 0
+5:0/1 = 1
+5:0/1/flip_v = true
+5:0/1/transpose = true
+6:0/next_alternative_id = 2
+6:0/0 = 0
+6:0/1 = 1
+6:0/1/flip_h = true
+6:0/1/flip_v = true
+7:0/0 = 0
+7:1/0 = 0
+8:0/0 = 0
+8:1/0 = 0
+9:0/0 = 0
+9:1/0 = 0
+9:2/0 = 0
+10:0/0 = 0
+10:1/0 = 0
+10:2/0 = 0
+11:0/0 = 0
+11:1/0 = 0
+11:2/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_eejpr"]
 tile_size = Vector2i(64, 64)
+sources/21 = SubResource("TileSetAtlasSource_w3180")
+tile_proxies/coords_level = [[8, Vector2i(0, 0)], [16, Vector2i(0, 0)], [9, Vector2i(0, 0)], [16, Vector2i(1, 0)], [10, Vector2i(0, 0)], [16, Vector2i(2, 0)], [12, Vector2i(0, 0)], [16, Vector2i(3, 0)], [13, Vector2i(0, 0)], [16, Vector2i(4, 0)], [14, Vector2i(0, 0)], [16, Vector2i(5, 0)], [15, Vector2i(0, 0)], [16, Vector2i(6, 0)], [16, Vector2i(0, 0)], [21, Vector2i(0, 0)], [16, Vector2i(1, 0)], [21, Vector2i(1, 0)], [16, Vector2i(2, 0)], [21, Vector2i(2, 0)], [16, Vector2i(3, 0)], [21, Vector2i(3, 0)], [16, Vector2i(4, 0)], [21, Vector2i(4, 0)], [16, Vector2i(5, 0)], [21, Vector2i(5, 0)], [16, Vector2i(6, 0)], [21, Vector2i(6, 0)], [17, Vector2i(0, 0)], [21, Vector2i(7, 0)], [17, Vector2i(0, 1)], [21, Vector2i(7, 1)], [17, Vector2i(1, 0)], [21, Vector2i(8, 0)], [17, Vector2i(1, 1)], [21, Vector2i(8, 1)], [18, Vector2i(0, 0)], [21, Vector2i(9, 0)], [18, Vector2i(0, 1)], [21, Vector2i(9, 1)], [18, Vector2i(0, 2)], [21, Vector2i(9, 2)], [18, Vector2i(1, 0)], [21, Vector2i(10, 0)], [18, Vector2i(1, 1)], [21, Vector2i(10, 1)], [18, Vector2i(1, 2)], [21, Vector2i(10, 2)], [18, Vector2i(2, 0)], [21, Vector2i(11, 0)], [18, Vector2i(2, 1)], [21, Vector2i(11, 1)], [18, Vector2i(2, 2)], [21, Vector2i(11, 2)], [19, Vector2i(0, 0)], [21, Vector2i(12, 0)], [19, Vector2i(1, 0)], [21, Vector2i(13, 0)], [20, Vector2i(0, 0)], [21, Vector2i(14, 0)]]
 
 [node name="crossroads_1" type="Node2D" unique_id=1338668542 node_paths=PackedStringArray("player")]
 script = ExtResource("1_to4io")
@@ -14,12 +60,14 @@ room_type = 2
 player = NodePath("Player")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=358604943]
+position = Vector2(-283, 269)
+tile_map_data = PackedByteArray("AAADAAoAFQAHAAAAAAACAAkAFQAAAAAAAAABAAkAFQAAAAAAAAAAAAkAFQABAAAAAAD//wkAFQAAAAAAAAD//wgAFQABAAAAAAD//woAFQAAAAAAAAD+/woAFQAAAAAAAAAAAAoAFQAAAAAAAAABAAoAFQABAAAAAAACAAoAFQAAAAAAAAACAAgAFQABAAAAAAACAAcAFQABAAAAAAABAAcAFQAAAAAAAAAAAAcAFQABAAAAAAAAAAYAFQAAAAAAAAD//wYAFQABAAAAAAD//wcAFQABAAAAAAD+/wcAFQABAAAAAAD+/wgAFQAAAAAAAAD+/wkAFQABAAAAAAAEAAYAFQADAAAAAAADAAYAFQADAAAAAAADAAUAFQADAAAAAAACAAUAFQADAAAAAAAFAAYAFQALAAEAAAAEAAcAFQACAAAAAwADAAcAFQACAAAAAwACAAYAFQAOAAAAAAABAAUAFQAFAAAAAAABAAQAFQAGAAAAAAAAAAQAFQAFAAAAAAD//wQAFQAEAAAAAAAFAAcAFQAHAAEAAAAEAAgAFQAHAAAAAAADAAgAFQABAAAAAAADAAkAFQABAAAAAAABAAgAFQABAAAAAAAAAAgAFQABAAAAAAABAAYAFQABAAAAAAAAAAUAFQACAAAAAwD//wUAFQACAAAAAwD+/wUAFQABAAAAAAD+/wYAFQABAAAAAAD+/wQAFQACAAAAAAD+/wMAFQABAAAAAAD+/wIAFQABAAAAAAD+/wEAFQABAAAAAAD//wEAFQABAAAAAAAAAAEAFQABAAAAAAABAAEAFQABAAAAAAACAAEAFQABAAAAAAADAAEAFQABAAAAAAAFAAEAFQABAAAAAAAGAAEAFQABAAAAAAAGAAIAFQABAAAAAAAHAAIAFQABAAAAAAAIAAIAFQABAAAAAAAJAAIAFQABAAAAAAAJAAMAFQABAAAAAAAFAAMAFQALAAEAAAAEAAMAFQABAAAAAAADAAMAFQABAAAAAAACAAMAFQABAAAAAAABAAMAFQACAAAAAgAAAAMAFQACAAAAAgD//wMAFQACAAAAAgD//wIAFQABAAAAAAAAAAIAFQABAAAAAAABAAIAFQABAAAAAAACAAIAFQABAAAAAAADAAIAFQABAAAAAAAEAAIAFQAHAAEAAAAFAAIAFQALAAAAAAADAAQAFQABAAAAAAACAAQAFQABAAAAAAAEAAQAFQABAAAAAAAFAAQAFQALAAEAAAAKAAQAFQABAAAAAAALAAQAFQABAAAAAAAEAAUAFQABAAAAAAAFAAUAFQALAAEAAAAEAAoAFQALAAIAAAAEAAkAFQALAAEAAAAFAAgAFQAKAAIAAAAGAAgAFQALAAIAAAAGAAcAFQALAAAAAAAEAAEAFQALAAEAAAA=")
 tile_set = SubResource("TileSet_eejpr")
 
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=1822267601]
 
 [node name="Main" parent="SpawnPoints" unique_id=825871877 instance=ExtResource("2_grm46")]
-position = Vector2(588, 609)
+position = Vector2(89, 941)
 
 [node name="Player" parent="." unique_id=800656356 instance=ExtResource("3_w3180")]
 position = Vector2(558, 433)
