@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://baaun8u3q5t8j" path="res://scenes/rooms/horizontal_door.tscn" id="4_nj05e"]
 [ext_resource type="PackedScene" uid="uid://bb2x3hluhmwpv" path="res://scenes/enemies/rat_enemy.tscn" id="6_bvfjs"]
 [ext_resource type="Texture2D" uid="uid://c66e57qnulvri" path="res://assets/environment/tilesets/world1/umazing.png" id="7_nj05e"]
-
 [node name="tutorial" type="Node2D" unique_id=1338668542 node_paths=PackedStringArray("player")]
 script = ExtResource("1_gmlso")
 room_type = 2
