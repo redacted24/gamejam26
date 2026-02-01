@@ -1,0 +1,40 @@
+[gd_resource type="TileSet" format=3 uid="uid://cgxjmyvpe4vei"]
+
+[ext_resource type="Texture2D" uid="uid://bldwq2kx02i8o" path="res://assets/environment/tilesets/wastelands/mainassets.png" id="1_xr01i"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q6625"]
+texture = ExtResource("1_xr01i")
+texture_region_size = Vector2i(64, 64)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:1/next_alternative_id = 2
+0:1/0 = 0
+1:0/next_alternative_id = 2
+1:0/0 = 0
+1:1/next_alternative_id = 2
+1:1/0 = 0
+2:0/next_alternative_id = 2
+2:0/0 = 0
+2:0/1 = 1
+2:0/1/flip_h = true
+3:0/next_alternative_id = 2
+3:0/0 = 0
+3:0/1 = 1
+3:0/1/flip_h = true
+4:0/next_alternative_id = 2
+4:0/0 = 0
+4:0/1 = 1
+4:0/1/flip_h = true
+5:0/next_alternative_id = 2
+5:0/0 = 0
+5:0/1 = 1
+5:0/1/flip_h = true
+6:0/next_alternative_id = 2
+6:0/0 = 0
+6:0/1 = 1
+6:0/1/flip_h = true
+
+[resource]
+tile_size = Vector2i(64, 64)
+sources/12 = SubResource("TileSetAtlasSource_q6625")
+tile_proxies/coords_level = [[6, Vector2i(0, 0)], [12, Vector2i(0, 0)], [6, Vector2i(0, 1)], [12, Vector2i(0, 1)], [6, Vector2i(1, 0)], [12, Vector2i(1, 0)], [6, Vector2i(1, 1)], [12, Vector2i(1, 1)], [7, Vector2i(0, 0)], [12, Vector2i(2, 0)], [8, Vector2i(0, 0)], [12, Vector2i(3, 0)], [9, Vector2i(0, 0)], [12, Vector2i(4, 0)], [10, Vector2i(0, 0)], [12, Vector2i(5, 0)], [11, Vector2i(0, 0)], [12, Vector2i(6, 0)]]
