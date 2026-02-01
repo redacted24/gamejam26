@@ -27,5 +27,5 @@ position = Vector2(558, 433)
 [node name="Doors" type="Node2D" parent="." unique_id=1481334555]
 
 [node name="dialogue_interact_zone" parent="." unique_id=754355913 instance=ExtResource("5_2b171")]
-position = Vector2(564, 325)
+position = Vector2(565, 211)
 dialogue_path = "res://dialogues/2_house_monologue.dialogue"
