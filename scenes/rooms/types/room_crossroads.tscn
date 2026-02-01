@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://78cv40xchjsy" path="res://scenes/rooms/vertical_door.tscn" id="8_r16nb"]
 [ext_resource type="PackedScene" uid="uid://bb2x3hluhmwpv" path="res://scenes/enemies/rat_enemy.tscn" id="11_rat"]
 
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xwcdw"]
 texture = ExtResource("2_xykvi")
 texture_region_size = Vector2i(64, 64)

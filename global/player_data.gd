@@ -12,6 +12,17 @@ var pickups : int = 0
 
 var post_tutorial_shown : bool = false
 
+var upgrades: Dictionary = {}
+
+func grant_upgrade(upgrade_name: String) -> void:
+	upgrades[upgrade_name] = true
+
+func has_upgrade(upgrade_name: String) -> bool:
+	return upgrades.has(upgrade_name)
+
+func reset_upgrades() -> void:
+	upgrades.clear()
+
 # initialize all values for players
 func _ready() -> void:
 	# Signals
