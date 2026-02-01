@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://d30q18qg72ds6" path="res://scenes/enemy.tscn" id="4_5b6fp"]
 [ext_resource type="Texture2D" uid="uid://4avppwab8phv" path="res://assets/environment/room/crossroad_sign.png" id="5_e42aq"]
 [ext_resource type="PackedScene" uid="uid://wmffeydq5x56" path="res://scenes/spawn_point.tscn" id="6_pf6f5"]
-[ext_resource type="PackedScene" uid="uid://bb2x3hluhmwpv" path="res://scenes/enemies/rat_enemy.tscn" id="9_rat"]
 [ext_resource type="PackedScene" uid="uid://baaun8u3q5t8j" path="res://scenes/rooms/horizontal_door.tscn" id="7_xgpc4"]
 [ext_resource type="PackedScene" uid="uid://78cv40xchjsy" path="res://scenes/rooms/vertical_door.tscn" id="8_r16nb"]
+[ext_resource type="PackedScene" uid="uid://bb2x3hluhmwpv" path="res://scenes/enemies/rat_enemy.tscn" id="11_rat"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xwcdw"]
 texture = ExtResource("2_xykvi")
@@ -71,13 +71,13 @@ position = Vector2(321, 445)
 position = Vector2(643, 281)
 texture = ExtResource("5_e42aq")
 
-[node name="Rat1" parent="." instance=ExtResource("9_rat")]
+[node name="Rat1" parent="." instance=ExtResource("11_rat")]
 position = Vector2(300, 200)
 
-[node name="Rat2" parent="." instance=ExtResource("9_rat")]
+[node name="Rat2" parent="." instance=ExtResource("11_rat")]
 position = Vector2(800, 250)
 
-[node name="Rat3" parent="." instance=ExtResource("9_rat")]
+[node name="Rat3" parent="." instance=ExtResource("11_rat")]
 position = Vector2(500, 450)
 
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=1469006746]

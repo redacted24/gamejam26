@@ -1,22 +1,90 @@
 [gd_scene format=3 uid="uid://cyjgqooggrnws"]
 
 [ext_resource type="Script" uid="uid://brv5puc2b1td3" path="res://scripts/enemy/bat_enemy.gd" id="1_o8anq"]
-[ext_resource type="Texture2D" uid="uid://3iu02ej2oxhd" path="res://assets/enemy/other/bat.png" id="2_o8anq"]
-[ext_resource type="PackedScene" uid="uid://irjpkdyd2l5o" path="res://scenes/health_component.tscn" id="3_m0x8h"]
-[ext_resource type="Script" uid="uid://cg5qffp8akvjq" path="res://scripts/state_machine.gd" id="4_m5s8h"]
-[ext_resource type="Script" uid="uid://djyw8ol867kwv" path="res://scripts/enemy/states/bat_fly_state.gd" id="5_o8anq"]
-[ext_resource type="Script" uid="uid://bk4neubpa0t1v" path="res://scripts/enemy/states/enemy_dead_state.gd" id="6_mu8he"]
-[ext_resource type="Script" uid="uid://dxh4tm3yrxaxx" path="res://scripts/enemy/states/enemy_idle_state.gd" id="7_h8sw5"]
+[ext_resource type="Texture2D" uid="uid://dbphx1650pahm" path="res://assets/enemy/bat/Bat-2.png" id="3_bat2"]
+[ext_resource type="Texture2D" uid="uid://ciro7ktsvvvfj" path="res://assets/enemy/bat/Bat-3.png" id="4_bat3"]
+[ext_resource type="Texture2D" uid="uid://d4mpo0jumhx0j" path="res://assets/enemy/bat/Bat-4.png" id="5_bat4"]
+[ext_resource type="Texture2D" uid="uid://bnhphhxkd336u" path="res://assets/enemy/bat/Bat-5.png" id="6_bat5"]
+[ext_resource type="Texture2D" uid="uid://dtrpr01dgjubp" path="res://assets/enemy/bat/Bat-6.png" id="7_bat6"]
+[ext_resource type="Texture2D" uid="uid://dohoqjpo5kbin" path="res://assets/enemy/bat/Attackijg_bat-1.png" id="8_atk1"]
+[ext_resource type="Texture2D" uid="uid://uaq5lpi2s7ky" path="res://assets/enemy/bat/Attackijg_bat-2.png" id="9_atk2"]
+[ext_resource type="Texture2D" uid="uid://dlscihunwep7p" path="res://assets/enemy/bat/Attackijg_bat-3.png" id="10_atk3"]
+[ext_resource type="Texture2D" uid="uid://jvf0mtc3s2mb" path="res://assets/enemy/bat/Attackijg_bat-4.png" id="11_atk4"]
+[ext_resource type="Texture2D" uid="uid://dmk3ua5jnl1lr" path="res://assets/enemy/bat/Attackijg_bat-5.png" id="12_atk5"]
+[ext_resource type="Texture2D" uid="uid://egkkswr8dgd5" path="res://assets/enemy/bat/Attackijg_bat-6.png" id="13_atk6"]
+[ext_resource type="PackedScene" uid="uid://irjpkdyd2l5o" path="res://scenes/health_component.tscn" id="14_health"]
+[ext_resource type="Script" uid="uid://cg5qffp8akvjq" path="res://scripts/state_machine.gd" id="15_sm"]
+[ext_resource type="Script" uid="uid://djyw8ol867kwv" path="res://scripts/enemy/states/bat_fly_state.gd" id="16_fly"]
+[ext_resource type="Script" uid="uid://bk4neubpa0t1v" path="res://scripts/enemy/states/enemy_dead_state.gd" id="17_dead"]
+[ext_resource type="Script" uid="uid://dxh4tm3yrxaxx" path="res://scripts/enemy/states/enemy_idle_state.gd" id="18_idle"]
+[ext_resource type="AudioStream" uid="uid://bmvknted53qx8" path="res://assets/sounds/bat_echolocation.wav" id="19_echo"]
+[ext_resource type="AudioStream" uid="uid://cl4muh6mwd1f5" path="res://assets/sounds/bat_spin.wav" id="20_spin"]
+[ext_resource type="AudioStream" uid="uid://bvdrhgg53jcqt" path="res://assets/sounds/bat_death.wav" id="21_death"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_yfv5o"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_bat"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_o8anq")
+"texture": ExtResource("8_atk1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_atk2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_atk3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_atk4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_atk5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_atk6")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_bat2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bat3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bat4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_bat5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_bat6")
 }],
 "loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_bat2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bat3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bat4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_bat5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_bat6")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_teh6i"]
@@ -28,25 +96,40 @@ collision_mask = 258
 script = ExtResource("1_o8anq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1606955101]
-scale = Vector2(0.15, 0.15)
-sprite_frames = SubResource("SpriteFrames_yfv5o")
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_bat")
+animation = &"attack"
+autoplay = "fly"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2058187689]
-position = Vector2(-3.5, 7)
+position = Vector2(0, 7)
+scale = Vector2(1.78, 1.78)
 shape = SubResource("RectangleShape2D_teh6i")
 
-[node name="HealthComponent" parent="." unique_id=863237339 instance=ExtResource("3_m0x8h")]
+[node name="HealthComponent" parent="." unique_id=863237339 instance=ExtResource("14_health")]
+
+[node name="EcholocationSound" type="AudioStreamPlayer" parent="." unique_id=2083430723]
+stream = ExtResource("19_echo")
+volume_db = -10.0
+
+[node name="SpinSound" type="AudioStreamPlayer" parent="." unique_id=1768825487]
+stream = ExtResource("20_spin")
+volume_db = -10.0
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="." unique_id=1838776286]
+stream = ExtResource("21_death")
+volume_db = -10.0
 
 [node name="StateMachine" type="Node" parent="." unique_id=57823443 node_paths=PackedStringArray("initial_state")]
-script = ExtResource("4_m5s8h")
+script = ExtResource("15_sm")
 initial_state = NodePath("Fly")
 
 [node name="Fly" type="Node" parent="StateMachine" unique_id=844555683 node_paths=PackedStringArray("enemy")]
-script = ExtResource("5_o8anq")
+script = ExtResource("16_fly")
 enemy = NodePath("../..")
 
 [node name="Dead" type="Node" parent="StateMachine" unique_id=871552550]
-script = ExtResource("6_mu8he")
+script = ExtResource("17_dead")
 
 [node name="Idle" type="Node" parent="StateMachine" unique_id=269361344]
-script = ExtResource("7_h8sw5")
+script = ExtResource("18_idle")
