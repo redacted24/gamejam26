@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ct2lm8ehu1lvx" path="res://scripts/weapons/spear_weapon.gd" id="1_spear"]
 [ext_resource type="Texture2D" uid="uid://trno7aa24av3" path="res://assets/weapons/new_spear.png" id="2_sprite"]
+[ext_resource type="AudioStream" uid="uid://di7xupjttmumf" path="res://assets/sounds/spear stab.wav" id="3_sound"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hitbox"]
 size = Vector2(80, 20)
@@ -14,6 +15,10 @@ script = ExtResource("1_spear")
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1975133965]
 scale = Vector2(4.675, 4.675)
 texture = ExtResource("2_sprite")
+
+[node name="AttackSound" type="AudioStreamPlayer" parent="." unique_id=903795486]
+stream = ExtResource("3_sound")
+volume_db = -20.0
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=412837301]
 collision_layer = 8

@@ -39,6 +39,9 @@ func _perform_attack(_dir: Vector2) -> void:
 	if _is_attacking:
 		return
 	super._perform_attack(_dir)
+	var sound := get_node_or_null("AttackSound") as AudioStreamPlayer
+	if sound:
+		sound.play()
 	_hit_targets.clear()
 	_is_attacking = true
 	_is_first_swing = true

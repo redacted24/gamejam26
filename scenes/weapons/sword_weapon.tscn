@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d4bwi0bj387g" path="res://scripts/weapons/sword_weapon.gd" id="1_sword"]
 [ext_resource type="Texture2D" uid="uid://dix54yuf1jmpj" path="res://assets/weapons/new_sword.png" id="2_idle"]
+[ext_resource type="AudioStream" uid="uid://rc7pw6ty88f4" path="res://assets/sounds/sword-swipe.wav" id="3_sound"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_hitbox"]
 points = PackedVector2Array(0, -2, 20, -2, 20, 2, 0, 2)
@@ -16,6 +17,10 @@ texture = ExtResource("2_idle")
 [node name="SwingSprite" type="Sprite2D" parent="." unique_id=641632365]
 visible = false
 texture = ExtResource("2_idle")
+
+[node name="AttackSound" type="AudioStreamPlayer" parent="." unique_id=1206393021]
+stream = ExtResource("3_sound")
+volume_db = 24.0
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=787536047]
 collision_layer = 8

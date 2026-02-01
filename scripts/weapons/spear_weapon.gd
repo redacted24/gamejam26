@@ -32,6 +32,9 @@ func _process(_delta: float) -> void:
 
 func _perform_attack(_dir: Vector2) -> void:
 	super._perform_attack(_dir)
+	var sound := get_node_or_null("AttackSound") as AudioStreamPlayer
+	if sound:
+		sound.play()
 	if has_lunge and player:
 		var lunge_tween := create_tween()
 		lunge_tween.tween_property(player, "global_position", player.global_position + _dir * 60.0, attack_duration * 0.4).set_ease(Tween.EASE_OUT)

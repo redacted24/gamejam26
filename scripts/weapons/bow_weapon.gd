@@ -96,6 +96,10 @@ func _fire_charged_arrow() -> void:
 	if charge_time < min_charge_time:
 		return
 
+	var sound := get_node_or_null("AttackSound") as AudioStreamPlayer
+	if sound:
+		sound.play()
+
 	var charge_ratio := (charge_time - min_charge_time) / (max_charge_time - min_charge_time)
 	charge_ratio = clampf(charge_ratio, 0.0, 1.0)
 	var dir := _get_attack_direction()

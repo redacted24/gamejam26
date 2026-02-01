@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bgcgqqk5uwuab" path="res://assets/weapons/new_bow_2.png" id="4_a5qfp"]
 [ext_resource type="Texture2D" uid="uid://bkqo8q4kkdgqo" path="res://assets/weapons/new_bow_3.png" id="5_dddqp"]
 [ext_resource type="PackedScene" uid="uid://cjjyltbcau0nx" path="res://scenes/weapons/projectile.tscn" id="6_arrow"]
+[ext_resource type="AudioStream" path="res://assets/sounds/bow-shot.wav" id="7_sound"]
 [ext_resource type="Texture2D" uid="uid://rrr06mkj5nh1" path="res://assets/weapons/new_bow_4.png" id="6_r6vfh"]
 
 [node name="BowWeapon" type="Node2D" unique_id=595246194]
@@ -19,3 +20,6 @@ sprite_bow_drawn = ExtResource("6_r6vfh")
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1559690004]
 scale = Vector2(1.735, 1.735)
 texture = ExtResource("3_1ulqm")
+
+[node name="AttackSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_sound")
