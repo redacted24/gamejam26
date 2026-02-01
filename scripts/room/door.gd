@@ -22,11 +22,6 @@ func _on_body_entered(body: Node2D) -> void:
 	if NetworkManager.is_online() and not multiplayer.is_server():
 		return
 
-	# Block entry if player doesn't have enough hunger
-	var cost := _get_hunger_cost()
-	if PlayerData.hunger < cost:
-		return
-
 	# Sync transition to client in multiplayer
 	if NetworkManager.is_online():
 		_sync_door_transition.rpc(next_level.path, next_level.spawnpoint, int(next_level.type))

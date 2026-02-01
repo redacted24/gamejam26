@@ -43,7 +43,10 @@ func _hunger_reduce(amount: int) -> void:
 	print("hunger amount is onw %d" % PlayerData.hunger)
 	EventBus.refresh_ui.emit()
 	if PlayerData.hunger <= 0:
-		EventBus.player_died.emit()
+		PlayerData.hunger = 0
+		_do_death()
+		if NetworkManager.is_online():
+			_sync_death.rpc()
 
 func _on_spawn(spawn_location: Vector2) -> void:
 	if NetworkManager.is_online():

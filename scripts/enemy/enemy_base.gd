@@ -8,7 +8,7 @@ class_name EnemyBase
 @export_group("Drops")
 @export var drop_enabled: bool = true
 @export var drop_type: String = "food"
-@export var drop_value: float = 1.0
+@export var drop_value: float = 5.0
 @export var drop_texture: Texture2D = preload("res://assets/items/meat.png")
 @export var drop_scale: float = 0.45
 @export var drop_attract_radius: float = 80.0
