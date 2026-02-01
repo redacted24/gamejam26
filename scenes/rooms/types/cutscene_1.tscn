@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d137sgviyscfm" path="res://scenes/player.tscn" id="2_mwujn"]
 [ext_resource type="Resource" uid="uid://ds5jdd0bv2uuo" path="res://dialogues/2_house_monologue.dialogue" id="3_dialogue"]
 [ext_resource type="PackedScene" uid="uid://crnx52u1546uw" path="res://helpers/dialogue_interact_zone.tscn" id="5_2b171"]
+[ext_resource type="PackedScene" uid="uid://baaun8u3q5t8j" path="res://scenes/rooms/horizontal_door.tscn" id="5_12iua"]
 
 [sub_resource type="TileSet" id="TileSet_eejpr"]
 tile_size = Vector2i(64, 64)
@@ -25,6 +26,9 @@ position = Vector2(588, 609)
 position = Vector2(558, 433)
 
 [node name="Doors" type="Node2D" parent="." unique_id=1481334555]
+
+[node name="HorizontalDoor" parent="Doors" unique_id=589182169 instance=ExtResource("5_12iua")]
+position = Vector2(565, 56)
 
 [node name="dialogue_interact_zone" parent="." unique_id=754355913 instance=ExtResource("5_2b171")]
 position = Vector2(565, 211)
