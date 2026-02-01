@@ -102,7 +102,10 @@ func _update_highlight() -> void:
 
 func _on_start_button_pressed() -> void:
 	EventBus.game_started.emit()
-	SceneChanger.change_scene("res://scenes/rooms/types/cutscenes/cutscene2.tscn")
+	if SceneChanger:
+		SceneChanger.change_scene("res://scenes/rooms/types/cutscenes/cutscene2.tscn")
+	else:
+		get_tree().change_scene_to_file("res://scenes/rooms/types/cutscenes/cutscene2.tscn")
 
 func _on_back_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

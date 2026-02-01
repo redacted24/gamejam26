@@ -116,6 +116,7 @@ collision_layer = 2
 script = ExtResource("19_plr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1310342505]
+scale = Vector2(2.1, 2.1)
 sprite_frames = SubResource("SpriteFrames_3v2ag")
 animation = &"walk_up_right"
 
