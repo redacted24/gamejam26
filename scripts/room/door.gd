@@ -39,4 +39,6 @@ func _sync_door_transition(path: String, spawnpoint: String, type: int) -> void:
 		
 func _on_interactable_area_entered(body: Node2D) -> void:
 	ui_popup.show()
-	pass
+
+func _on_interactable_area_leave(body: Node2D) -> void:
+	ui_popup.hide()

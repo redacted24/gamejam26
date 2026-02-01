@@ -20,7 +20,6 @@ func _on_dialogue_start(resource : DialogueResource) -> void:
 	Transitioned.emit(self, "Immobile")
 	
 func _on_room_clear(next_level) -> void:
-	print("room clear enter immobile")
 	Transitioned.emit(self, "Immobile")
 	
 func _on_cutscene_enter() -> void:

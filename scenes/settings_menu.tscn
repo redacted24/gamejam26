@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/settings_menu.gd" id="1_settings"]
+[ext_resource type="AudioStream" path="res://assets/sounds/select-sfx.wav" id="2_select_snd"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -62,6 +63,9 @@ offset_top = 520.0
 offset_right = 311.0
 offset_bottom = 570.0
 text = "Back"
+
+[node name="SelectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_select_snd")
 
 [connection signal="value_changed" from="VolumeSlider" to="." method="_on_volume_slider_value_changed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

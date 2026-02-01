@@ -1,6 +1,7 @@
 extends Control
 
 @onready var hover_sound: AudioStreamPlayer = $HoverSound
+@onready var select_sound: AudioStreamPlayer = $SelectSound
 @onready var join_panel: VBoxContainer = $JoinPanel
 @onready var ip_input: LineEdit = $JoinPanel/IpInput
 @onready var status_label: Label = $StatusLabel
@@ -16,10 +17,12 @@ func _ready() -> void:
 	NetworkManager.server_started.connect(_on_server_started)
 
 func _on_play_button_pressed() -> void:
+	select_sound.play()
 	NetworkManager.close_connection()
 	get_tree().change_scene_to_file("res://scenes/weapon_select_menu.tscn")
 
 func _on_host_button_pressed() -> void:
+	select_sound.play()
 	var err := NetworkManager.host_game()
 	if err != OK:
 		status_label.text = "Failed to host (port in use?)"
@@ -30,9 +33,11 @@ func _on_host_button_pressed() -> void:
 	status_label.text = "Hosting... Waiting for player to join."
 
 func _on_join_button_pressed() -> void:
+	select_sound.play()
 	join_panel.visible = !join_panel.visible
 
 func _on_connect_button_pressed() -> void:
+	select_sound.play()
 	var ip := ip_input.text.strip_edges()
 	if ip.is_empty():
 		status_label.text = "Enter an IP address."
@@ -46,6 +51,7 @@ func _on_connect_button_pressed() -> void:
 	status_label.text = "Connecting to %s..." % ip
 
 func _on_start_button_pressed() -> void:
+	select_sound.play()
 	_start_game.rpc()
 
 @rpc("authority", "call_local", "reliable")
@@ -74,13 +80,16 @@ func _on_connection_failed() -> void:
 	join_button.disabled = false
 
 func _on_cosmetics_button_pressed() -> void:
+	select_sound.play()
 	get_tree().change_scene_to_file("res://scenes/cosmetics_menu.tscn")
 
 func _on_quit_button_pressed() -> void:
+	select_sound.play()
 	get_tree().quit()
 
 func _on_button_hover() -> void:
 	hover_sound.play()
 	
 func _on_settings_button_pressed() -> void:
+	select_sound.play()
 	get_tree().change_scene_to_file("res://scenes/settings_menu.tscn")

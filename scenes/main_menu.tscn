@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://fcd778prblbv" path="res://assets/menu/GAMEJAM2026_UI_quit.png" id="5_quit_btn"]
 [ext_resource type="AudioStream" uid="uid://du2civskk4c0v" path="res://assets/sounds/menu.wav" id="6_menu_music"]
 [ext_resource type="AudioStream" uid="uid://dnvmg433uud70" path="res://assets/sounds/menu select.wav" id="7_hover_snd"]
+[ext_resource type="AudioStream" path="res://assets/sounds/select-sfx.wav" id="8_select_snd"]
 
 [node name="MainMenu" type="Control" unique_id=842920870]
 layout_mode = 3
@@ -221,6 +222,9 @@ stretch_mode = 5
 
 [node name="HoverSound" type="AudioStreamPlayer" parent="." unique_id=202278131]
 stream = ExtResource("7_hover_snd")
+
+[node name="SelectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_select_snd")
 
 [connection signal="finished" from="MenuMusic" to="MenuMusic" method="play"]
 [connection signal="mouse_entered" from="PlayButton" to="." method="_on_button_hover"]

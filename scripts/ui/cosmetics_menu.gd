@@ -3,6 +3,7 @@ extends Control
 @onready var color_grid: GridContainer = $ColorGrid
 @onready var preview_sprite: TextureRect = $Preview
 @onready var selected_label: Label = $SelectedLabel
+@onready var select_sound: AudioStreamPlayer = $SelectSound
 
 func _ready() -> void:
 	_build_color_buttons()
@@ -47,6 +48,7 @@ func _build_color_buttons() -> void:
 		color_grid.add_child(btn)
 
 func _on_color_selected(color_name: String) -> void:
+	select_sound.play()
 	CosmeticsData.select_color(color_name)
 	_apply_preview(color_name)
 
@@ -56,4 +58,5 @@ func _apply_preview(color_name: String) -> void:
 	selected_label.text = "Selected: %s" % color_name
 
 func _on_back_button_pressed() -> void:
+	select_sound.play()
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
