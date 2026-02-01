@@ -44,14 +44,25 @@ cards_container_path = NodePath("../ShopCards")
 
 [node name="ShopCards" type="Node2D" parent="." unique_id=796819611]
 visible = false
-position = Vector2(7, -60)
+position = Vector2(-71, -35)
 
 [node name="Card1" type="Sprite2D" parent="ShopCards" unique_id=753232379]
 position = Vector2(148.8, 368.93)
 scale = Vector2(0.445, 0.445)
 texture = ExtResource("7_222ga")
+region_enabled = true
+region_rect = Rect2(588.77795, 131.28377, 877.2666, 1453.141)
 
-[node name="Card2" type="Sprite2D" parent="ShopCards" unique_id=2106652815]
+[node name="Card2" type="Sprite2D" parent="ShopCards" unique_id=1131992221]
+position = Vector2(647, 370)
+scale = Vector2(0.445, 0.445)
+texture = ExtResource("7_222ga")
+region_enabled = true
+region_rect = Rect2(551.104, 115.13777, 990.2887, 1517.725)
+
+[node name="Card3" type="Sprite2D" parent="ShopCards" unique_id=2106652815]
 position = Vector2(1150.0001, 376.00003)
 scale = Vector2(0.445, 0.445)
 texture = ExtResource("7_222ga")
+region_enabled = true
+region_rect = Rect2(534.958, 115.13777, 984.9066, 1506.9609)
