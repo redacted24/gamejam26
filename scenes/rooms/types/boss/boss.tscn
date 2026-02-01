@@ -22,7 +22,7 @@ tile_set = SubResource("TileSet_eejpr")
 position = Vector2(588, 609)
 
 [node name="Player" parent="." unique_id=800656356 instance=ExtResource("3_8mcru")]
-position = Vector2(558, 433)
+position = Vector2(1012, 600)
 
 [node name="Doors" type="Node2D" parent="." unique_id=1858633695]
 

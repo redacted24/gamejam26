@@ -20,12 +20,12 @@ tile_set = SubResource("TileSet_eejpr")
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=1822267601]
 
 [node name="Main" parent="SpawnPoints" unique_id=825871877 instance=ExtResource("1_tagny")]
-position = Vector2(588, 609)
+position = Vector2(1733, 1143)
 
 [node name="Player" parent="." unique_id=800656356 instance=ExtResource("2_3khwk")]
-position = Vector2(558, 433)
+position = Vector2(1043, 632)
 
 [node name="Doors" type="Node2D" parent="." unique_id=631697427]
 
 [node name="HorizontalDoor" parent="Doors" unique_id=589182169 instance=ExtResource("3_3khwk")]
-position = Vector2(576, 131)
+position = Vector2(180, 164)
