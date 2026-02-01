@@ -1,8 +1,11 @@
 extends State
 class_name PlayerImmobile
 
+@export var animation : AnimatedSprite2D
+
 func enter() -> void:
 	DialogueManager.dialogue_ended.connect(_on_dialogue_end)
+	animation.stop()
 	print("entered immobile state")
 	pass
 	
