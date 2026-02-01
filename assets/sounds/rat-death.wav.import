@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://djfimeeo8dx4w"
-path="res://.godot/imported/rat-1.wav-8c58148c5da96f4000c1136731751338.sample"
+path="res://.godot/imported/rat-death.wav-1a8011009e78f58641c88b863d349018.sample"
 
 [deps]
 
-source_file="res://assets/sounds/rat-1.wav"
-dest_files=["res://.godot/imported/rat-1.wav-8c58148c5da96f4000c1136731751338.sample"]
+source_file="res://assets/sounds/rat-death.wav"
+dest_files=["res://.godot/imported/rat-death.wav-1a8011009e78f58641c88b863d349018.sample"]
 
 [params]
 

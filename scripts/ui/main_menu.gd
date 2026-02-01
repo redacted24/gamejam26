@@ -1,5 +1,6 @@
 extends Control
 
+@onready var hover_sound: AudioStreamPlayer = $HoverSound
 @onready var join_panel: VBoxContainer = $JoinPanel
 @onready var ip_input: LineEdit = $JoinPanel/IpInput
 @onready var status_label: Label = $StatusLabel
@@ -78,6 +79,9 @@ func _on_cosmetics_button_pressed() -> void:
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
+
+func _on_button_hover() -> void:
+	hover_sound.play()
 
 func _on_settings_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/settings_menu.tscn")

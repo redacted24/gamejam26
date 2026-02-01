@@ -6,6 +6,8 @@ var hunger : int
 var max_hitpoints : int
 var hitpoints : int
 
+var kills : int
+
 # initialize all values for players
 func _ready() -> void:
 	max_hunger = 150

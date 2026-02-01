@@ -3,6 +3,7 @@ class_name RatEnemy
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var death_sound: AudioStreamPlayer = $DeathSound
 
 func _ready() -> void:
 	speed = 80.0
@@ -27,6 +28,21 @@ func _process(_delta: float) -> void:
 		animated_sprite.flip_v = not upside_down
 	else:
 		animated_sprite.flip_v = upside_down
+
+func _on_died() -> void:
+	velocity = Vector2.ZERO
+	collision_shape.set_deferred("disabled", true)
+	var sm := get_node_or_null("StateMachine")
+	if sm:
+		sm.process_mode = Node.PROCESS_MODE_DISABLED
+	animated_sprite.stop()
+	death_sound.play()
+	EventBus.enemy_died.emit(global_position)
+	if NetworkManager.is_online() and multiplayer.is_server():
+		_remote_die.rpc()
+	var tween := create_tween()
+	tween.tween_property(animated_sprite, "modulate:a", 0.0, 0.7)
+	tween.tween_callback(queue_free)
 
 func take_damage(amount: int, from_position: Vector2 = Vector2.ZERO) -> void:
 	_hurt = true

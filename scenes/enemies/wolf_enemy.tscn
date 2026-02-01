@@ -3,16 +3,50 @@
 [ext_resource type="Script" uid="uid://bh6vfd0ya02m3" path="res://scripts/enemy/wolf_enemy.gd" id="1_script"]
 [ext_resource type="Script" uid="uid://cg5qffp8akvjq" path="res://scripts/state_machine.gd" id="2_sm"]
 [ext_resource type="PackedScene" uid="uid://irjpkdyd2l5o" path="res://scenes/health_component.tscn" id="3_health"]
-[ext_resource type="Texture2D" uid="uid://bj4ekq75jjfaa" path="res://assets/enemy/other/white_rat.png" id="4_sprite"]
 [ext_resource type="Script" uid="uid://cxifiuuw8e2y5" path="res://scripts/enemy/states/wolf_flank_state.gd" id="5_state"]
 [ext_resource type="Script" uid="uid://bk4neubpa0t1v" path="res://scripts/enemy/states/enemy_dead_state.gd" id="6_dead"]
 [ext_resource type="Script" uid="uid://dxh4tm3yrxaxx" path="res://scripts/enemy/states/enemy_idle_state.gd" id="7_idle"]
+[ext_resource type="AudioStreamWAV" uid="uid://7co1llo3br0o" path="res://assets/sounds/wolf-death.wav" id="snd_death"]
+[ext_resource type="AudioStreamWAV" uid="uid://cig7qikj1yvkk" path="res://assets/sounds/wolf-attach.wav" id="snd_attack"]
+[ext_resource type="Texture2D" uid="uid://c5nxpc1l4v82j" path="res://assets/enemy/wolf/Wolf_left-1.png" id="tex_w1"]
+[ext_resource type="Texture2D" uid="uid://wbjn5ftcymse" path="res://assets/enemy/wolf/Wolf_left-2.png" id="tex_w2"]
+[ext_resource type="Texture2D" uid="uid://c6iv7vq37f4eu" path="res://assets/enemy/wolf/Wolf_left-3.png" id="tex_w3"]
+[ext_resource type="Texture2D" uid="uid://crs1uvseqfxxs" path="res://assets/enemy/wolf/Wolf_left-4.png" id="tex_w4"]
+[ext_resource type="Texture2D" uid="uid://dia6efiy3cnvr" path="res://assets/enemy/wolf/Wolf_left-5.png" id="tex_w5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_main"]
-animations = [{"frames": [{"duration": 1.0, "texture": ExtResource("4_sprite")}], "loop": true, "name": &"default", "speed": 5.0}]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_w1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_w1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_w2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_w3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_w4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_w5")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 8.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_main"]
-radius = 16.0
+radius = 28.0
 
 [node name="Wolf" type="CharacterBody2D"]
 collision_layer = 4
@@ -20,13 +54,20 @@ collision_mask = 6
 script = ExtResource("1_script")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.55, 0.55)
 sprite_frames = SubResource("SpriteFrames_main")
+animation = &"walk_left"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_main")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_health")]
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("snd_death")
+
+[node name="AttackSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("snd_attack")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_sm")
