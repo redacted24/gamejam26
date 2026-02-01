@@ -4,9 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://wmffeydq5x56" path="res://scenes/spawn_point.tscn" id="1_tagny"]
 [ext_resource type="PackedScene" uid="uid://d137sgviyscfm" path="res://scenes/player.tscn" id="2_3khwk"]
 [ext_resource type="PackedScene" uid="uid://baaun8u3q5t8j" path="res://scenes/rooms/horizontal_door.tscn" id="3_3khwk"]
-
-[sub_resource type="TileSet" id="TileSet_eejpr"]
-tile_size = Vector2i(64, 64)
+[ext_resource type="TileSet" uid="uid://b7coukee6k3wp" path="res://resources/tileset_world1.0.tres" id="4_tileset"]
 
 [node name="neutral_room_1" type="Node2D" unique_id=1338668542 node_paths=PackedStringArray("player")]
 script = ExtResource("1_hb1ja")
@@ -14,7 +12,7 @@ room_type = 1
 player = NodePath("Player")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=358604943]
-tile_set = SubResource("TileSet_eejpr")
+tile_set = ExtResource("4_tileset")
 
 [node name="SpawnPoints" type="Node2D" parent="." unique_id=1822267601]
 

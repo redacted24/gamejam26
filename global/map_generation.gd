@@ -27,8 +27,9 @@ var stage_types = [
 	room_types.COMBAT_ROOM,
 	room_types.PEACEFUL_ROOM,
 	room_types.CROSSROADS_ROOM,
-	room_types.CUTSCENE_ROOM,
+	room_types.CROSSROADS_ROOM,
 	room_types.SHOP_ROOM,
+	room_types.CUTSCENE_ROOM,
 	room_types.COMBAT_ROOM,
 	room_types.FOX_ROOM,
 	room_types.CROSSROADS_ROOM,
@@ -53,7 +54,7 @@ const COMBAT_ROOM_PATHS = [
 
 const CUTSCENE_ROOM_PATHS = [
 	"res://scenes/rooms/types/cutscene_1.tscn",
-	"res://scenes/rooms/types/cutscene_3.tscn"
+	"res://scenes/rooms/types/cutscenes/cutscene_3.tscn"
 ]
 # All variation of peaceful rooms
 const PEACEFUL_ROOM_PATHS = [
@@ -68,7 +69,7 @@ const CROSSROADS_ROOM_PATHS = [
 
 # All variations of shop rooms
 const SHOP_ROOM_PATHS = [
-	"res://scenes/rooms/types/shop/shop.tscn"
+	"res://scenes/rooms/types/shop/shop_1.tscn"
 ]
 
 # All variations of boss rooms
@@ -118,7 +119,7 @@ func generate_next_rooms() -> Dictionary:
 	var rand_idx : int
 	var en = room_types
 	
-	if current_stage >= 9:
+	if current_stage >= 10:
 		# enable wastelands
 		if next_room_type == MapGeneration.room_types.COMBAT_ROOM:
 			num_that_type = COMBAT_ROOM_PATH_WASTELANDS.size()
@@ -131,7 +132,21 @@ func generate_next_rooms() -> Dictionary:
 		elif next_room_type == MapGeneration.room_types.PEACEFUL_ROOM:
 			out.path = PEACEFUL_ROOM_WASTELANDS[0]
 			out.type = en.PEACEFUL_ROOM
-	
+		elif next_room_type == MapGeneration.room_types.CROSSROADS_ROOM:
+			num_that_type = CROSSROADS_ROOM_PATH_WASTELANDS.size()
+			rand_idx = randi() % num_that_type
+			out.path = CROSSROADS_ROOM_PATH_WASTELANDS[rand_idx]
+			out.type = en.CROSSROADS_ROOM
+		elif next_room_type == MapGeneration.room_types.SHOP_ROOM:
+			out.path = SHOP_ROOM_PATHS[0]
+			out.type = en.SHOP_ROOM
+		elif next_room_type == MapGeneration.room_types.BOSS_ROOM:
+			out.path = BOSS_ROOM_PATHS[0]
+			out.type = en.BOSS_ROOM
+		elif next_room_type == MapGeneration.room_types.END_ROOM:
+			out.path = END_ROOM_PATHS[0]
+			out.type = en.END_ROOM
+
 	# Match next room type and get the proper resource for it
 	elif next_room_type == en.PEACEFUL_ROOM:
 		num_that_type = PEACEFUL_ROOM_PATHS.size()

@@ -5,6 +5,7 @@
 [ext_resource type="TileSet" uid="uid://bmvtpi81nq7ka" path="res://resources/wasteland.tres" id="2_dcvnj"]
 [ext_resource type="PackedScene" uid="uid://d137sgviyscfm" path="res://scenes/player.tscn" id="3_dcvnj"]
 [ext_resource type="PackedScene" uid="uid://baaun8u3q5t8j" path="res://scenes/rooms/horizontal_door.tscn" id="4_abp0k"]
+[ext_resource type="PackedScene" uid="uid://crnx52u1546uw" path="res://helpers/dialogue_interact_zone.tscn" id="5_fox_dlg"]
 
 [node name="fox" type="Node2D" unique_id=1338668542 node_paths=PackedStringArray("player")]
 script = ExtResource("1_cp7ic")
@@ -22,6 +23,10 @@ position = Vector2(1105, 982)
 
 [node name="Player" parent="." unique_id=800656356 instance=ExtResource("3_dcvnj")]
 position = Vector2(558, 433)
+
+[node name="dialogue_interact_zone" parent="." instance=ExtResource("5_fox_dlg")]
+position = Vector2(900, 350)
+dialogue_path = "res://dialogues/5_fox_speech.dialogue"
 
 [node name="Doors" type="Node2D" parent="." unique_id=1858633695]
 
