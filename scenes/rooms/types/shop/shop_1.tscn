@@ -1,14 +1,29 @@
-[gd_scene format=3 uid="uid://u4o5bsaxoaff"]
+[gd_scene format=3 uid="uid://dvii4cm38u27p"]
 
 [ext_resource type="Script" uid="uid://brtkbla55kkox" path="res://scripts/room/room.gd" id="1_4uoxr"]
 [ext_resource type="PackedScene" uid="uid://wmffeydq5x56" path="res://scenes/spawn_point.tscn" id="2_852c1"]
 [ext_resource type="PackedScene" uid="uid://d137sgviyscfm" path="res://scenes/player.tscn" id="3_8ilt7"]
 [ext_resource type="PackedScene" uid="uid://baaun8u3q5t8j" path="res://scenes/rooms/horizontal_door.tscn" id="4_ujjjy"]
-[ext_resource type="PackedScene" uid="uid://bdvnsb6tv78tl" path="res://scenes/rooms/types/shop/shop_interact_zone.tscn" id="5_852c1"]
+[ext_resource type="PackedScene" path="res://scenes/rooms/types/shop/shop_interact_zone.tscn" id="5_852c1"]
 [ext_resource type="Texture2D" uid="uid://jqu3klprld13" path="res://assets/ui/GAMEJAM2026_UI_WeaponSelectionNoGlow.png" id="7_222ga"]
+[ext_resource type="Texture2D" path="res://assets/ui/heart.png" id="8_heart"]
+[ext_resource type="Texture2D" path="res://assets/weapons/sword_idle.png" id="9_sword"]
+[ext_resource type="Texture2D" path="res://assets/weapons/bow000.png" id="10_boot"]
 
 [sub_resource type="TileSet" id="TileSet_eejpr"]
 tile_size = Vector2i(64, 64)
+
+[sub_resource type="LabelSettings" id="LabelSettings_title"]
+font_size = 48
+font_color = Color(1, 1, 1, 1)
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_desc"]
+font_size = 30
+font_color = Color(0.85, 0.85, 0.85, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
 
 [node name="shop" type="Node2D" unique_id=1338668542 node_paths=PackedStringArray("player")]
 script = ExtResource("1_4uoxr")
@@ -53,6 +68,30 @@ texture = ExtResource("7_222ga")
 region_enabled = true
 region_rect = Rect2(588.77795, 131.28377, 877.2666, 1453.141)
 
+[node name="Icon" type="Sprite2D" parent="ShopCards/Card1"]
+position = Vector2(0, -150)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("8_heart")
+
+[node name="Title" type="Label" parent="ShopCards/Card1"]
+offset_left = -200.0
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 80.0
+horizontal_alignment = 1
+text = "+5 HP"
+label_settings = SubResource("LabelSettings_title")
+
+[node name="Desc" type="Label" parent="ShopCards/Card1"]
+offset_left = -200.0
+offset_top = 100.0
+offset_right = 200.0
+offset_bottom = 200.0
+horizontal_alignment = 1
+autowrap_mode = 2
+text = "Increases max health by 5"
+label_settings = SubResource("LabelSettings_desc")
+
 [node name="Card2" type="Sprite2D" parent="ShopCards" unique_id=1131992221]
 position = Vector2(647, 370)
 scale = Vector2(0.445, 0.445)
@@ -60,9 +99,57 @@ texture = ExtResource("7_222ga")
 region_enabled = true
 region_rect = Rect2(551.104, 115.13777, 990.2887, 1517.725)
 
+[node name="Icon" type="Sprite2D" parent="ShopCards/Card2"]
+position = Vector2(0, -150)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("9_sword")
+
+[node name="Title" type="Label" parent="ShopCards/Card2"]
+offset_left = -200.0
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 80.0
+horizontal_alignment = 1
+text = "+1 DMG"
+label_settings = SubResource("LabelSettings_title")
+
+[node name="Desc" type="Label" parent="ShopCards/Card2"]
+offset_left = -200.0
+offset_top = 100.0
+offset_right = 200.0
+offset_bottom = 200.0
+horizontal_alignment = 1
+autowrap_mode = 2
+text = "Increases attack damage by 1"
+label_settings = SubResource("LabelSettings_desc")
+
 [node name="Card3" type="Sprite2D" parent="ShopCards" unique_id=2106652815]
 position = Vector2(1150.0001, 376.00003)
 scale = Vector2(0.445, 0.445)
 texture = ExtResource("7_222ga")
 region_enabled = true
 region_rect = Rect2(534.958, 115.13777, 984.9066, 1506.9609)
+
+[node name="Icon" type="Sprite2D" parent="ShopCards/Card3"]
+position = Vector2(0, -150)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("10_boot")
+
+[node name="Title" type="Label" parent="ShopCards/Card3"]
+offset_left = -200.0
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 80.0
+horizontal_alignment = 1
+text = "+25% SPD"
+label_settings = SubResource("LabelSettings_title")
+
+[node name="Desc" type="Label" parent="ShopCards/Card3"]
+offset_left = -200.0
+offset_top = 100.0
+offset_right = 200.0
+offset_bottom = 200.0
+horizontal_alignment = 1
+autowrap_mode = 2
+text = "Increases move speed by 25%"
+label_settings = SubResource("LabelSettings_desc")
