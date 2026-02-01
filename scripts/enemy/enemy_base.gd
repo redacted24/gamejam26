@@ -5,6 +5,14 @@ class_name EnemyBase
 @export var contact_damage: int = 1
 @export var max_hp: int = 3
 
+@export_group("Drops")
+@export var drop_enabled: bool = true
+@export var drop_type: String = "food"
+@export var drop_value: float = 1.0
+@export var drop_texture: Texture2D = preload("res://assets/items/meat.png")
+@export var drop_scale: float = 0.45
+@export var drop_attract_radius: float = 80.0
+
 @onready var health_component: HealthComponent = $HealthComponent
 
 var _sync_timer: float = 0.0
@@ -54,12 +62,14 @@ func _on_died() -> void:
 	queue_free()
 
 func _drop_meat() -> void:
+	if not drop_enabled:
+		return
 	var pickup := Pickup.new()
-	pickup.pickup_type = "food"
-	pickup.value = 1.0
-	pickup._visual_texture = preload("res://assets/items/meat.png")
-	pickup._visual_scale = 0.45
-	pickup.attract_radius = 80.0
+	pickup.pickup_type = drop_type
+	pickup.value = drop_value
+	pickup._visual_texture = drop_texture
+	pickup._visual_scale = drop_scale
+	pickup.attract_radius = drop_attract_radius
 	pickup.position = global_position
 	get_tree().current_scene.call_deferred("add_child", pickup)
 

@@ -71,4 +71,13 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player") and body is Player:
 		body.apply_pickup(pickup_type, value)
+		_check_post_tutorial_dialogue()
 		queue_free()
+
+func _check_post_tutorial_dialogue() -> void:
+	if pickup_type == "food" and not PlayerData.post_tutorial_shown:
+		PlayerData.post_tutorial_shown = true
+		var resource: DialogueResource = load("res://dialogues/3_post_tutorial.dialogue")
+		var balloon: Node = load("res://scenes/dialogue/balloon.tscn").instantiate()
+		get_tree().current_scene.add_child(balloon)
+		DialogueManager.show_dialogue_balloon_scene(balloon, resource, "start")

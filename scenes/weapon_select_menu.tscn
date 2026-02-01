@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene format=3 uid="uid://bq8kn2k3mnui1"]
 
-[ext_resource type="Script" path="res://scripts/ui/weapon_select_menu.gd" id="1_weapon_select"]
+[ext_resource type="Script" uid="uid://o4ssngeyqmne" path="res://scripts/ui/weapon_select_menu.gd" id="1_weapon_select"]
 
-[node name="WeaponSelectMenu" type="Control"]
+[node name="WeaponSelectMenu" type="Control" unique_id=298020873]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,38 +11,38 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_weapon_select")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=871149191]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
 theme_override_constants/separation = 30
+alignment = 1
 
-[node name="Title" type="Label" parent="VBoxContainer"]
+[node name="Title" type="Label" parent="VBoxContainer" unique_id=1002613586]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Choose Your Weapon"
 horizontal_alignment = 1
 
-[node name="WeaponGrid" type="HBoxContainer" parent="VBoxContainer"]
+[node name="WeaponGrid" type="HBoxContainer" parent="VBoxContainer" unique_id=1570581416]
 layout_mode = 2
-alignment = 1
 theme_override_constants/separation = 40
-
-[node name="ButtonRow" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
 alignment = 1
-theme_override_constants/separation = 20
 
-[node name="BackButton" type="Button" parent="VBoxContainer/ButtonRow"]
+[node name="ButtonRow" type="HBoxContainer" parent="VBoxContainer" unique_id=1285826613]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="BackButton" type="Button" parent="VBoxContainer/ButtonRow" unique_id=1322333237]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 text = "Back"
 
-[node name="StartButton" type="Button" parent="VBoxContainer/ButtonRow"]
+[node name="StartButton" type="Button" parent="VBoxContainer/ButtonRow" unique_id=533115824]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 text = "Start"
