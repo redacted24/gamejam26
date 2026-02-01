@@ -41,5 +41,15 @@ func _on_body_entered(body: Node2D) -> void:
 		queue_free()
 		return
 	if body.has_method("take_damage"):
-		body.take_damage(damage, global_position)
+		if is_player_projectile:
+			# Only host processes damage to enemies
+			if not NetworkManager.is_online() or multiplayer.is_server():
+				body.take_damage(damage, global_position)
+		else:
+			# Hitting a player - each player handles their own damage
+			if body is Player:
+				if not NetworkManager.is_online() or body.is_multiplayer_authority():
+					body.take_damage(damage, global_position)
+			else:
+				body.take_damage(damage, global_position)
 	queue_free()

@@ -30,6 +30,8 @@ func process(delta: float) -> void:
 
 func physics_process(_delta: float) -> void:
 	var player: Player = get_parent().get_parent()
+	if NetworkManager.is_online() and not player.is_multiplayer_authority():
+		return
 	var dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	player.velocity = dir * player.stats.speed * 0.5
 	player.move_and_slide()

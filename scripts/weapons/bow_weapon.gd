@@ -29,6 +29,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	_update_aim()
 
+	if not player or (NetworkManager.is_online() and not player.is_multiplayer_authority()):
+		return
+
 	if Input.is_action_pressed("shoot"):
 		if not is_charging:
 			is_charging = true
@@ -80,15 +83,24 @@ func _fire_charged_arrow() -> void:
 	var charge_ratio := (charge_time - min_charge_time) / (max_charge_time - min_charge_time)
 	charge_ratio = clampf(charge_ratio, 0.0, 1.0)
 	var dir := _get_attack_direction()
-
-	var proj: Projectile = projectile_scene.instantiate()
-
 	var final_damage := int(damage * lerpf(min_damage_multiplier, max_damage_multiplier, charge_ratio))
 	var final_speed := projectile_speed * lerpf(min_speed_multiplier, max_speed_multiplier, charge_ratio)
+	var spawn_pos := player.global_position + dir * 20.0
 
-	proj.setup(dir, final_damage, final_speed, true)
-	proj.global_position = player.global_position + dir * 20.0
+	# Spawn locally and on all peers
+	_spawn_arrow(dir, final_damage, final_speed, spawn_pos)
+	if NetworkManager.is_online():
+		_spawn_arrow_remote.rpc(dir, final_damage, final_speed, spawn_pos)
+
+func _spawn_arrow(dir: Vector2, dmg: int, spd: float, pos: Vector2) -> void:
+	var proj: Projectile = projectile_scene.instantiate()
+	proj.setup(dir, dmg, spd, true)
+	proj.global_position = pos
 	player.get_tree().current_scene.add_child(proj)
+
+@rpc("any_peer", "call_remote", "reliable")
+func _spawn_arrow_remote(dir: Vector2, dmg: int, spd: float, pos: Vector2) -> void:
+	_spawn_arrow(dir, dmg, spd, pos)
 
 func try_attack() -> void:
 	pass

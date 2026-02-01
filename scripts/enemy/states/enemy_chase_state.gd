@@ -30,7 +30,7 @@ func enter() -> void:
 	attack_cooldown = 1.0
 
 func physics_process(delta: float) -> void:
-	var player := get_tree().get_first_node_in_group("player")
+	var player: Node2D = enemy.get_player()
 	if not player:
 		return
 

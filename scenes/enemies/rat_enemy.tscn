@@ -90,6 +90,7 @@ initial_state = NodePath("Chase")
 [node name="Chase" type="Node" parent="StateMachine" unique_id=844555683 node_paths=PackedStringArray("enemy")]
 script = ExtResource("2_ey5y1")
 enemy = NodePath("../..")
+turn_speed = null
 
 [node name="Dead" type="Node" parent="StateMachine" unique_id=871552550]
 script = ExtResource("6_teh6i")

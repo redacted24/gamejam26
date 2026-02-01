@@ -18,3 +18,4 @@ sprite_bow_drawn = ExtResource("5_dddqp")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1559690004]
 scale = Vector2(3.72, 3.72)
+texture = ExtResource("2_qn7mn")

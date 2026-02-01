@@ -1,14 +1,20 @@
 extends CanvasLayer
 
 var hearts_container: HBoxContainer
+var p2_hearts_container: HBoxContainer
 var stats_label: Label
 var minimap: Control
 var game_over_screen: Control
 
+var _local_peer_id: int = 1
+
 func _ready() -> void:
 	layer = 5
 
+	_local_peer_id = multiplayer.get_unique_id() if NetworkManager.is_online() else 1
+
 	_create_hearts()
+	_create_p2_hearts()
 	_create_stats_label()
 	_create_minimap()
 	_create_game_over_screen()
@@ -20,7 +26,7 @@ func _ready() -> void:
 	EventBus.room_entered.connect(_on_room_entered)
 
 	# Initial hearts display
-	_update_hearts(6, 6)
+	_update_hearts(hearts_container, 6, 6)
 
 func _create_hearts() -> void:
 	var margin := MarginContainer.new()
@@ -33,10 +39,25 @@ func _create_hearts() -> void:
 	hearts_container.add_theme_constant_override("separation", 4)
 	margin.add_child(hearts_container)
 
+func _create_p2_hearts() -> void:
+	var margin := MarginContainer.new()
+	margin.set_anchors_preset(Control.PRESET_TOP_LEFT)
+	margin.add_theme_constant_override("margin_left", 20)
+	margin.add_theme_constant_override("margin_top", 38)
+	add_child(margin)
+
+	p2_hearts_container = HBoxContainer.new()
+	p2_hearts_container.add_theme_constant_override("separation", 3)
+	p2_hearts_container.visible = NetworkManager.is_online()
+	margin.add_child(p2_hearts_container)
+
+	if NetworkManager.is_online():
+		_update_hearts(p2_hearts_container, 6, 6, true)
+
 func _create_stats_label() -> void:
 	stats_label = Label.new()
 	stats_label.set_anchors_preset(Control.PRESET_TOP_LEFT)
-	stats_label.position = Vector2(20, 50)
+	stats_label.position = Vector2(20, 60 if NetworkManager.is_online() else 50)
 	stats_label.add_theme_color_override("font_color", Color(0.8, 0.8, 0.8))
 	stats_label.add_theme_font_size_override("font_size", 14)
 	stats_label.text = ""
@@ -87,37 +108,47 @@ func _create_game_over_screen() -> void:
 	restart_btn.pressed.connect(func(): EventBus.restart_requested.emit())
 	vbox.add_child(restart_btn)
 
-func _update_hearts(current_hp: int, max_hp: int) -> void:
-	for child in hearts_container.get_children():
+func _update_hearts(container: HBoxContainer, current_hp: int, max_hp: int, small: bool = false) -> void:
+	for child in container.get_children():
 		child.queue_free()
 
 	var full_hearts := current_hp / 2
 	var half_heart := current_hp % 2
 	var empty_hearts := (max_hp - current_hp) / 2
 
+	var size := Vector2(16, 16) if small else Vector2(24, 24)
+
 	for i in range(full_hearts):
-		hearts_container.add_child(_make_heart(Color(0.9, 0.15, 0.15)))
+		container.add_child(_make_heart(Color(0.9, 0.15, 0.15), size))
 
 	if half_heart:
-		hearts_container.add_child(_make_heart(Color(0.9, 0.4, 0.4)))
+		container.add_child(_make_heart(Color(0.9, 0.4, 0.4), size))
 
 	for i in range(empty_hearts):
-		hearts_container.add_child(_make_heart(Color(0.3, 0.3, 0.3)))
+		container.add_child(_make_heart(Color(0.3, 0.3, 0.3), size))
 
-func _make_heart(color: Color) -> ColorRect:
+func _make_heart(color: Color, size: Vector2 = Vector2(24, 24)) -> ColorRect:
 	var heart := ColorRect.new()
-	heart.custom_minimum_size = Vector2(24, 24)
+	heart.custom_minimum_size = size
 	heart.color = color
 	return heart
 
-func _on_player_health_changed(current_hp: int, max_hp: int) -> void:
-	_update_hearts(current_hp, max_hp)
+func _on_player_health_changed(peer_id: int, current_hp: int, max_hp: int) -> void:
+	if peer_id == _local_peer_id:
+		_update_hearts(hearts_container, current_hp, max_hp)
+	else:
+		p2_hearts_container.visible = true
+		_update_hearts(p2_hearts_container, current_hp, max_hp, true)
 
-func _on_stats_changed(stats: Dictionary) -> void:
-	stats_label.text = "DMG: %d  SPD: %d" % [stats.damage, int(stats.speed)]
+func _on_stats_changed(peer_id: int, stats: Dictionary) -> void:
+	if peer_id == _local_peer_id:
+		stats_label.text = "DMG: %d  SPD: %d" % [stats.damage, int(stats.speed)]
 
-func _on_player_died() -> void:
-	game_over_screen.visible = true
+func _on_player_died(peer_id: int) -> void:
+	# Show game over if all players are dead (checked by main.gd)
+	# For now, show it when local player dies
+	if peer_id == _local_peer_id:
+		game_over_screen.visible = true
 
 func _on_room_entered(room_data: Dictionary) -> void:
 	if minimap and minimap.has_method("update_room"):
