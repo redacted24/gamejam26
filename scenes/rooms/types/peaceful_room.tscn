@@ -14,6 +14,7 @@ room_type = 1
 hunger_cost = 10
 
 [node name="Player" parent="." unique_id=800656356 instance=ExtResource("3_rgptx")]
+position = Vector2(542, 409)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1724411306]
 tile_set = SubResource("TileSet_uh2ch")
@@ -23,12 +24,6 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="ColorRect" type="ColorRect" parent="Control" unique_id=1886876640]
-layout_mode = 0
-offset_right = 1173.0
-offset_bottom = 670.0
-color = Color(0.3911897, 0.52641046, 0.83843714, 1)
 
 [node name="Label" type="Label" parent="Control" unique_id=1983562489]
 layout_mode = 0
