@@ -6,4 +6,5 @@ extends CanvasLayer
 func change_scene(path : String, delay = 0.5) -> void:
 	animation_player.play("fade_out")
 	await animation_player.animation_finished
+	get_tree().change_scene_to_file(path)
 	EventBus.scene_exit.emit()

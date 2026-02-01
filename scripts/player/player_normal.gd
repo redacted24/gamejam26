@@ -7,6 +7,8 @@ class_name PlayerNormal
 
 func _ready() -> void:
 	DialogueManager.dialogue_started.connect(_on_dialogue_start)
+	EventBus.room_cleared.connect(_on_room_clear)
+	EventBus.cutscene_enter.connect(_on_cutscene_enter)
 
 func get_input() -> void:
 	if NetworkManager.is_online() and not player.is_multiplayer_authority():
@@ -14,8 +16,15 @@ func get_input() -> void:
 	var input_direction: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	player.velocity = input_direction * speed
 
-func _on_dialogue_start() -> void:
-	pass
+func _on_dialogue_start(resource : DialogueResource) -> void:
+	Transitioned.emit(self, "Immobile")
+	
+func _on_room_clear(next_level) -> void:
+	print("room clear enter immobile")
+	Transitioned.emit(self, "Immobile")
+	
+func _on_cutscene_enter() -> void:
+	Transitioned.emit(self, "Immobile")
 
 func enter() -> void:
 	pass

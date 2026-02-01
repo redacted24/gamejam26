@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://wmffeydq5x56"]
 
+[ext_resource type="Script" uid="uid://b5cw2uf0jdiet" path="res://scenes/spawn_point.gd" id="1_ebynj"]
+
 [node name="Spawnpoint" type="Node2D" unique_id=825871877]
+script = ExtResource("1_ebynj")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1435204474]
 z_index = 1
