@@ -32,5 +32,5 @@ func _on_dialogue_end(resource : DialogueResource) -> void:
 	
 
 func show_example_dialogue_baloon(resource: DialogueResource, title: String = "", extra_game_states: Array = []):
-	var balloon : Node = load("res://scenes/dialogue/balloon.tscn").instantiate()
+	var balloon : Node = load("res://scenes/dialogue/cutscene_balloon.tscn").instantiate()
 	DialogueManager.show_dialogue_balloon_scene(balloon, resource, title)

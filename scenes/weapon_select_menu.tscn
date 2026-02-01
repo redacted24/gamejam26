@@ -205,21 +205,6 @@ autowrap_mode = 3
 layout_mode = 2
 text = "Select"
 
-[node name="ButtonRow" type="HBoxContainer" parent="VBoxContainer" unique_id=1285826613]
-layout_mode = 2
-theme_override_constants/separation = 20
-alignment = 1
-
-[node name="BackButton" type="Button" parent="VBoxContainer/ButtonRow" unique_id=1322333237]
-custom_minimum_size = Vector2(200, 50)
-layout_mode = 2
-text = "Back"
-
-[node name="StartButton" type="Button" parent="VBoxContainer/ButtonRow" unique_id=533115824]
-custom_minimum_size = Vector2(200, 50)
-layout_mode = 2
-text = "Start"
-
 [connection signal="mouse_entered" from="VBoxContainer/WeaponGrid/BowPanel" to="." method="_on_panel_hover" binds= [0]]
 [connection signal="mouse_exited" from="VBoxContainer/WeaponGrid/BowPanel" to="." method="_on_panel_unhover" binds= [0]]
 [connection signal="pressed" from="VBoxContainer/WeaponGrid/BowPanel/Margin/VBox/SelectButton" to="." method="_on_weapon_selected" binds= [0]]
@@ -229,5 +214,3 @@ text = "Start"
 [connection signal="mouse_entered" from="VBoxContainer/WeaponGrid/SwordPanel" to="." method="_on_panel_hover" binds= [2]]
 [connection signal="mouse_exited" from="VBoxContainer/WeaponGrid/SwordPanel" to="." method="_on_panel_unhover" binds= [2]]
 [connection signal="pressed" from="VBoxContainer/WeaponGrid/SwordPanel/Margin/VBox/SelectButton" to="." method="_on_weapon_selected" binds= [2]]
-[connection signal="pressed" from="VBoxContainer/ButtonRow/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/ButtonRow/StartButton" to="." method="_on_start_button_pressed"]
