@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bdvnsb6tv78tl"]
+
+[ext_resource type="Script" uid="uid://dp0x8d6w3ntc4" path="res://scenes/rooms/types/shop/shop_interact_zone.gd" id="1_shop"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_shop1"]
+radius = 18.0
+
+[node name="shop_interact_zone" type="Node2D" unique_id=68210161]
+script = ExtResource("1_shop")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1212779594]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1863964637]
+shape = SubResource("CircleShape2D_shop1")
+
+[node name="InteractText" type="Label" parent="." unique_id=1439885157]
+offset_left = -92.0
+offset_top = -59.0
+offset_right = 106.0
+offset_bottom = -36.0
+text = "Press E to open shop"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=675307971]
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 18.0
+offset_bottom = 18.0
+color = Color(0.8, 0.6, 0.2, 0.7)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
