@@ -55,9 +55,9 @@ func _setup_multiplayer_players() -> void:
 		var p: Player = player_scene.instantiate()
 		p.name = "Player_%d" % pid
 		p.peer_id = pid
-		p.set_multiplayer_authority(pid)
 		p.position = spawn_pos + Vector2(offset_idx * 30, 0)
 		add_child(p)
+		p.set_multiplayer_authority(pid)
 
 		var cam := p.get_node_or_null("Camera2D") as Camera2D
 		if cam:
